@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: Fitpin
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mariadb://localhost:3307/fitpin?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+      username: admin
+      password: dmumars19
+      driver-class-name: org.mariadb.jdbc.Driver
+      connection-test-query: SELECT NOW() FROM dual
+
+# MyBatis setting
+mybatis:
+  #mapper-locations: classpath:/mappers/*.xml
+  mapper-locations: classpath:/mappers/xml/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+# SSH setting
+ssh:
+  user: seoksee
+  host: dmumars.kro.kr
+  port: 22
+  private-key: C:/develop/workspace/Fitpin/src/main/resources/dbSSL/AWSkey.ppk
+  remote-host: awsdb.cgulzz8btuoe.ap-northeast-2.rds.amazonaws.com
+  local-port: 3307
+  remote-port: 3306
+
+# JPA setting
+spring.jpa.hibernate.ddl-auto: update
+
+#Spring boot Logging
+
+logging:
+  level:
+    root: DEBUG
+    org.springframework: DEBUG
+    org.mybatis: DEBUG
