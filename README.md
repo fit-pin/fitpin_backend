@@ -60,10 +60,9 @@
 }
 
 ```
-#### /api/search/(query): DB상의 itemName, itemType, itemBrand 쿼리에 대한 키워드에 대한 검색 결과를 조회합니다, 
--요청형식 : /api/search?query={searchKeyword}
+#### /api/search/(query): DB상의 itemName, itemType, itemBrand 컬럼에서 주어진 검색어(query)와 일치하는 항목들을 검색하여 결과를 반환합니다.
+##### 요청 파라미터: `query` (String, 필수): 검색할 키워드
 -요쳥예시 : /api/search?query=shirt
-
 
 -정상응답 (code:200)
 ```js
