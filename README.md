@@ -37,62 +37,48 @@
 
 
 ```
-#### /orders: 주문을 신청합니다.
-
--  요청
-
-```js
-{
-  "itemKey": 1,
-  "userName": "홍길동",
-  "userAddr": "서울특별시 강남구",
-  "userNumber": "010-1234-5678",
-  "itemName": "테스트 상품",
-  "itemImg1": "image_url_here",
-  "itemSize": 42,
-  "itemPrice": 150000,
-  "itemBuycnt": 2,
-  "itemTotal": 300000,
-  "pitPrice": 5000
-}
-```
-
--  정상응답 (code:200)
-  
-```js
-{
-    `Status Code`200 OK
-}
-```
-      
-- 에러 (code:500)
-
-```js
-
-
-```
 
 ### GET 요청
-#### /iteminfo/{itemKey}: 해당key값을 가진 제품에 대한 정보 반환
+#### /itemdetails/{itemKey}: 제품의 상세 정보를 조회합니다
+
+-정상응답 (code:200)
+```js
+{
+    "itemKey": 1,
+    "itemNum": 1,
+    "itemName": "테스트용 요청 옷",
+    "itemType": "상의",
+    "itemBrand": "테스트용 브랜드",
+    "itemImg1": "image1_url",
+    "itemImg2": "image2_url",
+    "itemImg3": "image3_url",
+    "itemCnt": 5000,
+    "itemSize": 50,
+    "itemContent": "테스트용 요청입니다",
+    "itemPrice": 300,
+    "itemDate": "2024-06-05"
+}
+
+```
+#### /api/search/(query): DB상의 itemName, itemType, itemBrand 쿼리에 대한 키워드에 대한 검색 결과를 조회합니다, 
+-요청형식 : /api/search?query={searchKeyword}
+-요쳥예시 : /api/search?query=shirt
 
 
 -정상응답 (code:200)
 ```js
-
 {
     "itemKey": 1,
-    "itemSize": 42.0,
-    "itemHeight": 180.0,
-    "itemShoulder": 50.0,
-    "itemArm": 60.0,
-    "itemChest": 100.0,
-    "itemWaists": 80.0,
-    "itemThighs": 50.0,
-    "itemRise": 20.0,
-    "itemHem": 18.0
+    "itemNum": 1,
+    "itemName": "테스트용 요청 옷",
+    "itemType": "상의",
+    "itemBrand": "테스트용 브랜드",
+    "itemImg1": "image1_url",
+    "itemImg2": "image2_url",
+    "itemImg3": "image3_url",
+    "itemCnt": 5000,
+    "itemSize": 50,
+    "itemContent": "테스트용 요청입니다",
+    "itemPrice": 300,
+    "itemDate": "2024-06-05"
 }
-
-```
-
-
-
