@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+// /api/items{itemkey} 상품을 등록하기 위한 POST 메서드 입니다,
 @RestController
 @RequestMapping("/api/items")
 public class ItemController {
@@ -19,13 +20,15 @@ public class ItemController {
         item.setItemKey(itemPostRequest.getItemKey());
         item.setItemNum(itemPostRequest.getItemNum());
         item.setItemName(itemPostRequest.getItemName());
+        item.setItemType(itemPostRequest.getItemType());
+        item.setItemBrand(itemPostRequest.getItemBrand());
         item.setItemImg1(itemPostRequest.getItemImg1());
         item.setItemImg2(itemPostRequest.getItemImg2());
         item.setItemImg3(itemPostRequest.getItemImg3());
+        item.setItemCnt(itemPostRequest.getItemCnt());
+        item.setItemSize(itemPostRequest.getItemSize());
         item.setItemContent(itemPostRequest.getItemContent());
         item.setItemPrice(itemPostRequest.getItemPrice());
-        item.setItemSale(itemPostRequest.getItemSale());
-        item.setItemCnt(itemPostRequest.getItemCnt());
         item.setItemDate(itemPostRequest.getItemDate());
 
         itemService.addItem(item);

@@ -1,10 +1,10 @@
-package com.mzm.Fitpin.entity;
+package com.mzm.Fitpin.post;
 
 import lombok.Data;
-import java.sql.Date;
+import java.util.Date;
 
 @Data
-public class Item {
+public class ItemDetailsResponse {
     private Integer itemKey;
     private Integer itemNum;
     private String itemName;
