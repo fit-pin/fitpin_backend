@@ -3,9 +3,9 @@ spring:
     name: Fitpin
   datasource:
     hikari:
-      jdbc-url: jdbc:mariadb://localhost:3307/fitpin?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
-      username: admin
-      password: dmumars19
+      jdbc-url:
+      username: 
+      password:
       driver-class-name: org.mariadb.jdbc.Driver
       connection-test-query: SELECT NOW() FROM dual
 
@@ -18,11 +18,11 @@ mybatis:
 
 # SSH setting
 ssh:
-  user: seoksee
-  host: dmumars.kro.kr
+  user: 
+  host: 
   port: 22
-  private-key: C:/develop/workspace/Fitpin/src/main/resources/dbSSL/AWSkey.ppk
-  remote-host: awsdb.cgulzz8btuoe.ap-northeast-2.rds.amazonaws.com
+  private-key: src/main/resources/dbSSL/AWSkey.ppk
+  remote-host: 
   local-port: 3307
   remote-port: 3306
 

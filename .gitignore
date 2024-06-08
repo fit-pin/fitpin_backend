@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# ssh 키
+src/main/resources/dbSSL/
