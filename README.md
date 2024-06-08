@@ -10,16 +10,17 @@
 ```js
 {
     "itemKey": 1,
-    "itemNum": 100,
-    "itemName": "Test Item",
+    "itemNum": 1,
+    "itemName": "테스트용 요청 옷",
+    "itemType": "상의",
+    "ItemBrand": "테스트용 브랜드",
     "itemImg1": "img1.png",
     "itemImg2": "img2.png",
     "itemImg3": "img3.png",
+    "itemCnt": "5000",
     "itemContent": "테스트 아이템입니다",
-    "itemPrice": 99.99,
-    "itemSale": 89.99,
-    "itemCnt": 10,
-    "itemDate": "2023-01-01"
+    "itemPrice": 300,
+    "itemDate": "2023-06-05"
 }
 ```
 
