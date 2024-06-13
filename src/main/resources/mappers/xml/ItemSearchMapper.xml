@@ -3,7 +3,10 @@
 <mapper namespace="com.mzm.Fitpin.mapper.ItemSearchMapper">
 
     <select id="searchItems" resultType="com.mzm.Fitpin.entity.Item">
-        SELECT * FROM item WHERE itemName LIKE CONCAT('%', #{query}, '%')
+        SELECT * FROM item
+        WHERE itemName LIKE CONCAT('%', #{query}, '%')
+           OR itemType LIKE CONCAT('%', #{query}, '%')
+           OR itemBrand LIKE CONCAT('%', #{query}, '%')
     </select>
 
 </mapper>

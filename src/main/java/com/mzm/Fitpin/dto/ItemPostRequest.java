@@ -1,4 +1,4 @@
-package com.mzm.Fitpin.post;
+package com.mzm.Fitpin.dto;
 
 import lombok.Data;
 

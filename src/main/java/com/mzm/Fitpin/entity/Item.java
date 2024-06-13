@@ -1,6 +1,7 @@
 package com.mzm.Fitpin.entity;
 
 import lombok.Data;
+
 import java.sql.Date;
 
 @Data

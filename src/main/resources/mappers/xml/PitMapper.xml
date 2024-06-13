@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.PitMapper">
+
+    <insert id="insertPitTop" parameterType="com.mzm.Fitpin.entity.PitTop">
+        INSERT INTO pit_top (userKey, itemKey, itemSize, itemPrice, itemHeight, itemShoulder, itemArm, itemChest, itemSleeve)
+        VALUES (#{userKey}, #{itemKey}, #{itemSize}, #{itemPrice}, #{itemHeight}, #{itemShoulder}, #{itemArm}, #{itemChest}, #{itemSleeve})
+    </insert>
+
+    <insert id="insertPitBottom" parameterType="com.mzm.Fitpin.entity.PitBottom">
+        INSERT INTO pit_bottom (userKey, itemKey, itemSize, itemPrice, itemHeight, itemWaists, itemThighs, itemRise, itemHem)
+        VALUES (#{userKey}, #{itemKey}, #{itemSize}, #{itemPrice}, #{itemHeight}, #{itemWaists}, #{itemThighs}, #{itemRise}, #{itemHem})
+    </insert>
+
+</mapper>

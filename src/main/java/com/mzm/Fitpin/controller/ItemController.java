@@ -1,13 +1,14 @@
 package com.mzm.Fitpin.controller;
 
-import com.mzm.Fitpin.entity.Item;
-import com.mzm.Fitpin.post.ItemPostRequest;
-import com.mzm.Fitpin.service.ItemService;
+import com.mzm.Fitpin.dto.ItemPostRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-// /api/items{itemkey} 상품을 등록하기 위한 POST 메서드 입니다,
+// /api/items/{itemkey} 상품을 등록하기 위한 POST 메서드 입니다,
 @RestController
 @RequestMapping("/api/items")
 public class ItemController {
