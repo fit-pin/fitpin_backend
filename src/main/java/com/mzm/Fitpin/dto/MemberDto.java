@@ -4,16 +4,9 @@ import lombok.Data;
 
 @Data
 public class MemberDto {
-    private String userId;
+    private String userEmail;
     private String userPwd;
     private String userName;
-    private String userNumber;
-    private String userNickname;
-    private String userAddr;
-    private String userEmail;
-    private String userGender;
-    private Integer userHeight;
-    private Integer userWeight;
-    private Integer userForm;
-    private Integer userCash;
+    private String userPwdConfirm; // 비밀번호 확인 필드 추가
+
 }

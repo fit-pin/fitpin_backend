@@ -44,17 +44,17 @@ dependencies {
 	testImplementation 'org.mockito:mockito-core'
 
 	// JWT와 보안을 위한 추가 의존성입니다.
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.security:spring-security-config'
-	implementation 'org.springframework.security:spring-security-web'
+	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	//implementation 'org.springframework.security:spring-security-config'
+	//implementation 'org.springframework.security:spring-security-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 	// jjwt 일단은 사용 xxxx
-	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	//implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	//runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	//runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
-	compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+	//compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 
 
 

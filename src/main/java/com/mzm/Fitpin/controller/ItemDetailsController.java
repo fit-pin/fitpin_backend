@@ -1,12 +1,11 @@
 package com.mzm.Fitpin.controller;
 
+import com.mzm.Fitpin.entity.Item;
 import com.mzm.Fitpin.dto.ItemDetailsResponse;
+import com.mzm.Fitpin.service.ItemDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 //특정 상품의 상세 정보를 조회하는 GET 메서드 입니다.
 @RestController
 @RequestMapping("/api/itemdetails")

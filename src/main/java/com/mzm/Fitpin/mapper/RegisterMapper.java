@@ -4,6 +4,6 @@ import com.mzm.Fitpin.entity.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface MemberMapper {
+public interface RegisterMapper {
     void insertMember(Member member);
 }

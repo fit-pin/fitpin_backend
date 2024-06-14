@@ -3,7 +3,7 @@ package com.mzm.Fitpin.dto;
 import lombok.Data;
 
 @Data
-public class LoginRequest {
-    private String userId;
+public class LoginDto {
+    private String userEmail;
     private String userPwd;
 }
