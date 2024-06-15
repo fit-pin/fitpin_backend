@@ -10,4 +10,8 @@
         VALUES (#{userEmail}, #{preferStyle})
     </insert>
 
+    <select id="findUserPreferStylesByEmail" parameterType="String" resultType="com.mzm.Fitpin.entity.UserPreferStyle">
+        SELECT * FROM preferStyle WHERE userEmail = #{userEmail}
+    </select>
+
 </mapper>

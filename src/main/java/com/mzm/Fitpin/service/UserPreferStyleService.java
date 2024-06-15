@@ -25,4 +25,16 @@ public class UserPreferStyleService {
         }
         return registeredStyles;
     }
+
+    public List<UserPreferStyleDTO> getUserPreferStylesByEmail(String userEmail) {
+        List<UserPreferStyle> userPreferStyles = userPreferStyleMapper.findUserPreferStylesByEmail(userEmail);
+        List<UserPreferStyleDTO> userPreferStyleDTOs = new ArrayList<>();
+        for (UserPreferStyle userPreferStyle : userPreferStyles) {
+            UserPreferStyleDTO dto = new UserPreferStyleDTO();
+            dto.setUserEmail(userPreferStyle.getUserEmail());
+            dto.setPreferStyle(userPreferStyle.getPreferStyle());
+            userPreferStyleDTOs.add(dto);
+        }
+        return userPreferStyleDTOs;
+    }
 }
