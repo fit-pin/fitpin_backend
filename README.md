@@ -6,7 +6,7 @@
 
 **요청 메인 URL: `http://fitpitback.kro.kr:8080`**
 
-> 요청 URL 예시 /items = http://dmumars.kro.kr:8080/api/items
+> 요청 URL 예시 `items = http://dmumars.kro.kr:8080/api/items`
 
 
 ### POST 요청
@@ -16,7 +16,7 @@
 
 -  요청
   
-> 요청 URL 예시 : /http://fitpitback.kro.kr:8080/api/members/register
+> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/register`
 ```js
 {
     "userEmail": "tlsdnwls@test.com",
@@ -48,7 +48,7 @@
 
 - 요청
 
-> 요청 URL 예시 : /http://fitpitback.kro.kr:8080/api/login
+> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/login`
 
 ```js
 {
@@ -91,7 +91,7 @@
 #### /api/members/basicInfo/{userEmail} : userEmail 칼럼의 데이터를 변수로 받아 유저 기본 정보를 업데이트 하는 API입니다.
 #### {userEmail} 부분에는 member 테이블의 userEmail 칼럼의 실제 값이 들어가야 합니다.
 
-> 요청 URL 예시 : /http://fitpitback.kro.kr:8080/api/members/basicInfo/test1
+> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/basicInfo/test1`
 ```js
 {
     "userGender": "남자",
@@ -111,7 +111,7 @@
 userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저가 같은 스타일을 선호스타일로 등록하려 하면 에러가 발생하니 참고 부탁드립니다.
 
 - 요청
-> 요청 URL 예시: /http://fitpitback.kro.kr:8080/api/userPreferStyle
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/userPreferStyle`
 
 ```js
 [
@@ -142,7 +142,7 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 #### /api/GetUserPreferStyle/{userEmail}: userEmail 칼럼의 데이터를 변수로 받아 유저의 선호 스타일을 Json 배열 방식으로 반환받는 API입니다
 
 -요청
-> 요청 URL 예시: /http://fitpitback.kro.kr:8080/api/GetUserPreferStyle/test1
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/GetUserPreferStyle/test1`
 
 정상응답
 ```js
