@@ -4,7 +4,7 @@
 
 ### API 사용법
 
-**요청 메인 URL: `http://http://fitpitback.kro.kr:8080`**
+**요청 메인 URL: `http://fitpitback.kro.kr:8080`**
 
 > 예시 /items = http://dmumars.kro.kr:8080/api/items
 
