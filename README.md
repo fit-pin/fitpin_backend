@@ -104,7 +104,7 @@
 #### POS
 #### /api/userPreferStyle : 유저 선호 스타일을 jsonArray 형식으로 전달받습니다.
 #### 요청 성공시 선호 스타일 등록 완료 : "스타일명1", "스타일명2", ... 이런식으로 등록된 스타일이 반환됩니다.
-#### DB의 preferStyle 테이블에 하나씩 등록됩니다, {userEmail+preferStyle}행의 조합이 중복되면 있으면 에러가 발생하니 테스트때 주의해주세요.
+#### DB의 preferStyle 테이블에 하나씩 등록됩니다, {userEmail+preferStyle}행의 조합이 중복되어 있으면 에러가 발생합니다.
 
 - 요청 예시
 POST/ http://fitpitback.kro.kr:8080/api/userPreferStyle
