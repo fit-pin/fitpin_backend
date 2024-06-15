@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.MemberBasicInfoMapper">
+
+    <update id="updateBasicInfo" parameterType="com.mzm.Fitpin.entity.Member">
+        UPDATE member
+        SET userGender = #{userGender}, userHeight = #{userHeight}, userWeight = #{userWeight}
+        WHERE userEmail = #{userEmail}
+    </update>
+
+</mapper>

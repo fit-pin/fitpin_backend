@@ -4,7 +4,10 @@ import com.mzm.Fitpin.entity.ItemTopSize;
 import com.mzm.Fitpin.service.ItemTopSizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 //상의 상품의 사이즈를 조회하는 api입니다
