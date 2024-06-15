@@ -31,7 +31,7 @@
 }
 ```
 
--  정상응답 (code:200)
+-  정상응답 (status:200)
   
 ```js
 {
@@ -45,7 +45,7 @@
 
 
 ```
-
+#### POST
 #### /api/members/register : 회원가입을 위한 api입니다.
 
 -  요청
@@ -60,7 +60,7 @@
 ```
 요청 성공시 DB에 이메일,비밀번호,이름 칼럼이 저장됩니다.
 
--  정상응답 (code:200)
+-  정상응답 (status:200)
   
 ```js
 {
@@ -72,7 +72,7 @@
 ```js
 비밀번호가 일치하지 않습니다.
 ```
-
+#### POST
 #### /api/login : 로그인 과정을 처리하는 api입니다
 #### 로그인 성공시 로그인 유저의 member 테이블을 json 형식으로 반환합니다.
 - 요청
@@ -101,16 +101,67 @@
     "userCash": null
 }
 ```
-#### /api/pit/top 
-#### /api/pit/bottom
-#### 상하의 수선 내용을 저장합니다 
-#### (현재 DB상에 상품 정보 테이블이 상하의가 나뉘어져 있으나, 하나로 통합 예정입니다. 따라서 api도 변경 예정입니다.)
+#### POST
+#### /api/userPreferStyle : 유저 선호 스타일을 jsonArray 형식으로 전달받습니다.
+#### 요청 성공시 선호 스타일 등록 완료 : {스타일명 ...} 식으로 등록된 스타일이 반환됩니다.
+#### DB의 preferStyle 테이블에 하나씩 등록됩니다, {userEmail+preferStyle}행의 조합이 중복되면 있으면 에러가 발생하니 테스트때 주의해주세요.
 
+- 요청 예시
+POST/ http://fitpitback.kro.kr:8080/api/userPreferStyle
+```js
+[
+    {
+        "userEmail": "test1",
+        "preferStyle": "스트릿"
+    },
+   {
+        "userEmail": "test1",
+        "preferStyle": "빈티지"
+    },
+    {
+        "userEmail": "test1",
+        "preferStyle": "캐주얼"
+    },
+    {
+        "userEmail": "test1",
+        "preferStyle": "테일러"
+    }
+]
+
+```
+정상응답(status:200)
+```js
+ {
+    선호 스타일 등록 완료: 스트릿, 빈티지, 캐주얼, 테일러
+ }
+```
+
+#### POST
+#### /api/members/basicInfo/{userEmail} :  이메일을 키값으로 받 회원의 기본 정보(성별, 키, 몸무게)를 업데이트합니다.
+#### 요청 성공시 "기본 정보 업데이트 완료 : 성별, 키, 몸무게" 라는 메세지를 반환합니다.
+#### DB의 member 테이블의 칼럼들을 체웁니다.
+
+- 요청 예시
+POST /api/members/basicInfo/test1@test.com
+                                  ▲ member 테이블 상의 실제 userEmail 행 값이어야 합니다!!
+```js
+
+{
+    "userGender": "남자",
+    "userHeight": 180,
+    "userWeight": 75
+}
+
+```
+정상응답(status:200)
+```js
+기본 정보 업데이트 완료: 성별, 키, 몸무게
+```
 
 ### GET 요청
 #### /itemdetails/{itemKey}: 제품의 상세 정보를 조회합니다
 
--정상응답 (code:200)
+-정상응답 (status:200)
 ```js
 {
     "itemKey": 1,
@@ -133,7 +184,7 @@
 ##### 요청 파라미터: `query` (String, 필수): 검색할 키워드
 -요쳥예시 : /api/search?query=shirt
 
--정상응답 (code:200)
+-정상응답 (status:200)
 ```js
 {
     "itemKey": 1,
