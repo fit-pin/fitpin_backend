@@ -2,6 +2,13 @@
 핏핀 백엔드
 ## API 목록
 
+### API 사용법
+
+**요청 메인 URL: `http://fitpitback.kro.kr:8080`**
+
+> 예시 /items = http://dmumars.kro.kr:8080/api/items
+
+
 ### POST 요청
 #### /items: 제품을 등록합니다
 
@@ -45,26 +52,59 @@
 
 ```js
 {
-    "userId": "test1",
+    "userEmail": "tlsdnwls@test.com",
     "userPwd": "1234",
-    "userName": "테스트용1",
-    "userNumber": "010-1234-5678",
-    "userNickname": "testman1",
-    "userAddr": "서울특별시 구로구",
-    "userEmail": "test1@dongyang.com",
-    "userGender": "남자",
-    "userHeight": 180,
-    "userWeight": 75,
-    "userForm": 1,
-    "userCash": 1000
+    "userName": "신우진",
+    "userPwdConfirm": "1234"
+}
+```
+요청 성공시 DB에 이메일,비밀번호,이름 칼럼이 저장됩니다.
+
+-  정상응답 (code:200)
+  
+```js
+{
+    이메일, 비밀번호, 이름 POST 요청 완료
+}
+```
+비밀번호가 다르면 bad Request:400 코드를 반환합니다.
+- 비밀번호가 다를시 (code:400)
+```js
+비밀번호가 일치하지 않습니다.
+```
+
+#### /api/login : 로그인 과정을 처리하는 api입니다
+#### 로그인 성공시 로그인 유저의 member 테이블을 json 형식으로 반환합니다.
+- 요청
+```js
+{
+    "userEmail": "tlsdnwls@test.com",
+    "userPwd": "1234",
+    "userName": "신우진"
 }
 ```
 
-#### /api/login : 로그인 과정을 처리하는 api입니다, 로그인 성공시 Login successful 메세지와 함깨 HTTP 200 OK 응답을 같이 반환합니다.
 
-#### /api/pit/top : 상의 수선 내용을 저장합니다 (현재 DB상에 상품 정보 테이블이 상하의가 나뉘어져 있으나, 하나로 통합 예정입니다. 따라서 api도 변경 예정입니다.)
+정상응답
+```js
+ {
+    "userEmail": "tlsdnwls@test.com",
+    "userPwd": "1234",
+    "userName": "신우진",
+    "userNumber": null,
+    "userNickname": null,
+    "userAddr": null,
+    "userGender": null,
+    "userHeight": null,
+    "userWeight": null,
+    "userForm": null,
+    "userCash": null
+}
+```
+#### /api/pit/top 
 #### /api/pit/bottom
-
+#### 상하의 수선 내용을 저장합니다 
+#### (현재 DB상에 상품 정보 테이블이 상하의가 나뉘어져 있으나, 하나로 통합 예정입니다. 따라서 api도 변경 예정입니다.)
 
 
 ### GET 요청
