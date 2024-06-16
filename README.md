@@ -21,12 +21,44 @@
 {
     "userEmail": "tlsdnwls@test.com",
     "userPwd": "1234",
-    "userName": "신우진일 틀릴시(status : 400)
-```js
-{
-    "message": "이메일을 찾을수 없습니다."
+    "userName": "신우진",
+    "userPwdConfirm": "12334"
+
 }
 ```
+
+비밀번호와 재확인 부분이 다를시(status : 400)
+```js
+{
+    "message": "비밀번호가 일치하지 않습니다."
+}
+```
+
+#### POST
+#### /api/login : 로그인을 위한 api입니다.
+
+-  요청
+  
+> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/login`
+```js
+{
+    "userEmail": "tlsdnwls@test.com",
+    "userPwd": "1234"
+}
+```
+
+비밀번호나 이메일이 다를시(status : 400)
+```js
+{
+    "message": "이메일을 찾을 수 없습니다."
+}
+```
+```js
+{
+    "message": "비밀번호가 틀립니다."
+}
+```
+
 #### POST
 #### /api/members/basicInfo/{userEmail} : userEmail 칼럼의 데이터를 변수로 받아 유저 기본 정보를 업데이트 하는 API입니다.
 #### {userEmail} 부분에는 member 테이블의 userEmail 칼럼의 실제 값이 들어가야 합니다.
