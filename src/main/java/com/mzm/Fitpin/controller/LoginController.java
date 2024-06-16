@@ -3,12 +3,13 @@ package com.mzm.Fitpin.controller;
 import com.mzm.Fitpin.dto.LoginDto;
 import com.mzm.Fitpin.dto.LoginResponseDto;
 import com.mzm.Fitpin.entity.Member;
-import com.mzm.Fitpin.exception.InvalidCredentialsException;
-import com.mzm.Fitpin.exception.UserNotFoundException;
+import com.mzm.Fitpin.exception.CustomException;
 import com.mzm.Fitpin.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/api")
@@ -33,10 +34,10 @@ public class LoginController {
             responseDto.setUserCash(member.getUserCash());
 
             return ResponseEntity.ok(responseDto);
-        } catch (UserNotFoundException | InvalidCredentialsException e) {
-            return ResponseEntity.status(400).body("{\"message\": \"" + e.getMessage() + "\"}");
+        } catch (CustomException e) {
+            return ResponseEntity.badRequest().body(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("{\"message\": \"An unexpected error occurred\"}");
+            return ResponseEntity.status(500).body(Collections.singletonMap("message", "An unexpected error occurred"));
         }
     }
 }
