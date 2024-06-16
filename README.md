@@ -21,70 +21,7 @@
 {
     "userEmail": "tlsdnwls@test.com",
     "userPwd": "1234",
-    "userName": "신우진",
-    "userPwdConfirm": "1234"
-}
-```
-요청 성공시 DB에 이메일,비밀번호,이름 칼럼이 저장됩니다.
-
--  정상응답 (code:200)
-  
-```js
-{
-    이메일, 비밀번호, 이름 POST 요청 완료
-}
-```
-
-비밀번호가 다르면 bad Request:400 코드를 반환합니다.
-
-- 비밀번호가 다를시 (code:400)
-```js
-비밀번호가 일치하지 않습니다.
-```
-
-#### POST
-#### /api/login : 로그인 과정을 처리하는 api입니다
-#### 로그인 성공시 로그인 유저의 member 테이블을 json 형식으로 반환합니다.
-
-- 요청
-
-> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/login`
-
-```js
-{
-    "userEmail": "tlsdnwls@test.com",
-    "userPwd": "1234",
-    "userName": "신우진"
-}
-```
-
-
-정상응답
-```js
- {
-    "userEmail": "test1",
-    "userPwd": "1234",
-    "userName": "테스트용1",
-    "userNumber": null,
-    "userNickname": null,
-    "userAddr": null,
-    "userGender": null,
-    "userHeight": null,
-    "userWeight": null,
-    "userForm": null,
-    "userCash": null
-}
-```
-
-비밀번호나 이메일이 다르면 에러 메세지를 담은 json 객체를 반환합니다.
-
-> 비밀번호 틀릴시(status : 400)
-```js
-{
-    "message": "비밀번호가 틀립니다."
-}
-```
-> 비밀번호 틀릴시(status : 400)
+    "userName": "신우진일 틀릴시(status : 400)
 ```js
 {
     "message": "이메일을 찾을수 없습니다."
