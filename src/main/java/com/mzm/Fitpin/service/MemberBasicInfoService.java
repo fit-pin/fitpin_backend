@@ -4,6 +4,7 @@ import com.mzm.Fitpin.dto.MemberBasicInfoRequest;
 import com.mzm.Fitpin.dto.UserPreferStyleDTO;
 import com.mzm.Fitpin.entity.Member;
 import com.mzm.Fitpin.entity.UserPreferStyle;
+import com.mzm.Fitpin.exception.CustomException;
 import com.mzm.Fitpin.mapper.MemberBasicInfoMapper;
 import com.mzm.Fitpin.mapper.UserPreferStyleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,12 @@ public class MemberBasicInfoService {
             UserPreferStyle userPreferStyle = new UserPreferStyle();
             userPreferStyle.setUserEmail(styleDTO.getUserEmail());
             userPreferStyle.setPreferStyle(styleDTO.getPreferStyle());
-            userPreferStyleMapper.insertUserPreferStyle(userPreferStyle);
+
+            try {
+                userPreferStyleMapper.insertUserPreferStyle(userPreferStyle);
+            } catch (Exception e) {
+                throw new CustomException("중복된 선호 스타일: " + styleDTO.getPreferStyle());
+            }
         }
     }
 }
