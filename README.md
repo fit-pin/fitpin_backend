@@ -79,14 +79,35 @@
 #### POST
 #### /api/members/basicInfo/{userEmail} : userEmail 칼럼의 데이터를 변수로 받아 유저 기본 정보를 업데이트 하는 API입니다.
 #### {userEmail} 부분에는 member 테이블의 userEmail 칼럼의 실제 값이 들어가야 합니다.
+#### jsonArray 방식으로 보내는 선호 스타일 부분은 preferStyle 테이블에 중복된 userEmail과 preferStyle 조합이 존재하면 에러 발생합니다 !! 
 
 > 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/basicInfo/test1`
 ```js
 {
-    "userGender": "남자",
-    "userHeight": 180,
-    "userWeight": 75
+    "userGender": "남",
+    "userHeight": 174,
+    "userWeight": 80,
+    "userFit": "오버핏",
+    "style": [
+        {
+            "userEmail": "test1",
+            "preferStyle": "스트릿"
+        },
+        {
+            "userEmail": "test1",
+            "preferStyle": "빈티지"
+        },
+        {
+            "userEmail": "test1",
+            "preferStyle": "캐주얼"
+        },
+        {
+            "userEmail": "test1",
+            "preferStyle": "테일러"
+        }
+    ]
 }
+
 ```
 정상 응답시 "기본 정보 업데이트 완료: 성별, 키, 몸무게" 라는 문자열을 반환합니다.
 
