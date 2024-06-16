@@ -7,7 +7,10 @@ import com.mzm.Fitpin.exception.CustomException;
 import com.mzm.Fitpin.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 
@@ -30,7 +33,7 @@ public class LoginController {
             responseDto.setUserGender(member.getUserGender());
             responseDto.setUserHeight(member.getUserHeight());
             responseDto.setUserWeight(member.getUserWeight());
-            responseDto.setUserFit(member.getUserFit()); // Todo: 관련 코드 수정해야함!!!! - 완
+            responseDto.setUserFit(member.getUserFit()); //
             responseDto.setUserCash(member.getUserCash());
 
             return ResponseEntity.ok(responseDto);

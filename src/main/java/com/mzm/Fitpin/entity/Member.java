@@ -1,7 +1,7 @@
 package com.mzm.Fitpin.entity;
 
 import lombok.Data;
-
+//member 테이블 엔티티 클래스!
 @Data
 public class Member {
     private Integer userKey;
@@ -14,6 +14,6 @@ public class Member {
     private String userGender;
     private Integer userHeight;
     private Integer userWeight;
-    private Integer userFit;  //Todo: 관련ㅌ코드수정해야함!!!!!!!!! 완
+    private String userFit;
     private Integer userCash;
 }

@@ -7,3 +7,4 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MemberBasicInfoMapper {
     void updateBasicInfo(Member member);
 }
+

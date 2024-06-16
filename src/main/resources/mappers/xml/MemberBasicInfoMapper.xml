@@ -4,7 +4,7 @@
 
     <update id="updateBasicInfo" parameterType="com.mzm.Fitpin.entity.Member">
         UPDATE member
-        SET userGender = #{userGender}, userHeight = #{userHeight}, userWeight = #{userWeight}
+        SET userGender = #{userGender}, userHeight = #{userHeight}, userWeight = #{userWeight}, userFit = #{userFit}
         WHERE userEmail = #{userEmail}
     </update>
 

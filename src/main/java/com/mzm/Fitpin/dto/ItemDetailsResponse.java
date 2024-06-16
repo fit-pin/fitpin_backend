@@ -1,6 +1,7 @@
 package com.mzm.Fitpin.dto;
 
 import lombok.Data;
+
 import java.util.Date;
 
 @Data
