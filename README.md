@@ -46,6 +46,23 @@
     "userPwd": "1234"
 }
 ```
+- 정상응답
+```js
+{
+    "userEmail": "test1",
+    "userPwd": null,
+    "userName": "테스트용1",
+    "userNumber": null,
+    "userNickname": null,
+    "userAddr": null,
+    "userGender": "남자",
+    "userHeight": 180,
+    "userWeight": 75,
+    "userFit": null,
+    "userCash": null
+}
+```
+
 
 비밀번호나 이메일이 다를시(status : 400)
 ```js
