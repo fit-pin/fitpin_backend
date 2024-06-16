@@ -13,6 +13,6 @@ public class LoginResponseDto {
     private String userGender;
     private Integer userHeight;
     private Integer userWeight;
-    private Integer userForm;
+    private Integer userFit; //ToDo:관련 코드 수정해야함!!!!!! 완
     private Integer userCash;
 }
