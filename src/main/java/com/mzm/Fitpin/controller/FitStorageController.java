@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-
+//이미지 api
 @RestController
 @RequestMapping("/api/images")
 public class FitStorageController {
