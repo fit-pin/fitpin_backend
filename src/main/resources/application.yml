@@ -15,7 +15,8 @@ spring:
       connection-test-query: SELECT NOW() FROM dual
 
 file:
-  upload-dir: home/fitpinImg
+  upload-dir: /home/fitpinImg
+
 
 # MyBatis setting
 mybatis:
