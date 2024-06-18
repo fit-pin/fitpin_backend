@@ -27,6 +27,7 @@ public class LoginController {
             Member member = loginService.login(loginDto.getUserEmail(), loginDto.getUserPwd());
             LoginResponseDto responseDto = new LoginResponseDto();
             responseDto.setUserEmail(member.getUserEmail());
+            responseDto.setUserPwd(member.getUserPwd());
             responseDto.setUserName(member.getUserName());
             responseDto.setUserNickname(member.getUserNickname());
             responseDto.setUserAddr(member.getUserAddr());

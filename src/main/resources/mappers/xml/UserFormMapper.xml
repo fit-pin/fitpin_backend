@@ -8,6 +8,12 @@
     <insert id="insertUserForm" parameterType="com.mzm.Fitpin.entity.UserForm">
         INSERT INTO userForm (userEmail, fileName, armSize, shoulderSize, bodySize, legSize)
         VALUES (#{userEmail}, #{fileName}, #{armSize}, #{shoulderSize}, #{bodySize}, #{legSize})
+            ON DUPLICATE KEY UPDATE
+                                 fileName = VALUES(fileName),
+                                 armSize = VALUES(armSize),
+                                 shoulderSize = VALUES(shoulderSize),
+                                 bodySize = VALUES(bodySize),
+                                 legSize = VALUES(legSize)
     </insert>
 
     <select id="findFileNameByUserEmail" resultType="String" parameterType="String">
