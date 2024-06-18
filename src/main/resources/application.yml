@@ -1,6 +1,11 @@
 spring:
   application:
     name: Fitpin
+  servlet:
+    multipart:
+      enabled: true #파일 업로드 활성화
+      max-file-size: 20MB # 파일 최대 크기
+      max-request-size: 20MB #요청 최대 크기
   datasource:
     hikari:
       jdbc-url:
@@ -8,6 +13,9 @@ spring:
       password:
       driver-class-name: org.mariadb.jdbc.Driver
       connection-test-query: SELECT NOW() FROM dual
+
+file:
+  upload-dir: home/fitpinImg
 
 # MyBatis setting
 mybatis:

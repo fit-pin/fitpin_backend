@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.FitStorageMapper">
+
+    <insert id="insert" parameterType="com.mzm.Fitpin.entity.FitStorage">
+        INSERT INTO fitStorage(userEmail, imgURL)
+        VALUES(#{userEmail}, #{imgURL})
+    </insert>
+
+    <select id="findByUserEmail" parameterType="string" resultType="com.mzm.Fitpin.entity.FitStorage">
+        SELECT * FROM fitStorage WHERE userEmail = #{userEmail}
+    </select>
+
+    <delete id="deleteByImgURL" parameterType="string">
+        DELETE FROM fitStorage WHERE imgURL = #{imgURL}
+    </delete>
+
+</mapper>
