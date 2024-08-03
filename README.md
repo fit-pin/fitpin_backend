@@ -279,7 +279,7 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 </details> 
 
 <details>
- <summary>POST/api/itemTopInfo/register : 상의 상품의 상세 정보 등록하는 API입니다.</summary>
+ <summary>POST/api/itemTopInfo/register : 하의 상품의 상세 정보 등록하는 API입니다.</summary>
  
 >요청 URL 예시: http://localhost:8080/api/itemTopInfo/register
 
