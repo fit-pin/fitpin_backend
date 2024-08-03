@@ -241,7 +241,83 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 
 </details>
 
+<details>
+ <summary><h2>WEB API</h2></summary>
 
+<details>
+ <summary>POST/api/items/register : 상품 정보를 등록하는 API입니다.</summary>
+ 
+>요청 URL 예시: http://localhost:8080/api/items/register
+
+```js
+{
+  "itemName": "테스트상품",
+  "itemType": "상의",
+  "itemBrand": "TEST",
+  "itemStyle":"테일러",
+  "itemCnt": 100,
+  "itemContent": "테스트용 상의 상품",
+  "itemPrice": 100000,
+  "itemDate": "2024-07-28"
+}
+```
+</details> 
+
+ <details>
+ <summary>POST/api/itemImages/upload : 상품의 이미지를 등록하는 api입니다. </summary>
+  
+>요청 URL 예시: http://localhost:8080/api/itemImages/upload
+
+### 헤더 
+- Content-Type: multipart/form-data
+
+##### Form Data
+```
+- `image` (File): 사용자의 이메일 주소
+- `itemKey` (Text): item테이블의 itemKey 열, 제품의 고유번호
+```
+</details> 
+
+<details>
+ <summary>POST/api/itemTopInfo/register : 상의 상품의 상세 정보 등록하는 API입니다.</summary>
+ 
+>요청 URL 예시: http://localhost:8080/api/itemTopInfo/register
+
+```js
+{
+  "itemKey": 1,
+  "itemSize": 32.5,
+  "itemHeight": 40.0,
+  "itemShoulder": 15.5,
+  "itemArm": 20.0,
+  "itemChest": 10.0,
+  "itemSleeve": 8.0
+}
+
+```
+</details> 
+
+<details>
+ <summary>POST/api/itemTopInfo/register : 상의 상품의 상세 정보 등록하는 API입니다.</summary>
+ 
+>요청 URL 예시: http://localhost:8080/api/itemBottomInfo/register
+
+```js
+{
+  "itemKey": 1,
+  "itemSize": 32.5,
+  "itemHeight": 40.0,
+  "itemWaists": 15.5,
+  "itemThighs": 20.0,
+  "itemRise": 10.0,
+  "itemHem": 8.0
+}
+
+```
+</details> 
+
+ 
+</details> 
 
 
 
