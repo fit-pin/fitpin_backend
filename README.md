@@ -8,13 +8,12 @@
 
 > 요청 URL 예시 `items = http://dmumars.kro.kr:8080/api/items`
 
+<details>
+ <summary><h2>APP API</h2></summary>
 
-### POST 요청
+  <details> 
 
-#### POST
-#### /api/members/register : 회원가입을 위한 api입니다.
-
--  요청
+   <summary>POST/api/members/register : 회원가입을 위한 api입니다.</summary>
   
 > 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/register`
 ```js
@@ -33,11 +32,14 @@
     "message": "비밀번호가 일치하지 않습니다."
 }
 ```
+  
+  </details>
 
-#### POST
-#### /api/login : 로그인을 위한 api입니다.
 
--  요청
+<details>
+
+ <summary>POST/api/login : 로그인을 위한 api입니다.</summary>
+
   
 > 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/login`
 ```js
@@ -61,8 +63,7 @@
     "userFit": null,
     "userCash": null
 }
-```
-
+``` 
 
 비밀번호나 이메일이 다를시(status : 400)
 ```js
@@ -76,10 +77,13 @@
 }
 ```
 
-#### POST
-#### /api/members/basicInfo/{userEmail} : userEmail 칼럼의 데이터를 변수로 받아 유저 기본 정보를 업데이트 하는 API입니다.
-#### {userEmail} 부분에는 member 테이블의 userEmail 칼럼의 실제 값이 들어가야 합니다.
-#### jsonArray 방식으로 보내는 선호 스타일 부분은 preferStyle 테이블에 중복된 userEmail과 preferStyle 조합이 존재하면 에러 발생합니다 !! 
+ 
+</details>
+
+ <details>
+  <summary>POST/api/members/basicInfo/{userEmail} : userEmail 칼럼의 데이터를 변수로 받아 유저 기본 정보를 업데이트 하는 API입니다.</summary>
+
+  {userEmail} 부분에는 member 테이블의 userEmail 칼럼의 실제 값이 들어가야 합니다.
 
 > 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/basicInfo/test1`
 ```js
@@ -91,26 +95,7 @@
     "style": [
         {
             "userEmail": "test1",
-            "preferStyle": "스트릿"
-        },
-        {
-            "userEmail": "test1",
-            "preferStyle": "빈티지"
-        },
-        {
-            "userEmail": "test1",
-            "preferStyle": "캐주얼"
-        },
-        {
-            "userEmail": "test1",
-            "preferStyle": "테일러"
-        }
-    ]
-}
-
-```
-
-정상 응답시 "기본 정보 업데이트 완료!" 라는 메세지를 json 방식으로 바노한합니다
+            "pr환합니다
 
 정상 응답
 ```js
@@ -127,12 +112,15 @@
     "message": "중복된 선호 스타일: 스트릿"
 }
 ```
+  
+ </details>
 
-#### POST
-#### /api/userPreferStyle : 선호 스타일을 json배열 방식으로 받아 DB에 등록 하는 API입니다 
+<details>
+<summary>POST/api/userPreferStyle : 선호 스타일을 json배열 방식으로 받아 DB에 등록 하는 API입니다 </summary>
+
 userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저가 같은 스타일을 선호스타일로 등록하려 하면 에러가 발생하니 참고 부탁드립니다.
 
-- 요청
+
 > 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/userPreferStyle`
 
 ```js
@@ -156,12 +144,14 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 ]
 
 ```
+</details>
 
-#### POST
-#### /api/userForm : AR백엔드의 체형분석 API에서 반환된 Json구문을 저장하는 POST API입니다.
-#### 이미 등록되어 있는 userEmail 값으로 요청하면 데이터를 업데이트 합니다.
+<details>
+<summary>POST/api/userForm : AR백엔드의 체형분석 API에서 반환된 Json구문을 저장하는 POST API입니다.</summary>
+  
+ 이미 등록되어 있는 userEmail 값으로 요청하면 데이터를 업데이트 합니다.
 
--요청
+
 > 요청 URL 예시: http://fitpitback.kro.kr:8080/api/userForm
 
 ```js
@@ -182,12 +172,11 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
     "message": "체형 정보 저장 완료"
 }
 ```
-### GET 요청
+</details>
 
-#### GET
-#### /api/GetUserPreferStyle/{userEmail}: userEmail 칼럼의 데이터를 변수로 받아 유저의 선호 스타일을 Json 배열 방식으로 반환받는 API입니다
+<details>
+<summary> GET/api/GetUserPreferStyle/{userEmail}: userEmail 칼럼의 데이터를 변수로 받아 유저의 선호 스타일을 Json 배열 방식으로 반환받는 API입니다</summary>
 
--요청
 > 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/GetUserPreferStyle/test1`
 
 정상응답
@@ -211,9 +200,12 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
     }
 ]
 ```
-#### GET
-#### /api/userForm/{userEmail}: userForm 테이블(AR서버에서 넘겨준 체형 분석 정보를 저장하는 테이블)에서 사진파일의 이름을 userEmail을 키값으로 하여 검색하는 API입니다.
--요청
+</details>
+
+<details>
+<summary> GET/api/userForm/{userEmail}: userForm 테이블(AR서버에서 넘겨준 체형 분석 정보를 저장하는 테이블)에서 사진파일의 이름을 userEmail을 키값으로 하여 검색하는 API입니다.</summary>
+ 
+
 >요청 URL 예시: http://fitpitback.kro.kr:8080/api/userForm/test1
 
 정상 응답시 이미지 URL을 반환합니다.
@@ -223,11 +215,12 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 }
 
 ```
+ 
+</details>
 
-#### GET
-#### /api/userbodyinfo/{userEmail} : userEmail값을 키값으로 요청시 유저 이메일,키,몸무게,팔길,어깨너비,몸길이,다리길이를 반환하는 GET 메서드입니다.
+<details>
+<summary>GET/api/userbodyinfo/{userEmail} : userEmail값을 키값으로 요청시 반환하는 GET 메서드입니다.</summary>
 
--요청
 >요청 URL 예시: http://fitpitback.kro.kr:8080/api/userbodyinfo/test1
 
 정상 응답시 위의 요소를 반환합니다.
@@ -243,3 +236,154 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
     "legSize": 63.82
 }
 ```
+ 
+</details>
+
+
+<details>
+ <summary>GET http://localhost:8080/api/items/list/{itemType} : 상품목록을 조회하는 api입니다.</summary>
+item 테이블의 itemType(상품 종류)행을 경로변수로 받아서 경로변수와 일치하는 상품을 JSON Array 형태로 조회합니다.
+ 
+반환되는 값은 
+```
+itemKey (상품 고유번호)
+itemName (상품 이름)
+itemBrand (상품 브랜드)
+itemPrice (상품 가격)
+itemImgUrls : (상품 이미지 URL)
+```
+을 반환합니다.
+
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/items/list/상의
+
+결과:
+```js
+[
+    {
+        "itemKey": 1,
+        "itemName": "테스트용 상품1",
+        "itemBrand": "TEST",
+        "itemStyle": "캐주얼",
+        "itemPrice": 10000,
+        "itemImgUrls": [
+            "C:/ItemImg/testImg.png"
+        ]
+    },
+    {
+        "itemKey": 2,
+        "itemName": "테스트상품",
+        "itemBrand": "TEST",
+        "itemStyle": "캐주얼",
+        "itemPrice": 100000,
+        "itemImgUrls": []
+    },
+    {
+        "itemKey": 4,
+        "itemName": "테스트상품",
+        "itemBrand": "TEST",
+        "itemStyle": "테일러",
+        "itemPrice": 100000,
+        "itemImgUrls": []
+    }
+]
+```
+</details> 
+
+<details>
+<summary>GET/api/item-info/1{itemKey} : itemKey를 경로인자로 받아 상품의 상세 정보를 반환합니다. </summary>
+
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/item-info/1
+
+정상 응답시 위의 요소를 반환합니다.
+
+```js
+{
+{
+    "itemKey": 1,
+    "itemName": "테스트용 상품1",
+    "itemBrand": "TEST",
+    "itemType": "상의",
+    "itemStyle": "캐주얼",
+    "itemPrice": 10000,
+    "itemImgUrls": [
+        "C:/ItemImg/testImg.png"
+    ],
+    "itemTopInfo": {
+        "itemSize": 32.0,
+        "itemHeight": 40.0,
+        "itemShoulder": 15.5,
+        "itemArm": 10.0,
+        "itemChest": 12.0,
+        "itemSleeve": 14.5
+    },
+    "itemBottomInfo": null
+}
+}
+```
+
+</details>
+
+<details>
+ <summary> POST : 추가 예정.</summary>
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/items/register
+
+```js
+{
+
+}
+```
+</details> 
+
+</details>
+
+<details>
+ <summary><h2>WEB API</h2></summary>
+
+
+ <details>
+ <summary>POST/api/itemImages/upload : 상품의 이미지를 등록하는 api입니다. </summary>
+  
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemImages/upload
+
+### 헤더 
+- Content-Type: multipart/form-data
+
+##### Form Data
+```
+- `image` (File): 사용자의 이메일 주소
+- `itemKey` (Text): item테이블의 itemKey 열, 제품의 고유번호
+```
+</details> 
+
+<details>
+ <summary>POST/api/itemTopInfo/register : 하의 상품의 상세 정보 등록하는 API입니다.</summary>
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemTopInfo/register
+
+```js
+{
+  "itemKey": 1,
+  "itemSize": 32.5,
+  "itemHeight": 40.0,
+  "itemShoulder": 15.5,
+  "itemArm": 20.0,
+  "itemChest": 10.0,
+  "itemSleeve": 8.0
+}
+
+```
+</details> 
+
+
+
+ 
+</details> 
+
+
+
+
+ 
+
+
+
