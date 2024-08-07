@@ -3,16 +3,16 @@
 <mapper namespace="com.mzm.Fitpin.mapper.FitStorageMapper">
 
     <insert id="insert" parameterType="com.mzm.Fitpin.entity.FitStorage">
-        INSERT INTO fitStorage(userEmail, imgURL)
-        VALUES(#{userEmail}, #{imgURL})
+        INSERT INTO fitStorage(userEmail, fitStorageImgURL)
+        VALUES(#{userEmail}, #{fitStorageImgURL}) <!-- imgURL을 fitStorageImgURL로 변경 -->
     </insert>
 
     <select id="findByUserEmail" parameterType="string" resultType="com.mzm.Fitpin.entity.FitStorage">
         SELECT * FROM fitStorage WHERE userEmail = #{userEmail}
     </select>
 
-    <delete id="deleteByImgURL" parameterType="string">
-        DELETE FROM fitStorage WHERE imgURL = #{imgURL}
+    <delete id="deleteByFitStorageImgURL" parameterType="string">
+        DELETE FROM fitStorage WHERE fitStorageImgURL = #{fitStorageImgURL} <!-- imgURL을 fitStorageImgURL로 변경 -->
     </delete>
 
 </mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.ItemWithImagesMapper">
+
+    <select id="findItemsWithImagesByType" resultMap="ItemWithImagesMap">
+        SELECT i.itemKey, i.itemName, i.itemBrand, i.itemStyle, i.itemPrice, ii.itemImgURL
+        FROM item i
+                 LEFT JOIN ItemImg ii ON i.itemKey = ii.itemKey
+        WHERE i.itemType = #{itemType}
+    </select>
+
+    <resultMap id="ItemWithImagesMap" type="com.mzm.Fitpin.dto.ItemWithImagesDTO">
+        <id property="itemKey" column="itemKey"/>
+        <result property="itemName" column="itemName"/>
+        <result property="itemBrand" column="itemBrand"/>
+        <result property="itemStyle" column="itemStyle"/>
+        <result property="itemPrice" column="itemPrice"/>
+        <collection property="itemImgUrls" ofType="string">
+            <result column="itemImgURL"/>
+        </collection>
+    </resultMap>
+
+</mapper>

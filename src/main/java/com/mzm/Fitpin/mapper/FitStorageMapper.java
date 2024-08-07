@@ -11,5 +11,5 @@ public interface FitStorageMapper {
 
     List<FitStorage> findByUserEmail(String userEmail);
 
-    void deleteByImgURL(String imgURL);
+    void deleteByFitStorageImgURL(String fitStorageImgURL); // deleteByImgURL을 deleteByFitStorageImgURL로 변경
 }

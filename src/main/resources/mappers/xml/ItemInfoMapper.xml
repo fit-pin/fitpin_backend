@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.ItemInfoMapper">
+
+    <select id="findItemByKey" resultType="com.mzm.Fitpin.dto.ItemInfoDTO">
+        SELECT itemKey, itemName, itemBrand, itemType, itemStyle, itemPrice
+        FROM item
+        WHERE itemKey = #{itemKey}
+    </select>
+
+    <select id="findItemImages" resultType="string">
+        SELECT itemImgURL
+        FROM ItemImg
+        WHERE itemKey = #{itemKey}
+    </select>
+
+    <select id="findTopInfoByKey" resultType="com.mzm.Fitpin.dto.ItemTopInfoDTO">
+        SELECT *
+        FROM itemTopInfo
+        WHERE itemKey = #{itemKey}
+    </select>
+
+    <select id="findBottomInfoByKey" resultType="com.mzm.Fitpin.dto.ItemBottomInfoDTO">
+        SELECT *
+        FROM itemBottomInfo
+        WHERE itemKey = #{itemKey}
+    </select>
+
+</mapper>

@@ -1,4 +1,4 @@
-package com.mzm.Fitpin.controller;
+package com.mzm.Fitpin.controller.app;
 
 import com.mzm.Fitpin.dto.UserPreferStyleDTO;
 import com.mzm.Fitpin.service.UserPreferStyleService;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+//살리기
 @RestController
 @RequestMapping("/api")
 public class UserPreferStyleController {

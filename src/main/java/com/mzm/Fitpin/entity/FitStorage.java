@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class FitStorage {
     private String userEmail;
-    private String imgURL;
+    private String fitStorageImgURL; // imgURL을 fitStorageImgURL로 변경
 }

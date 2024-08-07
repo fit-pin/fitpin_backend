@@ -1,4 +1,4 @@
-package com.mzm.Fitpin.controller;
+package com.mzm.Fitpin.controller.app;
 
 import com.mzm.Fitpin.dto.UserFormDto;
 import com.mzm.Fitpin.service.UserFormService;
@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
-
+//살리기
 @RestController
 @RequestMapping("/api/userForm")
 public class UserFormController {

@@ -1,4 +1,4 @@
-package com.mzm.Fitpin.controller;
+package com.mzm.Fitpin.controller.app;
 
 import com.mzm.Fitpin.dto.MemberBasicInfoRequest;
 import com.mzm.Fitpin.exception.CustomException;

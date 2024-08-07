@@ -1,4 +1,4 @@
-package com.mzm.Fitpin.controller;
+package com.mzm.Fitpin.controller.app;
 
 import com.mzm.Fitpin.dto.MemberDto;
 import com.mzm.Fitpin.entity.Member;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
-
+//살리기
 @RestController
 @RequestMapping("/api/members")
 public class RegisterController {

@@ -6,17 +6,16 @@ import java.sql.Date;
 
 @Data
 public class Item {
-    private Integer itemKey;
-    private Integer itemNum;
+    private int itemKey;
     private String itemName;
     private String itemType;
     private String itemBrand;
-    private String itemImg1;
-    private String itemImg2;
-    private String itemImg3;
-    private Integer itemCnt;
-    private Integer itemSize;
+    private String itemStyle;
+    private int itemCnt;
     private String itemContent;
-    private Integer itemPrice;
+    private int itemPrice;
     private Date itemDate;
+
+    // Getters and Setters
+    // ...
 }

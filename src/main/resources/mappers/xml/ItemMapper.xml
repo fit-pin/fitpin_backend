@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mzm.Fitpin.mapper.ItemMapper">
-    <insert id="insertItem" parameterType="com.mzm.Fitpin.entity.Item">
-        INSERT INTO item (itemKey, itemNum, itemName, itemType, itemBrand, itemImg1, itemImg2, itemImg3, itemCnt, itemSize, itemContent, itemPrice, itemDate)
-        VALUES (#{itemKey}, #{itemNum}, #{itemName}, #{itemType}, #{itemBrand}, #{itemImg1}, #{itemImg2}, #{itemImg3}, #{itemCnt}, #{itemSize}, #{itemContent}, #{itemPrice}, #{itemDate})
+
+    <insert id="insert" parameterType="com.mzm.Fitpin.entity.Item">
+        INSERT INTO item (itemName, itemType, itemBrand, itemStyle,itemCnt, itemContent, itemPrice, itemDate)
+        VALUES (#{itemName}, #{itemType}, #{itemBrand},#{itemStyle}, #{itemCnt}, #{itemContent}, #{itemPrice}, #{itemDate})
     </insert>
+
+    <!-- 다른 CRUD 쿼리들 -->
 </mapper>

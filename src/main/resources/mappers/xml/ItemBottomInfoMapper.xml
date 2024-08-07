@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.ItemBottomInfoMapper">
+
+    <insert id="insert" parameterType="com.mzm.Fitpin.entity.ItemBottomInfo">
+        INSERT INTO itemBottomInfo (itemKey, itemSize, itemHeight, itemWaists, itemThighs, itemRise, itemHem)
+        VALUES (#{itemKey}, #{itemSize}, #{itemHeight}, #{itemWaists}, #{itemThighs}, #{itemRise}, #{itemHem})
+    </insert>
+
+</mapper>
