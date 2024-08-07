@@ -243,12 +243,17 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 <details>
  <summary>GET http://localhost:8080/api/items/list/{itemType} : 상품목록을 조회하는 api입니다.</summary>
 item 테이블의 itemType(상품 종류)행을 경로변수로 받아서 경로변수와 일치하는 상품을 JSON Array 형태로 조회합니다.
+ 
 반환되는 값은 
+```
 itemKey (상품 고유번호)
 itemName (상품 이름)
 itemBrand (상품 브랜드)
 itemPrice (상품 가격)
-itemImgUrls : (상품 이미지 URL) 을 반환합니다.
+itemImgUrls : (상품 이미지 URL)
+```
+을 반환합니다.
+
 >요청 URL 예시: http://fitpitback.kro.kr:8080/api/items/list/상의
 
 결과:
@@ -285,21 +290,34 @@ itemImgUrls : (상품 이미지 URL) 을 반환합니다.
 </details> 
 
 <details>
-<summary>GET/api/userbodyinfo/{userEmail} : userEmail값을 키값으로 요청시 유저 이메일,키,몸무게,팔길,어깨너비,몸길이,다리길이를 반환하는 GET 메서드입니다.</summary>
+<summary>GET/api/item-info/1{itemKey} : .</summary>
 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/userbodyinfo/test1
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/item-info/1
 
 정상 응답시 위의 요소를 반환합니다.
 
 ```js
 {
-    "userEmail": "test1",
-    "userHeight": 174,
-    "userWeight": 80,
-    "armSize": 58.37,
-    "shoulderSize": 32.64,
-    "bodySize": 52.63,
-    "legSize": 63.82
+{
+    "itemKey": 1,
+    "itemName": "테스트용 상품1",
+    "itemBrand": "TEST",
+    "itemType": "상의",
+    "itemStyle": "캐주얼",
+    "itemPrice": 10000,
+    "itemImgUrls": [
+        "C:/ItemImg/testImg.png"
+    ],
+    "itemTopInfo": {
+        "itemSize": 32.0,
+        "itemHeight": 40.0,
+        "itemShoulder": 15.5,
+        "itemArm": 10.0,
+        "itemChest": 12.0,
+        "itemSleeve": 14.5
+    },
+    "itemBottomInfo": null
+}
 }
 ```
 
