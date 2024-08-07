@@ -290,7 +290,7 @@ itemImgUrls : (상품 이미지 URL)
 </details> 
 
 <details>
-<summary>GET/api/item-info/1{itemKey} : .</summary>
+<summary>GET/api/item-info/1{itemKey} : itemKey를 경로인자로 받아 상품의 상세 정보를 반환합니다. </summary>
 
 >요청 URL 예시: http://fitpitback.kro.kr:8080/api/item-info/1
 
