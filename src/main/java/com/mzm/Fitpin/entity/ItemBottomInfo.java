@@ -6,7 +6,7 @@ import lombok.Data;
 public class ItemBottomInfo {
 
     private Integer itemKey;
-    private float itemSize;
+    private String itemSize;
     private float itemHeight;
     private float itemWaists;
     private float itemThighs;

@@ -14,4 +14,16 @@
         VALUES (#{userKey}, #{itemKey}, #{itemSize}, #{itemPrice}, #{itemHeight}, #{itemWaists}, #{itemThighs}, #{itemRise}, #{itemHem})
     </insert>
 
+    <select id="findPitTopByCartKey" resultType="com.mzm.Fitpin.dto.PitTopDTO">
+        SELECT *
+        FROM pitTop
+        WHERE cartKey = #{cartKey}
+    </select>
+
+    <select id="findPitBottomByCartKey" resultType="com.mzm.Fitpin.dto.PitBottomDTO">
+        SELECT *
+        FROM pitBottom
+        WHERE cartKey = #{cartKey}
+    </select>
+
 </mapper>

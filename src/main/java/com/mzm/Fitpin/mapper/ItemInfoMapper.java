@@ -1,11 +1,10 @@
 package com.mzm.Fitpin.mapper;
 
+import com.mzm.Fitpin.dto.ItemBottomInfoDTO;
 import com.mzm.Fitpin.dto.ItemInfoDTO;
 import com.mzm.Fitpin.dto.ItemTopInfoDTO;
-import com.mzm.Fitpin.dto.ItemBottomInfoDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import lombok.Data;
 public class PitBottom {
     private Integer userKey;
     private Integer itemKey;
-    private Integer itemSize;
+    private String itemSize;
     private Integer itemPrice;
     private Integer itemHeight;
     private Integer itemWaists;
