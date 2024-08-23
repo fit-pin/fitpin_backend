@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
-//사용법 작성 해야함
+
 @RestController
 @RequestMapping("/api/itemImages")
 public class ItemImgController {
@@ -27,14 +27,17 @@ public class ItemImgController {
     public ResponseEntity<?> uploadImage(@RequestParam("itemKey") int itemKey,
                                          @RequestParam("image") MultipartFile image) {
         try {
+            // 절대 경로를 설정
+            String absoluteUploadDir = new File(uploadDir).getAbsolutePath();
+            File uploadDirFile = new File(absoluteUploadDir);
+
             // 업로드 디렉토리가 없으면 생성
-            File uploadDirFile = new File(uploadDir);
             if (!uploadDirFile.exists()) {
                 uploadDirFile.mkdirs();
             }
 
-            // 이미지 파일을 서버에 저장
-            String imagePath = uploadDir + "/" + image.getOriginalFilename();
+            // 이미지 파일을 서버에 저장 (절대 경로 사용)
+            String imagePath = absoluteUploadDir + "/" + image.getOriginalFilename();
             File dest = new File(imagePath);
             image.transferTo(dest);
 
