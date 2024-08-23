@@ -382,7 +382,7 @@ itemImgUrls : (상품 이미지 URL)
 {
     "itemKey": 1,
     "cartKey": 2,
-    "itemSize": "30",
+    "itemSize": "M",
     "itemHeight": 35.0,
     "itemShoulder": 15.0,
     "itemArm": 9.0,
