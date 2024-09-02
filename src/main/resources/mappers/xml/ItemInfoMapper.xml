@@ -4,7 +4,7 @@
 <mapper namespace="com.mzm.Fitpin.mapper.ItemInfoMapper">
 
     <select id="findItemByKey" resultType="com.mzm.Fitpin.dto.ItemInfoDTO">
-        SELECT itemKey, itemName, itemBrand, itemType, itemStyle, itemPrice
+        SELECT itemKey, itemName, itemBrand, itemType, itemStyle, itemPrice, itemContent
         FROM item
         WHERE itemKey = #{itemKey}
     </select>
