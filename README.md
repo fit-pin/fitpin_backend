@@ -324,16 +324,74 @@ itemImgUrls : (상품 이미지 URL)
 </details>
 
 <details>
- <summary> POST : 추가 예정.</summary>
+ <summary> POST : 장바구니 저장 </summary>
  
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/items/register
+ 장바구니 목록을 저장하는 API입니다.
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/cart/store
 
 ```js
 {
+    "itemKey": 1,
+    "userEmail": "test1",
+    "itemName": "테스트용 상품1(상의)",
+    "itemSize": "M",
+    "itemType": "상의",
+    "itemPrice": 10000,
+    "pit": 1
 
 }
 ```
 </details> 
+
+<details>
+ <summary> GET : 장바구니 목록 조회 </summary>
+ 
+#### GET/api/cart/get-store/{userEmail}
+
+{userEmail}을 경로변수로 받아 장바구니 목록을 조회하는 API입니다. 
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/cart/get-store/test1
+
+결과:
+```js
+{
+    "itemKey": 1,
+    "userEmail": "test1",
+    "itemName": "테스트용 상품1(상의)",
+    "itemSize": "M",
+    "itemType": "상의",
+    "itemPrice": 10000,
+    "pit": 1
+
+}
+```
+</details> 
+
+<details>
+ <summary> GET : 수선내역 조회 </summary>
+ 
+#### GET/api/pit/get/{cartKey}
+
+장바구니 테이블의 {cartKey}을 경로변수로 받아 장바구니 목록을 조회하는 API입니다. 
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/pit/get/2
+
+결과:
+```js
+{
+    "itemKey": 1,
+    "cartKey": 2,
+    "itemSize": "M",
+    "itemHeight": 35.0,
+    "itemShoulder": 15.0,
+    "itemArm": 9.0,
+    "itemChest": 10.0,
+    "itemSleeve": 14.0
+}
+```
+</details> 
+
 
 </details>
 
