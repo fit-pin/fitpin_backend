@@ -298,18 +298,18 @@ itemImgUrls : (상품 이미지 URL)
 
 ```js
 {
-{
     "itemKey": 1,
-    "itemName": "테스트용 상품1",
+    "itemName": "테스트용 상품1(상의)",
     "itemBrand": "TEST",
     "itemType": "상의",
     "itemStyle": "캐주얼",
     "itemPrice": 10000,
+    "itemContent": "테스트용 상의 상품",
     "itemImgUrls": [
-        "C:/ItemImg/testImg.png"
+        "/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png"
     ],
     "itemTopInfo": {
-        "itemSize": 32.0,
+        "itemSize": "M",
         "itemHeight": 40.0,
         "itemShoulder": 15.5,
         "itemArm": 10.0,
@@ -317,7 +317,6 @@ itemImgUrls : (상품 이미지 URL)
         "itemSleeve": 14.5
     },
     "itemBottomInfo": null
-}
 }
 ```
 
@@ -392,6 +391,85 @@ itemImgUrls : (상품 이미지 URL)
 ```
 </details> 
 
+<details>
+ <summary>GET : 상품 이미지 서빙 (itemImg 디렉토리)</summary>
+ 
+#### GET /api/img/imgserve/itemimg
+
+imgUrl을 쿼리 파라미터로 받아 `itemImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
+
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/itemimg?imgUrl=/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png`
+
+**Query Parameters:**
+- `imgUrl`: 이미지 파일의 절대 경로 (예: `/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png`)
+
+**Response:**
+- **Status 200 OK:**
+  - 성공적으로 이미지를 반환합니다.
+  - 이미지의 MIME 타입에 따라 콘텐츠가 반환됩니다.
+- **Status 404 Not Found:**
+  - 파일이 존재하지 않거나 읽을 수 없는 경우
+  ```json
+  {
+      "message": "파일을 찾을 수 없습니다."
+  }
+  ```
+- **Status 403 Forbidden:**
+  - 경로가 허용된 범위 밖에 있는 경우
+  ```json
+  {
+      "message": "접근이 허용되지 않는 경로입니다."
+  }
+  ```
+- **Status 500 Internal Server Error:**
+  - 서버 내부에서 파일을 읽는 중 오류가 발생한 경우
+  ```json
+  {
+      "message": "파일을 읽는 중 오류가 발생했습니다."
+  }
+  ```
+
+</details>
+
+<details>
+ <summary>GET : 핏보관함 이미지 서빙 (fitStorageImg 디렉토리)</summary>
+ 
+#### GET /api/img/imgserve/fitstorageimg
+
+imgUrl을 쿼리 파라미터로 받아 `fitStorageImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
+
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/fitstorageimg?imgUrl=/home/ubuntu/home/fitpin_backend/home/fitStorageImg/anotherImage.png`
+
+**Query Parameters:**
+- `imgUrl`: 이미지 파일의 절대 경로 (예: `/home/ubuntu/home/fitpin_backend/home/fitStorageImg/anotherImage.png`)
+
+**Response:**
+- **Status 200 OK:**
+  - 성공적으로 이미지를 반환합니다.
+  - 이미지의 MIME 타입에 따라 콘텐츠가 반환됩니다.
+- **Status 404 Not Found:**
+  - 파일이 존재하지 않거나 읽을 수 없는 경우
+  ```json
+  {
+      "message": "파일을 찾을 수 없습니다."
+  }
+  ```
+- **Status 403 Forbidden:**
+  - 경로가 허용된 범위 밖에 있는 경우
+  ```json
+  {
+      "message": "접근이 허용되지 않는 경로입니다."
+  }
+  ```
+- **Status 500 Internal Server Error:**
+  - 서버 내부에서 파일을 읽는 중 오류가 발생한 경우
+  ```json
+  {
+      "message": "파일을 읽는 중 오류가 발생했습니다."
+  }
+  ```
+
+</details>
 
 </details>
 
