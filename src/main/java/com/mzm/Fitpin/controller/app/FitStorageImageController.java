@@ -2,14 +2,14 @@ package com.mzm.Fitpin.controller.app;
 
 import com.mzm.Fitpin.entity.FitStorage;
 import com.mzm.Fitpin.mapper.FitStorageMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,14 +32,17 @@ public class FitStorageImageController {
     public ResponseEntity<?> uploadImage(@RequestParam("userEmail") String userEmail,
                                          @RequestParam("image") MultipartFile image) {
         try {
+            // 절대 경로를 설정
+            String absoluteUploadDir = new File(uploadDir).getAbsolutePath();
+            File uploadDirFile = new File(absoluteUploadDir);
+
             // 업로드 디렉토리가 없으면 생성
-            File uploadDirFile = new File(uploadDir);
             if (!uploadDirFile.exists()) {
                 uploadDirFile.mkdirs();
             }
 
-            // 이미지 파일을 서버에 저장
-            String imagePath = uploadDir + "/" + image.getOriginalFilename();
+            // 이미지 파일을 서버에 저장 (절대 경로 사용)
+            String imagePath = absoluteUploadDir + "/" + image.getOriginalFilename();
             File dest = new File(imagePath);
             image.transferTo(dest);
 
