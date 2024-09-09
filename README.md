@@ -13,9 +13,13 @@
 
   <details> 
 
-   <summary>POST/api/members/register : 회원가입을 위한 api입니다.</summary>
+   <summary>회원가입을 위한 api입니다.</summary>
+
+   ### POST/api/members/register 
   
 > 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/register`
+
+요청 Body
 ```js
 {
     "userEmail": "tlsdnwls@test.com",
@@ -394,14 +398,14 @@ itemImgUrls : (상품 이미지 URL)
 <details>
  <summary>GET : 상품 이미지 서빙 (itemImg 디렉토리)</summary>
  
-#### GET /api/img/imgserve/itemimg
+#### GET /api/img/imgserve/itemimg/{imageName}
 
-imgUrl을 쿼리 파라미터로 받아 `itemImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
+이미지 이름을 경로 변수로 받아 `itemImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
 
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/itemimg?imgUrl=/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png`
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/itemimg/optimize.png`
 
-**Query Parameters:**
-- `imgUrl`: 이미지 파일의 절대 경로 (예: `/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png`)
+**Path Variables:**
+- `imageName`: 이미지 파일명 (예: `optimize.png`)
 
 **Response:**
 - **Status 200 OK:**
@@ -429,19 +433,19 @@ imgUrl을 쿼리 파라미터로 받아 `itemImg` 디렉토리 내의 이미지�
   }
   ```
 
-</details> <!-- 상품 이미지 서빙 -->
+</details> <!--- 상품 이미지 서빙   --->
 
 <details>
  <summary>GET : 핏보관함 이미지 서빙 (fitStorageImg 디렉토리)</summary>
  
-#### GET /api/img/imgserve/fitstorageimg
+#### GET /api/img/imgserve/fitstorageimg/{imageName}
 
-imgUrl을 쿼리 파라미터로 받아 `fitStorageImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
+이미지 이름을 경로 변수로 받아 `fitStorageImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
 
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/fitstorageimg?imgUrl=/home/ubuntu/home/fitpin_backend/home/fitStorageImg/anotherImage.png`
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/fitstorageimg/anotherImage.png`
 
-**Query Parameters:**
-- `imgUrl`: 이미지 파일의 절대 경로 (예: `/home/ubuntu/home/fitpin_backend/home/fitStorageImg/anotherImage.png`)
+**Path Variables:**
+- `imageName`: 이미지 파일명 (예: `anotherImage.png`)
 
 **Response:**
 - **Status 200 OK:**
@@ -469,7 +473,7 @@ imgUrl을 쿼리 파라미터로 받아 `fitStorageImg` 디렉토리 내의 이�
   }
   ```
 
-</details> <!-- 핏보관함 이미지 서빙 -->
+</details> <!--- 핏보관함 이미지 서빙 --->
 
 <details>
 <summary> 핏 보관함 관련 API </summary>
