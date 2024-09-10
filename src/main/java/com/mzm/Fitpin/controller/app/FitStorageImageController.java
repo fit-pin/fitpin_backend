@@ -1,5 +1,6 @@
 package com.mzm.Fitpin.controller.app;
 
+import com.mzm.Fitpin.dto.FitStorageDTO;
 import com.mzm.Fitpin.entity.FitStorage;
 import com.mzm.Fitpin.mapper.FitStorageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class FitStorageImageController {
     public ResponseEntity<?> uploadImage(@RequestParam("userEmail") String userEmail,
                                          @RequestParam("image") MultipartFile image) {
         try {
-            // 절대 경로를 설정
+            // 절대 경로 설정
             String absoluteUploadDir = new File(uploadDir).getAbsolutePath();
             File uploadDirFile = new File(absoluteUploadDir);
 
@@ -41,15 +42,20 @@ public class FitStorageImageController {
                 uploadDirFile.mkdirs();
             }
 
-            // 이미지 파일을 서버에 저장 (절대 경로 사용)
+            // 이미지 파일을 서버에 저장
             String imagePath = absoluteUploadDir + "/" + image.getOriginalFilename();
             File dest = new File(imagePath);
             image.transferTo(dest);
 
-            // 이미지 경로를 DB에 저장
+            // DTO를 사용하여 데이터 전송
+            FitStorageDTO fitStorageDTO = new FitStorageDTO();
+            fitStorageDTO.setUserEmail(userEmail);
+            fitStorageDTO.setFitStorageImg(image.getOriginalFilename()); // 이미지 이름만 저장
+
+            // 엔티티로 변환 후 DB에 저장
             FitStorage fitStorage = new FitStorage();
-            fitStorage.setUserEmail(userEmail);
-            fitStorage.setFitStorageImgURL(imagePath);
+            fitStorage.setUserEmail(fitStorageDTO.getUserEmail());
+            fitStorage.setFitStorageImg(fitStorageDTO.getFitStorageImg());
             fitStorageMapper.insert(fitStorage);
 
             return ResponseEntity.ok(Collections.singletonMap("message", "이미지 업로드 성공: " + imagePath));
@@ -60,29 +66,33 @@ public class FitStorageImageController {
         }
     }
 
+
     @GetMapping("/user/{userEmail}")
     public ResponseEntity<List<FitStorage>> getImagesByUserEmail(@PathVariable String userEmail) {
         List<FitStorage> images = fitStorageMapper.findByUserEmail(userEmail);
         return new ResponseEntity<>(images, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteImage(@RequestParam("fitStorageImgURL") String fitStorageImgURL) {
+    @DeleteMapping("/delete/{imageName}")
+    public ResponseEntity<?> deleteImage(@PathVariable("imageName") String imageName) {
         try {
+            // 이미지가 저장된 절대 경로 설정
+            String imagePath = uploadDir + "/" + imageName;
+
             // 파일 삭제
-            File file = new File(fitStorageImgURL);
+            File file = new File(imagePath);
             if (file.exists()) {
                 if (file.delete()) {
-                    // DB에서 이미지 경로 삭제
-                    fitStorageMapper.deleteByFitStorageImgURL(fitStorageImgURL);
-                    return ResponseEntity.ok(Collections.singletonMap("message", "이미지 삭제 성공: " + fitStorageImgURL));
+                    // DB에서 이미지 삭제 (이름으로 삭제)
+                    fitStorageMapper.deleteByFitStorageImg(imageName);
+                    return ResponseEntity.ok(Collections.singletonMap("message", "이미지 삭제 성공: " + imageName));
                 } else {
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                            .body(Collections.singletonMap("message", "이미지 삭제 실패: " + fitStorageImgURL));
+                            .body(Collections.singletonMap("message", "이미지 삭제 실패: " + imageName));
                 }
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Collections.singletonMap("message", "이미지를 찾을 수 없습니다: " + fitStorageImgURL));
+                        .body(Collections.singletonMap("message", "이미지를 찾을 수 없습니다: " + imageName));
             }
         } catch (Exception e) {
             logger.error("Image delete failed: " + e.getMessage(), e);
