@@ -476,107 +476,118 @@ itemImgUrls : (상품 이미지 URL)
 </details> <!--- 핏보관함 이미지 서빙 --->
 
 <details>
-<summary> 핏 보관함 관련 API </summary>
+<summary> 핏 보관함 관련 API </summary> <!--- 핏보관함 api 시작 --->
 
+# 핏 보관함 API
+
+핏 보관함과 관련된 API 목록입니다. 이미지를 업로드, 조회, 삭제할 수 있습니다.
+
+---
 <details>
- <summary>POST :핏보관함 이미지 업로드</summary>
- 
-#### POST /api/fitStorageImages/upload
+ <summary> 이미지 업로드</summary>
+
+## POST: 핏 보관함 이미지 업로드
+
+#### URL: `/api/fitStorageImages/upload`
 
 유저의 이메일과 함께 이미지를 업로드하는 API입니다. `multi-part form data` 형식으로 이미지를 업로드하며, 서버에 이미지를 저장하고 그 경로를 데이터베이스에 저장합니다.
 
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/fitStorageImages/upload`
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fitStorageImages/upload`
 
-**Form Data Parameters:**
-- `image` (file, required): 업로드할 이미지 파일
-- `userEmail` (string, required): 유저의 이메일 주소
+### **Form Data Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `image`       | file    | required  | 업로드할 이미지 파일         |
+| `userEmail`   | string  | required  | 유저의 이메일 주소           |
 
-**Response:**
-- **Status 200 OK:**
-  - 이미지 업로드 성공
+### **Response**
+
+- **Status 200 OK**
   ```json
   {
-      "message": "이미지 업로드 성공: /path/to/uploaded/image.png"
+    "message": "이미지 업로드 성공: /path/to/uploaded/image.png"
   }
   ```
-- **Status 500 Internal Server Error:**
-  - 이미지 업로드 실패
+- **Status 500 Internal Server Error**
   ```json
   {
-      "message": "이미지 업로드 실패: 에러 메시지"
+    "message": "이미지 업로드 실패: 에러 메시지"
   }
   ```
 
-</details> <!-- 이미지 업로드 -->
+</details>
 
 <details>
- <summary>DELETE : 핏보관함 사진 삭제</summary>
- 
-#### DELETE /api/fitStorageImages/delete
+ <summary>사진 삭제</summary>
+  
+## DELETE: 핏 보관함 사진 삭제
 
-이미지의 경로와 유저 이메일을 받아 핏보관함에 저장된 이미지를 삭제하는 API입니다.
+#### URL: `/api/fitStorageImages/delete/{imageName}`
 
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/fitStorageImages/delete`
+이미지의 이름을 받아 핏 보관함에 저장된 이미지를 삭제하는 API입니다. 유저의 이메일은 이미지 삭제 시에는 필요하지 않으며, 이미지 이름으로 이미지를 삭제합니다.
 
-**Form Data Parameters:**
-- `fitStorageImgURL` (string, required): 삭제할 이미지의 경로
-- `userEmail` (string, required): 유저의 이메일 주소
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fitStorageImages/delete/{imageName}`
 
-**Response:**
-- **Status 200 OK:**
-  - 이미지 삭제 성공
+### **Path Parameters**
+| 파라미터         | 타입    | 필수 여부 | 설명                        |
+|------------------|---------|-----------|-----------------------------|
+| `imageName`      | string  | required  | 삭제할 이미지의 이름         |
+
+### **Response**
+
+- **Status 200 OK**
   ```json
   {
-      "message": "이미지 삭제 성공: /path/to/deleted/image.png"
+    "message": "이미지 삭제 성공: /path/to/deleted/image.png"
   }
   ```
-- **Status 404 Not Found:**
-  - 삭제할 이미지를 찾을 수 없음
+- **Status 404 Not Found**
   ```json
   {
-      "message": "이미지를 찾을 수 없습니다: /path/to/nonexistent/image.png"
+    "message": "이미지를 찾을 수 없습니다: /path/to/nonexistent/image.png"
   }
   ```
-- **Status 500 Internal Server Error:**
-  - 이미지 삭제 실패
+- **Status 500 Internal Server Error**
   ```json
   {
-      "message": "이미지 삭제 실패: 에러 메시지"
+    "message": "이미지 삭제 실패: 에러 메시지"
   }
   ```
 
-</details> <!-- 이미지 삭제 -->
+---
+</details>
 
 <details>
- <summary>GET : 핏보관함 사진 리스트 조회</summary>
- 
-#### GET /api/fitStorageImages/user/{userEmail}
+ <summary> 사진 리스트 조회 </summary>
+## GET: 핏 보관함 사진 리스트 조회
 
-유저 이메일을 경로 변수로 받아 핏보관함에 저장된 이미지 리스트를 조회하는 API입니다.
+#### URL: `/api/fitStorageImages/user/{userEmail}`
 
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/fitStorageImages/user/test1`
+유저 이메일을 경로 변수로 받아 핏 보관함에 저장된 이미지 리스트를 조회하는 API입니다.
 
-**Path Parameters:**
-- `userEmail` (string, required): 조회할 유저의 이메일 주소
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fitStorageImages/user/test1`
 
-**Response:**
-- **Status 200 OK:**
-  - 핏보관함에 저장된 이미지 리스트 반환
+### **Path Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `userEmail`   | string  | required  | 조회할 유저의 이메일 주소     |
+
+### **Response**
+
+- **Status 200 OK**
   ```json
   [
-      {
-          "userEmail": "test1",
-          "fitStorageImgURL": "/home/ubuntu/home/fitpin_backend/home/fitStorageImg/testImg.png"
-      },
-      {
-          "userEmail": "test1",
-          "fitStorageImgURL": "/home/ubuntu/home/fitpin_backend/home/fitStorageImg/testImg2.png"
-      }
+    {
+      "userEmail": "test1",
+      "fitStorageImg": "testImg.png"
+    },
+    {
+      "userEmail": "test1",
+      "fitStorageImg": "testImg2.png"
+    }
   ]
   ```
-
-</details> <!-- 이미지 리스트 변환 -->
- 
+ </details>
 </details> <!-- 핏보관함 관련 API 묶음 -->
 
 
