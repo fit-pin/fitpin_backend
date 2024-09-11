@@ -245,7 +245,7 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 
 
 <details>
- <summary>GET http://localhost:8080/api/items/list/{itemType} : 상품목록을 조회하는 api입니다.</summary>
+ <summary>GET /api/items/list/{itemType} : 상품목록을 조회하는 api입니다.</summary>
 item 테이블의 itemType(상품 종류)행을 경로변수로 받아서 경로변수와 일치하는 상품을 JSON Array 형태로 조회합니다.
  
 반환되는 값은 
