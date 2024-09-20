@@ -21,13 +21,15 @@
         WHERE SearchWord = #{searchWord}
     </update>
 
-    <!-- item 테이블에서 검색 -->
-    <select id="searchItems" parameterType="string" resultType="com.mzm.Fitpin.entity.Item">
-        SELECT * FROM item
-        WHERE itemName LIKE CONCAT('%', #{searchWord}, '%')
-           OR itemType LIKE CONCAT('%', #{searchWord}, '%')
-           OR itemBrand LIKE CONCAT('%', #{searchWord}, '%')
-           OR itemContent LIKE CONCAT('%', #{searchWord}, '%')
+    <!-- item 테이블에서 검색 및 이미지 URL 반환 -->
+    <select id="searchItems" parameterType="string" resultType="com.mzm.Fitpin.entity.ItemSearchwithImg">
+        SELECT i.*, ii.itemImgURL
+        FROM item i
+                 LEFT JOIN ItemImg ii ON i.itemKey = ii.itemKey
+        WHERE i.itemName LIKE CONCAT('%', #{searchWord}, '%')
+           OR i.itemType LIKE CONCAT('%', #{searchWord}, '%')
+           OR i.itemBrand LIKE CONCAT('%', #{searchWord}, '%')
+           OR i.itemContent LIKE CONCAT('%', #{searchWord}, '%')
     </select>
 
 </mapper>
