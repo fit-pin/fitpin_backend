@@ -27,7 +27,7 @@ public class ItemImgController {
     public ResponseEntity<?> uploadImage(@RequestParam("itemKey") int itemKey,
                                          @RequestParam("image") MultipartFile image) {
         try {
-            // 절대 경로를 설정 (서버에 저장될 디렉토리)
+            // 절대 경로를 설정
             String absoluteUploadDir = new File(uploadDir).getAbsolutePath();
             File uploadDirFile = new File(absoluteUploadDir);
 
@@ -41,10 +41,10 @@ public class ItemImgController {
             File dest = new File(imagePath);
             image.transferTo(dest);
 
-            // DB에는 파일명만 저장
+            // DB에 이미지 파일명 저장
             ItemImg itemImg = new ItemImg();
             itemImg.setItemKey(itemKey);
-            // 경로 대신 파일명만 저장
+            // 이미지 파일명 저장
             itemImg.setItemImgURL(image.getOriginalFilename());
             itemImgMapper.insert(itemImg);
 
