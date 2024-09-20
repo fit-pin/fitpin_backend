@@ -545,7 +545,7 @@ itemImgNames : (상품 이미지 URL)
 
 #### URL: `/api/item-search/recommend`
 
-검색 횟수가 높은 상위 5개의 검색어 중 3개를 랜덤으로 추천해주는 API입니다. 서버는 `searchTable`에서 검색 횟수(`SearchCount`)가 높은 검색어를 기준으로 추천 검색어를 제공합니다.
+검색 횟수가 높은 상위 10개의 검색어 중 3개를 랜덤으로 추천해주는 API입니다. 서버는 `searchTable`에서 검색 횟수(`SearchCount`)가 높은 검색어를 기준으로 추천 검색어를 제공합니다.
 
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/recommend`
 
@@ -570,7 +570,7 @@ itemImgNames : (상품 이미지 URL)
   ```
 
 ### **설명**
-- 이 API는 검색 횟수가 많은 상위 5개의 검색어 중 3개를 랜덤으로 반환합니다.
+- 이 API는 검색 횟수가 많은 상위 10개의 검색어 중 3개를 랜덤으로 반환합니다.
 - 결과는 `recommendations` 필드에 배열 형태로 반환되며, 이 배열에는 3개의 추천 검색어가 포함됩니다.
 - 예외가 발생할 경우 `message` 필드에 오류 메시지가 포함됩니다.
 
