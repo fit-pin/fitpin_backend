@@ -538,6 +538,44 @@ itemImgNames : (상품 이미지 URL)
   
 </details> <!-- 상품검색 -->
 
+<details>  
+<summary>GET : 추천 검색어</summary> <!-- 추천 검색어 -->
+
+## GET: 추천 검색어
+
+#### URL: `/api/item-search/recommend`
+
+검색 횟수가 높은 상위 5개의 검색어 중 3개를 랜덤으로 추천해주는 API입니다. 서버는 `searchTable`에서 검색 횟수(`SearchCount`)가 높은 검색어를 기준으로 추천 검색어를 제공합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/recommend`
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "recommendations": [
+        "상의",
+        "바지",
+        "신발"
+    ]
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "message": "추천 검색어 조회 중 오류가 발생했습니다."
+  }
+  ```
+
+### **설명**
+- 이 API는 검색 횟수가 많은 상위 5개의 검색어 중 3개를 랜덤으로 반환합니다.
+- 결과는 `recommendations` 필드에 배열 형태로 반환되며, 이 배열에는 3개의 추천 검색어가 포함됩니다.
+- 예외가 발생할 경우 `message` 필드에 오류 메시지가 포함됩니다.
+
+</details> <!-- 추천 검색어 -->
+
 <details>
 <summary> 핏 보관함 관련 API </summary> <!--- 핏보관함 api 시작 --->
 
@@ -579,9 +617,8 @@ itemImgNames : (상품 이미지 URL)
   ```
 
 </details> <!-- 핏보관함 이미지 업로드 -->
-<!-- 여기에 작성-->
 
-<!-- 여기에 작성-->
+
 <details>
  <summary>사진 삭제</summary>
   
