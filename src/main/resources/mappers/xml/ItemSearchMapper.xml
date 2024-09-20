@@ -23,7 +23,7 @@
 
     <!-- item 테이블에서 검색 및 이미지 URL 반환 -->
     <select id="searchItems" parameterType="string" resultType="com.mzm.Fitpin.entity.ItemSearchwithImg">
-        SELECT i.*, ii.itemImgURL
+        SELECT i.*, ii.itemImgName
         FROM item i
                  LEFT JOIN ItemImg ii ON i.itemKey = ii.itemKey
         WHERE i.itemName LIKE CONCAT('%', #{searchWord}, '%')
