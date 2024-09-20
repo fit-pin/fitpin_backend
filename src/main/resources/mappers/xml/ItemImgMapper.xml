@@ -4,7 +4,7 @@
 <mapper namespace="com.mzm.Fitpin.mapper.ItemImgMapper">
 
     <insert id="insert" parameterType="com.mzm.Fitpin.entity.ItemImg">
-        INSERT INTO ItemImg (itemKey, itemImgURL)
+        INSERT INTO ItemImg (itemKey, itemImgName)
         VALUES (#{itemKey}, #{itemImgURL})
     </insert>
 
