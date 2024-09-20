@@ -41,13 +41,14 @@ public class ItemImgController {
             File dest = new File(imagePath);
             image.transferTo(dest);
 
-            // 이미지 경로를 DB에 저장
+            // DB에 이미지 파일명 저장
             ItemImg itemImg = new ItemImg();
             itemImg.setItemKey(itemKey);
-            itemImg.setItemImgURL(imagePath);
+            // 이미지 파일명 저장
+            itemImg.setItemImgURL(image.getOriginalFilename());
             itemImgMapper.insert(itemImg);
 
-            return ResponseEntity.ok(Collections.singletonMap("message", "이미지 업로드 성공: " + imagePath));
+            return ResponseEntity.ok(Collections.singletonMap("message", "이미지 업로드 성공: " + image.getOriginalFilename()));
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Collections.singletonMap("message", "이미지 업로드 실패: " + e.getMessage()));
