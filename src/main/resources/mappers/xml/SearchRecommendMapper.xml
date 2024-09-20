@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.SearchRecommendMapper">
+
+    <!-- 검색 횟수(SearchCount) 기준 상위 10개 검색어 조회 -->
+    <select id="getTopSearchWords" resultType="string">
+        SELECT SearchWord
+        FROM searchTable
+        ORDER BY SearchCount DESC
+            LIMIT 10
+    </select>
+
+</mapper>
