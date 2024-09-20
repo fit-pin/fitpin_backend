@@ -476,7 +476,7 @@ itemImgNames : (상품 이미지 URL)
 </details> <!--- 핏보관함 이미지 서빙 --->
 
 <details> 
-<summary>GET : 상품 검색</summary>
+<summary>GET : 상품 검색</summary> <!-- 상품 검색 -->
 
 ## GET: 상품 검색
 
@@ -536,7 +536,7 @@ itemImgNames : (상품 이미지 URL)
 - 이 API는 특정 키워드를 기준으로 상품을 검색합니다. 검색 결과는 `searchResult` 필드에 배열 형태로 반환됩니다.
 - 예외가 발생하거나 검색 결과가 없는 경우 `searchResult`는 빈 배열로 반환됩니다.
   
-</details>
+</details> <!-- 상품검색 -->
 
 <details>
 <summary> 핏 보관함 관련 API </summary> <!--- 핏보관함 api 시작 --->
@@ -579,7 +579,9 @@ itemImgNames : (상품 이미지 URL)
   ```
 
 </details> <!-- 핏보관함 이미지 업로드 -->
+<!-- 여기에 작성-->
 
+<!-- 여기에 작성-->
 <details>
  <summary>사진 삭제</summary>
   
