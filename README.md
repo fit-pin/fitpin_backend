@@ -480,7 +480,6 @@ itemImgUrls : (상품 이미지 URL)
 
 ## GET: 상품 검색
 
-## 반환 리스트에 이미지 URL(이미지 이름)도 같이 반환하도록 변경 예정입니다.
 
 #### URL: `/api/item-search/search/{searchWord}`
 
@@ -509,6 +508,7 @@ itemImgUrls : (상품 이미지 URL)
             "itemContent": "테스트용 상의 상품",
             "itemPrice": 10000,
             "itemDate": "2023-07-29"
+            "itemImgURL": "/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png"
         },
         {
             "itemKey": 2,
