@@ -568,7 +568,7 @@ itemImgUrls : (상품 이미지 URL)
 - **Status 200 OK**
   ```json
   {
-    "message": "이미지 업로드 성공: /path/to/uploaded/image.png"
+    "message": "이미지 업로드 성공: image.png"
   }
   ```
 - **Status 500 Internal Server Error**
