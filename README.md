@@ -508,7 +508,7 @@ itemImgUrls : (상품 이미지 URL)
             "itemContent": "테스트용 상의 상품",
             "itemPrice": 10000,
             "itemDate": "2023-07-29"
-            "itemImgURL": "/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png"
+            "itemImgURL": "optimize.png"
         },
         {
             "itemKey": 2,
