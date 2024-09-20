@@ -480,6 +480,8 @@ itemImgUrls : (상품 이미지 URL)
 
 ## GET: 상품 검색
 
+## 반환 리스트에 이미지 URL(이미지 이름)도 같이 반환하도록 변경 예정입니다.
+
 #### URL: `/api/item-search/search/{searchWord}`
 
 특정 검색어를 기준으로 `item` 테이블에서 `itemName`, `itemType`, `itemBrand`, `itemContent` 필드에 해당하는 상품을 검색하는 API입니다. 검색어는 URL 경로 변수로 전달되며, 결과로는 해당 조건에 맞는 상품 리스트가 반환됩니다.
