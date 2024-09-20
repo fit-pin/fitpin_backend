@@ -254,7 +254,7 @@ itemKey (상품 고유번호)
 itemName (상품 이름)
 itemBrand (상품 브랜드)
 itemPrice (상품 가격)
-itemImgUrls : (상품 이미지 URL)
+itemImgNames : (상품 이미지 URL)
 ```
 을 반환합니다.
 
@@ -269,7 +269,7 @@ itemImgUrls : (상품 이미지 URL)
         "itemBrand": "TEST",
         "itemStyle": "캐주얼",
         "itemPrice": 10000,
-        "itemImgUrls": [
+        "itemImgNames": [
             "C:/ItemImg/testImg.png"
         ]
     },
@@ -279,7 +279,7 @@ itemImgUrls : (상품 이미지 URL)
         "itemBrand": "TEST",
         "itemStyle": "캐주얼",
         "itemPrice": 100000,
-        "itemImgUrls": []
+        "itemImgNames": []
     },
     {
         "itemKey": 4,
@@ -287,7 +287,7 @@ itemImgUrls : (상품 이미지 URL)
         "itemBrand": "TEST",
         "itemStyle": "테일러",
         "itemPrice": 100000,
-        "itemImgUrls": []
+        "itemImgNames": []
     }
 ]
 ```
@@ -309,7 +309,7 @@ itemImgUrls : (상품 이미지 URL)
     "itemStyle": "캐주얼",
     "itemPrice": 10000,
     "itemContent": "테스트용 상의 상품",
-    "itemImgUrls": [
+    "itemImgNames": [
         "/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png"
     ],
     "itemTopInfo": {
@@ -508,7 +508,7 @@ itemImgUrls : (상품 이미지 URL)
             "itemContent": "테스트용 상의 상품",
             "itemPrice": 10000,
             "itemDate": "2023-07-29"
-            "itemImgURL": "optimize.png"
+            "itemImgName": "optimize.png"
         },
         {
             "itemKey": 2,

@@ -13,7 +13,7 @@ public interface ItemInfoMapper {
     //@Select("SELECT itemKey, itemName, itemBrand, itemStyle, itemPrice FROM item WHERE itemKey = #{itemKey}")
     ItemInfoDTO findItemByKey(@Param("itemKey") int itemKey);
 
-    //@Select("SELECT itemImgURL FROM ItemImg WHERE itemKey = #{itemKey}")
+    //@Select("SELECT itemImgName FROM ItemImg WHERE itemKey = #{itemKey}")
     List<String> findItemImages(@Param("itemKey") int itemKey);
 
     //@Select("SELECT * FROM itemTopInfo WHERE itemKey = #{itemKey}")

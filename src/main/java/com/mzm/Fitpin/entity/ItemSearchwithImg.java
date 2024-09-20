@@ -16,5 +16,5 @@ public class ItemSearchwithImg {
     private int itemPrice;
     private Date itemDate;
 
-    private String itemImgURL; // 추가 리턴
+    private String itemImgName; // 추가 리턴
 }

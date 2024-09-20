@@ -11,5 +11,5 @@ public class ItemWithImagesDTO {
     private String itemBrand;
     private String itemStyle;
     private int itemPrice;
-    private List<String> itemImgUrls;
+    private List<String> itemImgNames;
 }

@@ -29,7 +29,7 @@ public class ItemInfoController {
                 throw new CustomException("해당 키의 상품을 찾을 수 없습니다.");
             }
 
-            itemInfo.setItemImgUrls(itemInfoMapper.findItemImages(itemKey));
+            itemInfo.setItemImgName(itemInfoMapper.findItemImages(itemKey));
 
             if (itemInfo.getItemType().equalsIgnoreCase("상의")) {
                 ItemTopInfoDTO topInfo = itemInfoMapper.findTopInfoByKey(itemKey);

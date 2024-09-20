@@ -16,8 +16,8 @@
         <result property="itemBrand" column="itemBrand"/>
         <result property="itemStyle" column="itemStyle"/>
         <result property="itemPrice" column="itemPrice"/>
-        <collection property="itemImgUrls" ofType="string">
-            <result column="itemImgURL"/>
+        <collection property="itemImgNames" ofType="string">
+            <result column="itemImgName"/>
         </collection>
     </resultMap>
 

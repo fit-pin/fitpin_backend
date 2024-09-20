@@ -13,7 +13,7 @@ public class ItemInfoDTO {
     private String itemStyle;
     private int itemPrice;
     private String itemContent; // 추가된 필드
-    private List<String> itemImgUrls;
+    private List<String> itemImgName;
     private ItemTopInfoDTO itemTopInfo;
     private ItemBottomInfoDTO itemBottomInfo;
 }

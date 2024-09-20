@@ -5,7 +5,7 @@
 
     <insert id="insert" parameterType="com.mzm.Fitpin.entity.ItemImg">
         INSERT INTO ItemImg (itemKey, itemImgName)
-        VALUES (#{itemKey}, #{itemImgURL})
+        VALUES (#{itemKey}, #{itemImgName})
     </insert>
 
     <!-- 다른 CRUD 쿼리들 -->
