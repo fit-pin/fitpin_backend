@@ -4,7 +4,7 @@
 <mapper namespace="com.mzm.Fitpin.mapper.ItemWithImagesMapper">
 
     <select id="findItemsWithImagesByType" resultMap="ItemWithImagesMap">
-        SELECT i.itemKey, i.itemName, i.itemBrand, i.itemStyle, i.itemPrice, ii.itemImgURL
+        SELECT i.itemKey, i.itemName, i.itemBrand, i.itemStyle, i.itemPrice, ii.itemImgName
         FROM item i
                  LEFT JOIN ItemImg ii ON i.itemKey = ii.itemKey
         WHERE i.itemType = #{itemType}

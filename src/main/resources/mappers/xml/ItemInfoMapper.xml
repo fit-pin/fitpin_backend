@@ -10,7 +10,7 @@
     </select>
 
     <select id="findItemImages" resultType="string">
-        SELECT itemImgURL
+        SELECT itemImgName
         FROM ItemImg
         WHERE itemKey = #{itemKey}
     </select>
