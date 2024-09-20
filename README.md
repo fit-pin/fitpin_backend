@@ -475,6 +475,69 @@ itemImgUrls : (상품 이미지 URL)
 
 </details> <!--- 핏보관함 이미지 서빙 --->
 
+<details> 
+<summary>GET : 상품 검색</summary>
+
+## GET: 상품 검색
+
+
+#### URL: `/api/item-search/search/{searchWord}`
+
+특정 검색어를 기준으로 `item` 테이블에서 `itemName`, `itemType`, `itemBrand`, `itemContent` 필드에 해당하는 상품을 검색하는 API입니다. 검색어는 URL 경로 변수로 전달되며, 결과로는 해당 조건에 맞는 상품 리스트가 반환됩니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/search/상의`
+
+### **Path Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `searchWord`  | string  | required  | 검색할 키워드 (예: 상의, 바지 등) |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "searchResult": [
+        {
+            "itemKey": 1,
+            "itemName": "테스트용 상품1(상의)",
+            "itemType": "상의",
+            "itemBrand": "TEST",
+            "itemStyle": "캐주얼",
+            "itemCnt": 100,
+            "itemContent": "테스트용 상의 상품",
+            "itemPrice": 10000,
+            "itemDate": "2023-07-29"
+            "itemImgURL": "/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png"
+        },
+        {
+            "itemKey": 2,
+            "itemName": "테스트상품",
+            "itemType": "상의",
+            "itemBrand": "TEST",
+            "itemStyle": "캐주얼",
+            "itemCnt": 100,
+            "itemContent": "테스트용 상의 상품",
+            "itemPrice": 100000,
+            "itemDate": "2024-07-28"
+        }
+    ]
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "searchResult": []
+  }
+  ```
+
+### **설명**
+- 이 API는 특정 키워드를 기준으로 상품을 검색합니다. 검색 결과는 `searchResult` 필드에 배열 형태로 반환됩니다.
+- 예외가 발생하거나 검색 결과가 없는 경우 `searchResult`는 빈 배열로 반환됩니다.
+  
+</details>
+
 <details>
 <summary> 핏 보관함 관련 API </summary> <!--- 핏보관함 api 시작 --->
 
@@ -515,7 +578,7 @@ itemImgUrls : (상품 이미지 URL)
   }
   ```
 
-</details>
+</details> <!-- 핏보관함 이미지 업로드 -->
 
 <details>
  <summary>사진 삭제</summary>
