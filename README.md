@@ -13,93 +13,6 @@
 
 
 <details>
-<summary>POST/api/userPreferStyle : 선호 스타일을 json배열 방식으로 받아 DB에 등록 하는 API입니다 </summary>
-
-userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저가 같은 스타일을 선호스타일로 등록하려 하면 에러가 발생하니 참고 부탁드립니다.
-
-
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/userPreferStyle`
-
-```js
-[
-    {
-        "userEmail": "test1",
-        "preferStyle": "스트릿"
-    },
-   {
-        "userEmail": "test1",
-        "preferStyle": "빈티지"
-    },
-    {
-        "userEmail": "test1",
-        "preferStyle": "캐주얼"
-    },
-    {
-        "userEmail": "test1",
-        "preferStyle": "테일러"
-    }
-]
-
-```
-</details>
-
-<details>
-<summary>POST/api/userForm : AR백엔드의 체형분석 API에서 반환된 Json구문을 저장하는 POST API입니다.</summary>
-  
- 이미 등록되어 있는 userEmail 값으로 요청하면 데이터를 업데이트 합니다.
-
-
-> 요청 URL 예시: http://fitpitback.kro.kr:8080/api/userForm
-
-```js
-{
-    "userEmail": "test@naver.com"
-    "fileName": "2c49f715-67b8-40ec-86a2-b9d3e2875923.jpg", 
-    "result": {
-        "armSize": 58.37, 
-        "shoulderSize": 32.64, 
-        "bodySize": 52.63, 
-        "legSize": 63.82 
-    }
-}
-```
-정상 응답시 "체형 정보 저장 완료" 메세지를 json 형태로 반환합니다
-```js
-{
-    "message": "체형 정보 저장 완료"
-}
-```
-</details>
-
-<details>
-<summary> GET/api/GetUserPreferStyle/{userEmail}: userEmail 칼럼의 데이터를 변수로 받아 유저의 선호 스타일을 Json 배열 방식으로 반환받는 API입니다</summary>
-
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/GetUserPreferStyle/test1`
-
-정상응답
-```js
-[
-    {
-        "userEmail": "test1",
-        "preferStyle": "빈티지"
-    },
-    {
-        "userEmail": "test1",
-        "preferStyle": "스트릿"
-    },
-    {
-        "userEmail": "test1",
-        "preferStyle": "캐주얼"
-    },
-    {
-        "userEmail": "test1",
-        "preferStyle": "테일러"
-    }
-]
-```
-</details>
-
-<details>
 <summary> GET/api/userForm/{userEmail}: userForm 테이블(AR서버에서 넘겨준 체형 분석 정보를 저장하는 테이블)에서 사진파일의 이름을 userEmail을 키값으로 하여 검색하는 API입니다.</summary>
  
 
@@ -651,10 +564,10 @@ itemImgNames : (상품 이미지 URL)
 </details> 
 
 <details> <!-- APP API details start-->
- <summary> APP API </summary>
+ <summary> <h2> APP API </h2> </summary>
 
 <details>
- <summary> 로그인 & 회원가입 </summary>
+ <summary> <h4>  로그인 & 회원가입 </h4> </summary>
 
  <details> <!-- 회원가입 API 시작 -->
 
@@ -761,8 +674,74 @@ itemImgNames : (상품 이미지 URL)
 ```
   
  </details> <!-- 유저 기본정보 API 끝 -->
+
+<details> <!-- 선호스타일 API 시작 -->
+<summary>POST/api/userPreferStyle : 선호 스타일을 json배열 방식으로 받아 DB에 등록 하는 API입니다 </summary>
+
+userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저가 같은 스타일을 선호스타일로 등록하려 하면 에러가 발생하니 참고 부탁드립니다.
+
+
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/userPreferStyle`
+
+```js
+[
+    {
+        "userEmail": "test1",
+        "preferStyle": "스트릿"
+    },
+   {
+        "userEmail": "test1",
+        "preferStyle": "빈티지"
+    },
+    {
+        "userEmail": "test1",
+        "preferStyle": "캐주얼"
+    },
+    {
+        "userEmail": "test1",
+        "preferStyle": "테일러"
+    }
+]
+
+```
+</details> <!-- 선호스타일 끝 -->
+
+<details> <!-- 체형분석 시작 -->
+<summary> POST/api/userForm : AR백엔드의 체형분석 API에서 반환된 Json구문을 저장하는 POST API입니다.</summary>
+  
+ 이미 등록되어 있는 userEmail 값으로 요청하면 데이터를 업데이트 합니다.
+
+
+> 요청 URL 예시: http://fitpitback.kro.kr:8080/api/userForm
+
+```js
+{
+    "userEmail": "test@naver.com"
+    "fileName": "2c49f715-67b8-40ec-86a2-b9d3e2875923.jpg", 
+    "result": {
+        "armSize": 58.37, 
+        "shoulderSize": 32.64, 
+        "bodySize": 52.63, 
+        "legSize": 63.82 
+    }
+}
+```
+정상 응답시 "체형 정보 저장 완료" 메세지를 json 형태로 반환합니다
+```js
+{
+    "message": "체형 정보 저장 완료"
+}
+```
+</details> <!-- 체형분석 끝 -->
  
 </details> <! -- 로그인 & 회원가입 관련 API details end>
+
+<details> <!-- 메인페이지 API details 시작 -->
+<summary> <h4> 메인페이지 API </h4> </summary>
+
+
+ 
+</details> <!-- 메인페이지 API details 끝 -->
  
 </details> <!-- APP API details end-->
 
