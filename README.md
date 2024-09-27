@@ -50,69 +50,6 @@
 </details>
 
 
-<details>
- <summary> GET : 수선내역 조회 </summary>
- 
-#### GET/api/pit/get/{cartKey}
-
-장바구니 테이블의 {cartKey}을 경로변수로 받아 장바구니 목록을 조회하는 API입니다. 
- 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/pit/get/2
-
-결과:
-```js
-{
-    "itemKey": 1,
-    "cartKey": 2,
-    "itemSize": "M",
-    "itemHeight": 35.0,
-    "itemShoulder": 15.0,
-    "itemArm": 9.0,
-    "itemChest": 10.0,
-    "itemSleeve": 14.0
-}
-```
-</details> 
-
-<details>
- <summary>GET : 상품 이미지 서빙 (itemImg 디렉토리)</summary>
- 
-#### GET /api/img/imgserve/itemimg/{imageName}
-
-이미지 이름을 경로 변수로 받아 `itemImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
-
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/itemimg/optimize.png`
-
-**Path Variables:**
-- `imageName`: 이미지 파일명 (예: `optimize.png`)
-
-**Response:**
-- **Status 200 OK:**
-  - 성공적으로 이미지를 반환합니다.
-  - 이미지의 MIME 타입에 따라 콘텐츠가 반환됩니다.
-- **Status 404 Not Found:**
-  - 파일이 존재하지 않거나 읽을 수 없는 경우
-  ```json
-  {
-      "message": "파일을 찾을 수 없습니다."
-  }
-  ```
-- **Status 403 Forbidden:**
-  - 경로가 허용된 범위 밖에 있는 경우
-  ```json
-  {
-      "message": "접근이 허용되지 않는 경로입니다."
-  }
-  ```
-- **Status 500 Internal Server Error:**
-  - 서버 내부에서 파일을 읽는 중 오류가 발생한 경우
-  ```json
-  {
-      "message": "파일을 읽는 중 오류가 발생했습니다."
-  }
-  ```
-
-</details> <!--- 상품 이미지 서빙   --->
 
 <details>
  <summary>GET : 핏보관함 이미지 서빙 (fitStorageImg 디렉토리)</summary>
@@ -661,6 +598,46 @@ itemImgNames : (상품 이미지 URL)
 ]
 ```
 </details> <!-- 메인페이지 상품 목록 API 끝 -->
+
+<details> <!-- 상품 이미지 서빙 시작 -->
+ <summary>GET : 상품 이미지 서빙 (itemImg 디렉토리)</summary>
+ 
+#### GET /api/img/imgserve/itemimg/{imageName}
+
+이미지 이름을 경로 변수로 받아 `itemImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
+
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/itemimg/optimize.png`
+
+**Path Variables:**
+- `imageName`: 이미지 파일명 (예: `optimize.png`)
+
+**Response:**
+- **Status 200 OK:**
+  - 성공적으로 이미지를 반환합니다.
+  - 이미지의 MIME 타입에 따라 콘텐츠가 반환됩니다.
+- **Status 404 Not Found:**
+  - 파일이 존재하지 않거나 읽을 수 없는 경우
+  ```json
+  {
+      "message": "파일을 찾을 수 없습니다."
+  }
+  ```
+- **Status 403 Forbidden:**
+  - 경로가 허용된 범위 밖에 있는 경우
+  ```json
+  {
+      "message": "접근이 허용되지 않는 경로입니다."
+  }
+  ```
+- **Status 500 Internal Server Error:**
+  - 서버 내부에서 파일을 읽는 중 오류가 발생한 경우
+  ```json
+  {
+      "message": "파일을 읽는 중 오류가 발생했습니다."
+  }
+  ```
+
+</details> <!-- 상품 이미지 서빙 끝 -->
  
 </details> <!-- 메인페이지 API details 끝 -->
 
@@ -754,6 +731,29 @@ itemImgNames : (상품 이미지 URL)
 ```
 </details> <!-- 장바구니 목록 조회 끝-->
 
+<details> <!-- 수선내역 조회 시작 -->
+ <summary> GET : 수선내역 조회 </summary>
+ 
+#### GET/api/pit/get/{cartKey}
+
+장바구니 테이블의 {cartKey}을 경로변수로 받아 장바구니 목록을 조회하는 API입니다. 
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/pit/get/2
+
+결과:
+```js
+{
+    "itemKey": 1,
+    "cartKey": 2,
+    "itemSize": "M",
+    "itemHeight": 35.0,
+    "itemShoulder": 15.0,
+    "itemArm": 9.0,
+    "itemChest": 10.0,
+    "itemSleeve": 14.0
+}
+```
+</details> <!-- 수선내역 조회 끝 -->
 
 </details> <!-- 장바구니 페이지 API details 끝 -->
  
