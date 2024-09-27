@@ -50,84 +50,6 @@
 </details>
 
 
-<details> <!-- 상품 상작-->
-<summary>GET/api/item-info/1{itemKey} : itemKey를 경로인자로 받아 상품의 상세 정보를 반환합니다. </summary>
-
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/item-info/1
-
-정상 응답시 위의 요소를 반환합니다.
-
-```js
-{
-    "itemKey": 1,
-    "itemName": "테스트용 상품1(상의)",
-    "itemBrand": "TEST",
-    "itemType": "상의",
-    "itemStyle": "캐주얼",
-    "itemPrice": 10000,
-    "itemContent": "테스트용 상의 상품",
-    "itemImgNames": [
-        "/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png"
-    ],
-    "itemTopInfo": {
-        "itemSize": "M",
-        "itemHeight": 40.0,
-        "itemShoulder": 15.5,
-        "itemArm": 10.0,
-        "itemChest": 12.0,
-        "itemSleeve": 14.5
-    },
-    "itemBottomInfo": null
-}
-```
-
-</details> <!-- 상품 상세 정보 API 끝-->
-
-<details>
- <summary> POST : 장바구니 저장 </summary>
- 
- 장바구니 목록을 저장하는 API입니다.
- 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/cart/store
-
-```js
-{
-    "itemKey": 1,
-    "userEmail": "test1",
-    "itemName": "테스트용 상품1(상의)",
-    "itemSize": "M",
-    "itemType": "상의",
-    "itemPrice": 10000,
-    "pit": 1
-
-}
-```
-</details> 
-
-<details>
- <summary> GET : 장바구니 목록 조회 </summary>
- 
-#### GET/api/cart/get-store/{userEmail}
-
-{userEmail}을 경로변수로 받아 장바구니 목록을 조회하는 API입니다. 
- 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/cart/get-store/test1
-
-결과:
-```js
-{
-    "itemKey": 1,
-    "userEmail": "test1",
-    "itemName": "테스트용 상품1(상의)",
-    "itemSize": "M",
-    "itemType": "상의",
-    "itemPrice": 10000,
-    "pit": 1
-
-}
-```
-</details> 
-
 <details>
  <summary> GET : 수선내역 조회 </summary>
  
@@ -746,14 +668,99 @@ itemImgNames : (상품 이미지 URL)
 
 <summary> <h4> 제품 상세 페이지 </h4> </summary>
 
+<details> <!-- 상품 상세 정보 APi 시작-->
+<summary>GET/api/item-info/{itemKey} : itemKey를 경로인자로 받아 상품의 상세 정보를 반환합니다. </summary>
+
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/item-info/1
+
+정상 응답시 위의 요소를 반환합니다.
+
+```js
+{
+    "itemKey": 1,
+    "itemName": "테스트용 상품1(상의)",
+    "itemBrand": "TEST",
+    "itemType": "상의",
+    "itemStyle": "캐주얼",
+    "itemPrice": 10000,
+    "itemContent": "테스트용 상의 상품",
+    "itemImgNames": [
+        "/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png"
+    ],
+    "itemTopInfo": {
+        "itemSize": "M",
+        "itemHeight": 40.0,
+        "itemShoulder": 15.5,
+        "itemArm": 10.0,
+        "itemChest": 12.0,
+        "itemSleeve": 14.5
+    },
+    "itemBottomInfo": null
+}
+```
+
+</details> <!-- 상품 상세 정보 API 끝--> 
+
+<details> <!-- 장바구니 저장 API 시작 -->
+ 
+ <summary> POST : 장바구니 저장 </summary>
+ 
+ 장바구니 목록을 저장하는 API입니다.
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/cart/store
+
+```js
+{
+    "itemKey": 1,
+    "userEmail": "test1",
+    "itemName": "테스트용 상품1(상의)",
+    "itemSize": "M",
+    "itemType": "상의",
+    "itemPrice": 10000,
+    "pit": 1
+
+}
+```
+</details> <!-- 장바구니 저장 API 끝 -->
  
  
 </details> <!-- 제품 상세 API detils 끝 -->
+
+<details> <!-- 장바구니 페이지 API details 시작 -->
+
+<summary> <h4> 장바구니 페이지 </h4> </summary>
+
+<details> <!-- 장바구니 목록 조회 시작 -->
+ <summary> GET : 장바구니 목록 조회 </summary>
+ 
+#### GET/api/cart/get-store/{userEmail}
+
+{userEmail}을 경로변수로 받아 장바구니 목록을 조회하는 API입니다. 
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/cart/get-store/test1
+
+결과:
+```js
+{
+    "itemKey": 1,
+    "userEmail": "test1",
+    "itemName": "테스트용 상품1(상의)",
+    "itemSize": "M",
+    "itemType": "상의",
+    "itemPrice": 10000,
+    "pit": 1
+
+}
+```
+</details> <!-- 장바구니 목록 조회 끝-->
+
+
+</details> <!-- 장바구니 페이지 API details 끝 -->
  
 </details> <!-- APP API details end-->
 
 
- 
+
 
 
 
