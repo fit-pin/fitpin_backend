@@ -50,56 +50,7 @@
 </details>
 
 
-<details>
- <summary>GET /api/items/list/{itemType} : 상품목록을 조회하는 api입니다.</summary>
-item 테이블의 itemType(상품 종류)행을 경로변수로 받아서 경로변수와 일치하는 상품을 JSON Array 형태로 조회합니다.
- 
-반환되는 값은 
-```
-itemKey (상품 고유번호)
-itemName (상품 이름)
-itemBrand (상품 브랜드)
-itemPrice (상품 가격)
-itemImgNames : (상품 이미지 URL)
-```
-을 반환합니다.
-
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/items/list/상의
-
-결과:
-```js
-[
-    {
-        "itemKey": 1,
-        "itemName": "테스트용 상품1",
-        "itemBrand": "TEST",
-        "itemStyle": "캐주얼",
-        "itemPrice": 10000,
-        "itemImgNames": [
-            "C:/ItemImg/testImg.png"
-        ]
-    },
-    {
-        "itemKey": 2,
-        "itemName": "테스트상품",
-        "itemBrand": "TEST",
-        "itemStyle": "캐주얼",
-        "itemPrice": 100000,
-        "itemImgNames": []
-    },
-    {
-        "itemKey": 4,
-        "itemName": "테스트상품",
-        "itemBrand": "TEST",
-        "itemStyle": "테일러",
-        "itemPrice": 100000,
-        "itemImgNames": []
-    }
-]
-```
-</details> 
-
-<details>
+<details> <!-- 상품 상작-->
 <summary>GET/api/item-info/1{itemKey} : itemKey를 경로인자로 받아 상품의 상세 정보를 반환합니다. </summary>
 
 >요청 URL 예시: http://fitpitback.kro.kr:8080/api/item-info/1
@@ -130,7 +81,7 @@ itemImgNames : (상품 이미지 URL)
 }
 ```
 
-</details>
+</details> <!-- 상품 상세 정보 API 끝-->
 
 <details>
  <summary> POST : 장바구니 저장 </summary>
@@ -737,11 +688,67 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 </details> <! -- 로그인 & 회원가입 관련 API details end>
 
 <details> <!-- 메인페이지 API details 시작 -->
+ 
 <summary> <h4> 메인페이지 API </h4> </summary>
 
+<details> <!-- 메인페이지 상품 목록 조회 API 시작 -->
+ <summary>GET /api/items/list/{itemType} : 상품목록을 조회하는 api입니다.</summary>
+item 테이블의 itemType(상품 종류)행을 경로변수로 받아서 경로변수와 일치하는 상품을 JSON Array 형태로 조회합니다.
+ 
+반환되는 값은 
+```
+itemKey (상품 고유번호)
+itemName (상품 이름)
+itemBrand (상품 브랜드)
+itemPrice (상품 가격)
+itemImgNames : (상품 이미지 URL)
+```
+을 반환합니다.
 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/items/list/상의
+
+결과:
+```js
+[
+    {
+        "itemKey": 1,
+        "itemName": "테스트용 상품1",
+        "itemBrand": "TEST",
+        "itemStyle": "캐주얼",
+        "itemPrice": 10000,
+        "itemImgNames": [
+            "C:/ItemImg/testImg.png"
+        ]
+    },
+    {
+        "itemKey": 2,
+        "itemName": "테스트상품",
+        "itemBrand": "TEST",
+        "itemStyle": "캐주얼",
+        "itemPrice": 100000,
+        "itemImgNames": []
+    },
+    {
+        "itemKey": 4,
+        "itemName": "테스트상품",
+        "itemBrand": "TEST",
+        "itemStyle": "테일러",
+        "itemPrice": 100000,
+        "itemImgNames": []
+    }
+]
+```
+</details> <!-- 메인페이지 상품 목록 API 끝 -->
  
 </details> <!-- 메인페이지 API details 끝 -->
+
+<details> <!- 제품 상세 API details 시작 -->
+
+<summary> <h4> 제품 상세 페이지 </h4> </summary>
+
+ 
+ 
+</details> <!-- 제품 상세 API detils 끝 -->
  
 </details> <!-- APP API details end-->
 
