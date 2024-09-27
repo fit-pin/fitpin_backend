@@ -1,4 +1,4 @@
-# fitpin_backend
+ # fitpin_backend
 핏핀 백엔드
 ## API 목록
 
@@ -11,113 +11,6 @@
 <details>
  <summary><h2>APP API</h2></summary>
 
-  <details> 
-
-   <summary>회원가입을 위한 api입니다.</summary>
-
-   ### POST/api/members/register 
-  
-> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/register`
-
-요청 Body
-```js
-{
-    "userEmail": "tlsdnwls@test.com",
-    "userPwd": "1234",
-    "userName": "신우진",
-    "userPwdConfirm": "12334"
-
-}
-```
-
-비밀번호와 재확인 부분이 다를시(status : 400)
-```js
-{
-    "message": "비밀번호가 일치하지 않습니다."
-}
-```
-  
-  </details>
-
-
-<details>
-
- <summary>POST/api/login : 로그인을 위한 api입니다.</summary>
-
-  
-> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/login`
-```js
-{
-    "userEmail": "tlsdnwls@test.com",
-    "userPwd": "1234"
-}
-```
-- 정상응답
-```js
-{
-    "userEmail": "test1",
-    "userPwd": null,
-    "userName": "테스트용1",
-    "userNumber": null,
-    "userNickname": null,
-    "userAddr": null,
-    "userGender": "남자",
-    "userHeight": 180,
-    "userWeight": 75,
-    "userFit": null,
-    "userCash": null
-}
-``` 
-
-비밀번호나 이메일이 다를시(status : 400)
-```js
-{
-    "message": "이메일을 찾을 수 없습니다."
-}
-```
-```js
-{
-    "message": "비밀번호가 틀립니다."
-}
-```
-
- 
-</details>
-
- <details>
-  <summary>POST/api/members/basicInfo/{userEmail} : userEmail 칼럼의 데이터를 변수로 받아 유저 기본 정보를 업데이트 하는 API입니다.</summary>
-
-  {userEmail} 부분에는 member 테이블의 userEmail 칼럼의 실제 값이 들어가야 합니다.
-
-> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/basicInfo/test1`
-```js
-{
-    "userGender": "남",
-    "userHeight": 174,
-    "userWeight": 80,
-    "userFit": "오버핏",
-    "style": [
-        {
-            "userEmail": "test1",
-            "pr환합니다
-
-정상 응답
-```js
-{
-    "message": "선호 스타일 등록 완료!"
-}
-```
-
-중복된 스타일을 등록하려 하면 "중복된 선호 스타일 : {스타일}" 라는 메세지를 json 방식으로 반환합니
-
-예외처리(status:400)
-```js
-{
-    "message": "중복된 선호 스타일: 스트릿"
-}
-```
-  
- </details>
 
 <details>
 <summary>POST/api/userPreferStyle : 선호 스타일을 json배열 방식으로 받아 DB에 등록 하는 API입니다 </summary>
@@ -757,7 +650,121 @@ itemImgNames : (상품 이미지 URL)
  
 </details> 
 
+<details> <!-- APP API details start-->
+ <summary> APP API </summary>
 
+<details>
+ <summary> 로그인 & 회원가입 </summary>
+
+ <details> <!-- 회원가입 API 시작 -->
+
+   <summary> 회원가입 </summary>
+
+   ### POST/api/members/register 
+  
+> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/register`
+
+요청 Body
+```js
+{
+    "userEmail": "tlsdnwls@test.com",
+    "userPwd": "1234",
+    "userName": "신우진",
+    "userPwdConfirm": "12334"
+
+}
+```
+
+비밀번호와 재확인 부분이 다를시(status : 400)
+```js
+{
+    "message": "비밀번호가 일치하지 않습니다."
+}
+```
+  
+  </details> <!-- 회원가입 API 끝 -->
+
+  <details> <!-- 로그인 API 시작 -->
+
+ <summary>POST/api/login : 로그인을 위한 api입니다.</summary>
+
+  
+> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/login`
+```js
+{
+    "userEmail": "tlsdnwls@test.com",
+    "userPwd": "1234"
+}
+```
+- 정상응답
+```js
+{
+    "userEmail": "test1",
+    "userPwd": null,
+    "userName": "테스트용1",
+    "userNumber": null,
+    "userNickname": null,
+    "userAddr": null,
+    "userGender": "남자",
+    "userHeight": 180,
+    "userWeight": 75,
+    "userFit": null,
+    "userCash": null
+}
+``` 
+
+비밀번호나 이메일이 다를시(status : 400)
+```js
+{
+    "message": "이메일을 찾을 수 없습니다."
+}
+```
+```js
+{
+    "message": "비밀번호가 틀립니다."
+}
+```
+ 
+</details> <!-- 로그인 API 끝-->
+
+ <details> <!-- 유저 기본정보 업데이트 API 시작 -->
+  <summary> POST/api/members/basicInfo/{userEmail} : userEmail 칼럼의 데이터를 변수로 받아 유저 기본 정보를 업데이트 하는 API입니다.</summary>
+
+  {userEmail} 부분에는 member 테이블의 userEmail 칼럼의 실제 값이 들어가야 합니다.
+
+> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/basicInfo/test1`
+```js
+{
+    "userGender": "남",
+    "userHeight": 174,
+    "userWeight": 80,
+    "userFit": "오버핏",
+    "style": [
+        {
+            "userEmail": "test1",
+            "pr환합니다
+
+정상 응답
+```js
+{
+    "message": "선호 스타일 등록 완료!"
+}
+```
+
+중복된 스타일을 등록하려 하면 "중복된 선호 스타일 : {스타일}" 라는 메세지를 json 방식으로 반환합니
+
+예외처리(status:400)
+```js
+{
+    "message": "중복된 선호 스타일: 스트릿"
+}
+```
+  
+ </details> <!-- 유저 기본정보 API 끝 -->
+ 
+</details> <! -- 로그인 & 회원가입 관련 API details end>
+ 
+</details> <!-- APP API details end-->
 
 
  
