@@ -222,33 +222,47 @@
 <details> <!-- 로그인 & 회원가입 details 시작 -->
  <summary> <h4>  로그인 & 회원가입 </h4> </summary>
 
- <details> <!-- 회원가입 API 시작 -->
+# 로그인 및 회원가입
 
-   <summary> 회원가입 </summary>
+로그인, 회원가입 과정에서 필요한 API 목록입니다. 회원가입, 로그인, 기본정보 등록, 선호스타일과 체형분석 등록이 가능합니다
 
-   ### POST/api/members/register 
-  
-> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/register`
+---
+<details> <!-- 회원가입 API 시작 -->
 
-요청 Body
-```js
-{
-    "userEmail": "tlsdnwls@test.com",
-    "userPwd": "1234",
-    "userName": "신우진",
-    "userPwdConfirm": "12334"
+<summary> 회원가입 </summary> 
 
-}
-```
+## POST: 회원가입
 
-비밀번호와 재확인 부분이 다를시(status : 400)
-```js
-{
+#### URL: `/api/members/register`
+
+회원가입을 요청하는 API입니다. 이메일, 비밀번호, 이름 등을 받아 회원가입 처리를 수행합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/members/register`
+
+### **Request Body Parameters**
+| 파라미터           | 타입    | 필수 여부 | 설명                         |
+|-------------------|---------|-----------|------------------------------|
+| `userEmail`       | string  | required  | 유저의 이메일 주소            |
+| `userPwd`         | string  | required  | 유저의 비밀번호               |
+| `userName`        | string  | required  | 유저의 이름                   |
+| `userPwdConfirm`  | string  | required  | 유저의 비밀번호 재확인        |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "회원가입 성공"
+  }
+  ```
+- **Status 400 Bad Request** (비밀번호와 비밀번호 확인 불일치)
+  ```json
+  {
     "message": "비밀번호가 일치하지 않습니다."
-}
-```
-  
-  </details> <!-- 회원가입 API 끝 -->
+  }
+  ```
+
+</details> <!-- 회원가입 API 끝 -->
 
   <details> <!-- 로그인 API 시작 -->
 
