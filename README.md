@@ -264,20 +264,29 @@
 
 </details> <!-- 회원가입 API 끝 -->
 
-  <details> <!-- 로그인 API 시작 -->
+<details> <!-- 로그인 API 시작 -->
 
- <summary>POST/api/login : 로그인을 위한 api입니다.</summary>
+<summary> 로그인 </summary> 
 
-  
-> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/login`
-```js
-{
-    "userEmail": "tlsdnwls@test.com",
-    "userPwd": "1234"
-}
-```
-- 정상응답
-```js
+## POST: 로그인
+
+#### URL: `/api/login` 
+
+로그인 요청입니다. 이메일과 비밀번호를  이용해 로그인을 시도합니다, 로그인 성공시 유저 정보를 반환합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/login`
+
+### **Request Body Parameters**
+| 파라미터           | 타입    | 필수 여부 | 설명                         |
+|-------------------|---------|-----------|------------------------------|
+| `userEmail`       | string  | required  | 유저의 이메일 주소            |
+| `userPwd`         | string  | required  | 유저의 비밀번호               |
+
+
+### **Response**
+
+- **Status 200 OK**
+```json
 {
     "userEmail": "test1",
     "userPwd": null,
@@ -292,20 +301,27 @@
     "userCash": null
 }
 ``` 
+- **Status 400 Bad Request** (이메일 혹은 비밀번호 불일치)
+  ```json
+{
+  "message": "이메일을 찾을 수 없습니다."
+}
+  ```
 
-비밀번호나 이메일이 다를시(status : 400)
-```js
+  ```json
 {
-    "message": "이메일을 찾을 수 없습니다."
+  "message": "비밀번호가 틀립니다."
 }
-```
-```js
+  ```
+
+- **Status 500 Internal Server Error** (서버 에러 발생 시)
+  ```json
 {
-    "message": "비밀번호가 틀립니다."
+  "message": "예상치 못한 오류가 발생했습니다."
 }
-```
- 
-</details> <!-- 로그인 API 끝-->
+  ```
+
+</details> <!-- 로그인 API 끝 -->
 
  <details> <!-- 유저 기본정보 업데이트 API 시작 -->
   <summary> POST/api/members/basicInfo/{userEmail} : userEmail 칼럼의 데이터를 변수로 받아 유저 기본 정보를 업데이트 하는 API입니다.</summary>
