@@ -325,11 +325,35 @@
 
 </details> <!-- 로그인 API 끝 -->
  <details> <!-- 유저 기본정보 업데이트 API 시작 -->
-  <summary> POST/api/members/basicInfo/{userEmail} : userEmail 칼럼의 데이터를 변수로 받아 유저 기본 정보를 업데이트 하는 API입니다.</summary>
+  
+  <summary> POST : 유저 기본 정보 업데이트 </summary>
 
-  {userEmail} 부분에는 member 테이블의 userEmail 칼럼의 실제 값이 들어가야 합니다.
+  ## POST: 유저 기본정보 업데이트
+  
+  #### URL: `api/members/basicInfo/{userEmail}`
+  
+  경로 변수인 {userEmail} 부분에는 member 테이블의 userEmail 칼럼의 실제 값이 들어가야 합니다.
+  회원 가입 과정에 필요한 API입니다.
 
-> 요청 URL 예시 : `http://fitpitback.kro.kr:8080/api/members/basicInfo/test1`
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/members/basicInfo/testEmail`
+
+### **Request Body Parameters**
+| 파라미터          | 타입    | 필수 여부 | 설명                         |
+|-------------------|---------|-----------|------------------------------|
+| `userGender`      | string  | required  | 유저의 성별 ("남" 또는 "여")   |
+| `userHeight`      | number  | required  | 유저의 키 (cm)                |
+| `userWeight`      | number  | required  | 유저의 몸무게 (kg)            |
+| `userFit`         | string  | required  |유저가 선호하는 핏 ("오버핏" 등)|
+| `style`           | array   | required  | 선호 스타일 리스트             |
+
+### **Style Array Object**
+| 파라미터          | 타입    | 필수 여부 | 설명                               |
+|-------------------|---------|-----------|------------------------------------|
+| `userEmail`      | string  | required  |  선호 스타일을 업데이트할 유저의 이메일|
+| `preferStyle`      | string  | required  | 유저 선호 스타일                   |
+
+### **Request Body 예시**
+
 ```js
 {
     "userGender": "남",
@@ -339,19 +363,36 @@
     "style": [
         {
             "userEmail": "test1",
-            "pr환합니다
+            "preferStyle": "스트릿"
+        },
+        {
+            "userEmail": "test1",
+            "preferStyle": "빈티지"
+        },
+        {
+            "userEmail": "test1",
+            "preferStyle": "캐주얼"
+        },
+        {
+            "userEmail": "test1",
+            "preferStyle": "테일러"
+        }
+    ]
+}
 ```
 
-정상 응답
+### **Response**
+- **Status 200 OK**
+
 ```js
 {
     "message": "선호 스타일 등록 완료!"
 }
 ```
 
-중복된 스타일을 등록하려 하면 "중복된 선호 스타일 : {스타일}" 라는 메세지를 json 방식으로 반환합니
 
-예외처리(status:400)
+- **Status 400 Bad Request** (중복된 선호 스타일)
+
 ```js
 {
     "message": "중복된 선호 스타일: 스트릿"
