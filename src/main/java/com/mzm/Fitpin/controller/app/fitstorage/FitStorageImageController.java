@@ -1,4 +1,4 @@
-package com.mzm.Fitpin.controller.app;
+package com.mzm.Fitpin.controller.app.fitstorage;
 
 import com.mzm.Fitpin.dto.FitStorageDTO;
 import com.mzm.Fitpin.entity.FitStorage;

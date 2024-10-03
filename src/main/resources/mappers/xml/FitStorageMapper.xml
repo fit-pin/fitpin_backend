@@ -18,4 +18,19 @@
         DELETE FROM fitStorage WHERE fitStorageImg = #{fitStorageImg}
     </delete>
 
+
+    <!-- 사용자 이메일과 이미지 이름으로 이미지 검색 -->
+    <select id="findByUserEmailAndFitStorageImg" parameterType="map" resultType="com.mzm.Fitpin.entity.FitStorage">
+        SELECT * FROM fitStorage WHERE userEmail = #{userEmail} AND fitStorageImg = #{fitStorageImg}
+    </select>
+
+
+    <!-- 이미지 정보 업데이트 (코멘트 포함) -->
+    <update id="update" parameterType="com.mzm.Fitpin.entity.FitStorage">
+        UPDATE fitStorage
+        SET fitComment = #{fitComment}
+        WHERE userEmail = #{userEmail} AND fitStorageImg = #{fitStorageImg}
+    </update>
+
+
 </mapper>
