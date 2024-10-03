@@ -608,7 +608,7 @@ itemImgNames : (상품 이미지 URL)
 
 ---
 <details>
- <summary> 이미지 업로드</summary>
+ <summary> 이미지 업로드</summary> <!-- 핏 보관함 이미지 업로드 시작 -->
 
 ## POST: 핏 보관함 이미지 업로드
 
@@ -639,11 +639,11 @@ itemImgNames : (상품 이미지 URL)
   }
   ```
 
-</details> <!-- 핏보관함 이미지 업로드 -->
+</details> <!-- 핏보관함 이미지 업로드 끝 -->
 
 
 <details>
- <summary>사진 삭제</summary>
+ <summary>사진 삭제</summary> <!-- 핏 보관함 사진 삭제 시작-->
   
 ## DELETE: 핏 보관함 사진 삭제
 
@@ -680,10 +680,10 @@ itemImgNames : (상품 이미지 URL)
   ```
 
 ---
-</details>
+</details> <!-- 핏보관함 사진 삭제 끝-->
 
 <details>
- <summary> 사진 리스트 조회 </summary>
+ <summary> 사진 리스트 조회 </summary> <!-- 핏보관함 사진 리스트 조회 시작 -->
 ## GET: 핏 보관함 사진 리스트 조회
 
 #### URL: `/api/fitStorageImages/user/{userEmail}`
@@ -712,8 +712,119 @@ itemImgNames : (상품 이미지 URL)
     }
   ]
   ```
- </details>
+ </details><!-- 핏 보관함 사진 리스트 조회 끝 -->
+
+<details>
+ <summary> 코멘트 저장</summary> <!-- 핏 보관함 코멘트 저장 시작 -->
+
+## POST: 핏 보관함 코멘트 저장
+
+#### URL: `/api/fit_comment/save_comment`
+
+유저의 이메일과 이미지 이름을 기반으로 코멘트를 작성하는 API입니다. 유저가 특정 이미지에 대해 코멘트를 저장할 수 있습니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/save_comment`
+
+### **Form Data Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `userEmail`   | string  | required  | 유저의 이메일 주소           |
+| `imageName`   | string  | required  | 이미지 이름                  |
+| `comment`     | string  | required  | 작성할 코멘트                |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "코멘트 저장 성공"
+  }
+  ```
+- **Status 404 Not Found**
+  ```json
+  {
+    "message": "이미지를 찾을 수 없습니다"
+  }
+  ```
+
+</details> <!-- 핏 보관함 코멘트 저장 끝 -->
+
+
+
+<details>
+ <summary> 코멘트 수정</summary> <!-- 핏 보관함 코멘트 수정 시작 -->
+
+## POST: 핏 보관함 코멘트 수정
+
+#### URL: `/api/fit_comment/update_comment`
+
+유저의 이메일과 이미지 이름을 기반으로 코멘트를 수정하는 API입니다. 이미 저장된 코멘트를 수정할 수 있습니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/update_comment`
+
+### **Form Data Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `userEmail`   | string  | required  | 유저의 이메일 주소           |
+| `imageName`   | string  | required  | 이미지 이름                  |
+| `comment`     | string  | required  | 수정할 코멘트                |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "코멘트 수정 성공"
+  }
+  ```
+- **Status 404 Not Found**
+  ```json
+  {
+    "message": "이미지를 찾을 수 없습니다"
+  }
+  ```
+
+</details> <!-- 핏 보관함 코멘트 수정 끝 -->
+
+
+
+<details>
+ <summary> 코멘트 삭제</summary> <!-- 핏 보관함 코멘트 삭제 시작 -->
+
+## DELETE: 핏 보관함 코멘트 삭제
+
+#### URL: `/api/fit_comment/delete_comment`
+
+유저의 이메일과 이미지 이름을 기반으로 코멘트를 삭제하는 API입니다. 이미 저장된 코멘트를 삭제할 수 있습니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/delete_comment`
+
+### **Form Data Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `userEmail`   | string  | required  | 유저의 이메일 주소           |
+| `imageName`   | string  | required  | 이미지 이름                  |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "코멘트 삭제 성공"
+  }
+  ```
+- **Status 404 Not Found**
+  ```json
+  {
+    "message": "이미지를 찾을 수 없습니다"
+  }
+  ```
+
+</details> <!-- 핏 보관함 코멘트 삭제 끝 -->
+
+ 
 </details> <!-- 핏보관함 details API 끝 -->
+
 
 <details> <!- 제품 상세 API details 시작 -->
 
