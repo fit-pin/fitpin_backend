@@ -313,16 +313,32 @@
 <details> <!-- 체형분석 API details 시작 -->
 <summary> <h4>체형분석 API</h4> </summary>
 
-<details> <!-- 체형분석 이미지 GET -->
-<summary> GET/api/userForm/{userEmail}: userForm 테이블(AR서버에서 넘겨준 체형 분석 정보를 저장하는 테이블)에서 사진파일의 이름을 userEmail을 키값으로 하여 검색하는 API입니다.</summary>
- 
+<details> <!-- 체형분석 이미지 GET 시작 -->
+<summary> GET: 체형분석 이미지 조회 </summary>
 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/userForm/test1
+## GET: 체형분석
 
-정상 응답시 이미지 URL을 반환합니다.
+#### URL : `/api/userForm/{userEmail}`
+
+ AR서버에서 넘겨준 체형 분석 정보를 저장하는 테이블인 userForm 테이블에서 사진파일의 이름을 userEmail을 키값으로 하여 검색하는 API입니다.
+
+
+` **요청 URL 예시**: http://fitpitback.kro.kr:8080/api/userForm/test1
+
+### **Response**
+
+- **Status 200 OK**
 ```js
 {
     "fileName": "2c49f715-67b8-40ec-86a2-b9d3e2875923.jpg"
+}
+
+```
+
+- **Status 500 Internal Server Error** (서버 오류류)
+```js
+{
+    "message": "예상치 못한 오류가 발생했습니다."
 }
 
 ```
@@ -330,11 +346,19 @@
 </details> <!-- 체형분석 이미지 GET 끝 -->
 
 <details> <!-- 체형분석 결과 GET -->
-<summary>GET/api/userbodyinfo/{userEmail} : userEmail값을 키값으로 요청시 체형분석 결과를 반환하는 GET 메서드입니다.</summary>
+<summary>GET: 체형분석 결과 조회 </summary>
 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/userbodyinfo/test1
+## GET: 체형분석 결과 조회
 
-정상 응답시 위의 요소를 반환합니다.
+#### URL : `/api/userbodyinfo/{userEmail}`
+
+userEmail값을 경로변수로 요청시 체형분석 결과를 반환하는 GET 메서드입니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/userbodyinfo/test1`
+
+### **Response**
+
+- **Status 200 OK**
 
 ```js
 {
@@ -347,6 +371,7 @@
     "legSize": 63.82
 }
 ```
+예외처리 추가하기
  
 </details> <!-- 체형분석 결과 GET 끝 -->
  
