@@ -6,4 +6,5 @@ import lombok.Data;
 public class FitStorageDTO {
     private String userEmail;
     private String fitStorageImg;
+    private String fitComment;
 }
