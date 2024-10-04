@@ -474,7 +474,24 @@
  이미 등록되어 있는 userEmail 값으로 요청하면 데이터를 업데이트 합니다.
 
 
-> 요청 URL 예시: http://fitpitback.kro.kr:8080/api/userForm
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/userForm`
+
+### **Request Body Parameters**
+| 파라미터           | 타입    | 필수 여부 | 설명                       |
+|-------------------|---------|-----------|------------------------------|
+| `userEmail`       | string  | required  | 유저의 이메일 주소           |
+| `fileName`        | string  | required  | AR 백엔드 이미지 이름        |
+| `result`          | array  | required  | AR 측정 결과                  |
+
+### **result Array Object**
+| 파라미터          | 타입    | 필수 여부 | 설명                        |
+|-------------------|---------|-----------|------------------------------|
+| `armSize`         | number  | required  | 측정 팔 길이                 |
+| `shoulderSize`    | number  | required  | 측정 어깨 길이               |
+| `bodySize`        | number  | required  | 측정 몸 길이                 |
+| `legSize`         | number  | required  | 측정 다리 길이               |
+
+### **Request Body 예시**
 
 ```js
 {
@@ -488,14 +505,17 @@
     }
 }
 ```
-정상 응답시 "체형 정보 저장 완료" 메세지를 json 형태로 반환합니다
+
+### **Response**
+- **Status 200 OK**
+
 ```js
 {
     "message": "체형 정보 저장 완료"
 }
 ```
+
 </details> <!-- 체형분석 끝 -->
- 
 </details> <! -- 로그인 & 회원가입 관련 API details end>
 
 <details> <!-- 체형분석 API details 시작 -->
