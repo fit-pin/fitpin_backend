@@ -9,154 +9,6 @@
 > 요청 URL 예시 `items = http://dmumars.kro.kr:8080/api/items`
 
 <details>
- <summary><h2>APP API</h2></summary>
-
-
-
-<details>
- <summary>GET : 핏보관함 이미지 서빙 (fitStorageImg 디렉토리)</summary>
- 
-#### GET /api/img/imgserve/fitstorageimg/{imageName}
-
-이미지 이름을 경로 변수로 받아 `fitStorageImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
-
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/fitstorageimg/anotherImage.png`
-
-**Path Variables:**
-- `imageName`: 이미지 파일명 (예: `anotherImage.png`)
-
-**Response:**
-- **Status 200 OK:**
-  - 성공적으로 이미지를 반환합니다.
-  - 이미지의 MIME 타입에 따라 콘텐츠가 반환됩니다.
-- **Status 404 Not Found:**
-  - 파일이 존재하지 않거나 읽을 수 없는 경우
-  ```json
-  {
-      "message": "파일을 찾을 수 없습니다."
-  }
-  ```
-- **Status 403 Forbidden:**
-  - 경로가 허용된 범위 밖에 있는 경우
-  ```json
-  {
-      "message": "접근이 허용되지 않는 경로입니다."
-  }
-  ```
-- **Status 500 Internal Server Error:**
-  - 서버 내부에서 파일을 읽는 중 오류가 발생한 경우
-  ```json
-  {
-      "message": "파일을 읽는 중 오류가 발생했습니다."
-  }
-  ```
-
-</details> <!--- 핏보관함 이미지 서빙 --->
-
-<details> 
-<summary>GET : 상품 검색</summary> <!-- 상품 검색 -->
-
-## GET: 상품 검색
-
-
-#### URL: `/api/item-search/search/{searchWord}`
-
-특정 검색어를 기준으로 `item` 테이블에서 `itemName`, `itemType`, `itemBrand`, `itemContent` 필드에 해당하는 상품을 검색하는 API입니다. 검색어는 URL 경로 변수로 전달되며, 결과로는 해당 조건에 맞는 상품 리스트가 반환됩니다.
-
-- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/search/상의`
-
-### **Path Parameters**
-| 파라미터      | 타입    | 필수 여부 | 설명                        |
-|---------------|---------|-----------|-----------------------------|
-| `searchWord`  | string  | required  | 검색할 키워드 (예: 상의, 바지 등) |
-
-### **Response**
-
-- **Status 200 OK**
-  ```json
-  {
-    "searchResult": [
-        {
-            "itemKey": 1,
-            "itemName": "테스트용 상품1(상의)",
-            "itemType": "상의",
-            "itemBrand": "TEST",
-            "itemStyle": "캐주얼",
-            "itemCnt": 100,
-            "itemContent": "테스트용 상의 상품",
-            "itemPrice": 10000,
-            "itemDate": "2023-07-29"
-            "itemImgName": "optimize.png"
-        },
-        {
-            "itemKey": 2,
-            "itemName": "테스트상품",
-            "itemType": "상의",
-            "itemBrand": "TEST",
-            "itemStyle": "캐주얼",
-            "itemCnt": 100,
-            "itemContent": "테스트용 상의 상품",
-            "itemPrice": 100000,
-            "itemDate": "2024-07-28"
-        }
-    ]
-  }
-  ```
-
-- **Status 500 Internal Server Error**
-  ```json
-  {
-    "searchResult": []
-  }
-  ```
-
-### **설명**
-- 이 API는 특정 키워드를 기준으로 상품을 검색합니다. 검색 결과는 `searchResult` 필드에 배열 형태로 반환됩니다.
-- 예외가 발생하거나 검색 결과가 없는 경우 `searchResult`는 빈 배열로 반환됩니다.
-  
-</details> <!-- 상품검색 -->
-
-<details>  
-<summary>GET : 추천 검색어</summary> <!-- 추천 검색어 -->
-
-## GET: 추천 검색어
-
-#### URL: `/api/item-search/recommend`
-
-검색 횟수가 높은 상위 10개의 검색어 중 3개를 랜덤으로 추천해주는 API입니다. 서버는 `searchTable`에서 검색 횟수(`SearchCount`)가 높은 검색어를 기준으로 추천 검색어를 제공합니다.
-
-- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/recommend`
-
-### **Response**
-
-- **Status 200 OK**
-  ```json
-  {
-    "recommendations": [
-        "상의",
-        "바지",
-        "신발"
-    ]
-  }
-  ```
-
-- **Status 500 Internal Server Error**
-  ```json
-  {
-    "message": "추천 검색어 조회 중 오류가 발생했습니다."
-  }
-  ```
-
-### **설명**
-- 이 API는 검색 횟수가 많은 상위 10개의 검색어 중 3개를 랜덤으로 반환합니다.
-- 결과는 `recommendations` 필드에 배열 형태로 반환되며, 이 배열에는 3개의 추천 검색어가 포함됩니다.
-- 예외가 발생할 경우 `message` 필드에 오류 메시지가 포함됩니다.
-
-</details> <!-- 추천 검색어 -->
-
-</details>
-
-<details>
  <summary><h2>관리자 API</h2></summary>
 
 
@@ -663,6 +515,46 @@ itemImgNames : (상품 이미지 URL)
 핏 보관함과 관련된 API 목록입니다. 이미지를 업로드, 조회, 삭제할 수 있습니다.
 
 ---
+<details> <!-- 핏보관함 이미지 서빙 시작-->
+ <summary>GET : 핏보관함 이미지 서빙 (fitStorageImg 디렉토리)</summary>
+ 
+#### GET /api/img/imgserve/fitstorageimg/{imageName}
+
+이미지 이름을 경로 변수로 받아 `fitStorageImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
+
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/fitstorageimg/anotherImage.png`
+
+**Path Variables:**
+- `imageName`: 이미지 파일명 (예: `anotherImage.png`)
+
+**Response:**
+- **Status 200 OK:**
+  - 성공적으로 이미지를 반환합니다.
+  - 이미지의 MIME 타입에 따라 콘텐츠가 반환됩니다.
+- **Status 404 Not Found:**
+  - 파일이 존재하지 않거나 읽을 수 없는 경우
+  ```json
+  {
+      "message": "파일을 찾을 수 없습니다."
+  }
+  ```
+- **Status 403 Forbidden:**
+  - 경로가 허용된 범위 밖에 있는 경우
+  ```json
+  {
+      "message": "접근이 허용되지 않는 경로입니다."
+  }
+  ```
+- **Status 500 Internal Server Error:**
+  - 서버 내부에서 파일을 읽는 중 오류가 발생한 경우
+  ```json
+  {
+      "message": "파일을 읽는 중 오류가 발생했습니다."
+  }
+  ```
+
+</details> <!--- 핏보관함 이미지 서빙 끝--->
+
 <details>
  <summary> 이미지 업로드</summary> <!-- 핏 보관함 이미지 업로드 시작 -->
 
@@ -997,6 +889,110 @@ itemImgNames : (상품 이미지 URL)
 </details> <!-- 수선내역 조회 끝 -->
 
 </details> <!-- 장바구니 페이지 API details 끝 -->
+
+<details> <!-- 검색 페이지 API details 시작 -->
+<summary> <h4> 검색 페이지 </h4></summary> <!-- 상품 검색 시작 -->
+
+<details> 
+<summary>GET : 상품 검색</summary> <!-- 상품 검색 시작 -->
+
+## GET: 상품 검색
+
+
+#### URL: `/api/item-search/search/{searchWord}`
+
+특정 검색어를 기준으로 `item` 테이블에서 `itemName`, `itemType`, `itemBrand`, `itemContent` 필드에 해당하는 상품을 검색하는 API입니다. 검색어는 URL 경로 변수로 전달되며, 결과로는 해당 조건에 맞는 상품 리스트가 반환됩니다.
+
+ 예외가 발생하거나 검색 결과가 없는 경우 `searchResult`는 빈 배열로 반환됩니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/search/상의`
+
+### **Path Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `searchWord`  | string  | required  | 검색할 키워드 (예: 상의, 바지 등) |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "searchResult": [
+        {
+            "itemKey": 1,
+            "itemName": "테스트용 상품1(상의)",
+            "itemType": "상의",
+            "itemBrand": "TEST",
+            "itemStyle": "캐주얼",
+            "itemCnt": 100,
+            "itemContent": "테스트용 상의 상품",
+            "itemPrice": 10000,
+            "itemDate": "2023-07-29"
+            "itemImgName": "optimize.png"
+        },
+        {
+            "itemKey": 2,
+            "itemName": "테스트상품",
+            "itemType": "상의",
+            "itemBrand": "TEST",
+            "itemStyle": "캐주얼",
+            "itemCnt": 100,
+            "itemContent": "테스트용 상의 상품",
+            "itemPrice": 100000,
+            "itemDate": "2024-07-28"
+        }
+    ]
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "searchResult": []
+  }
+  ```
+  
+</details> <!-- 상품검색 끝-->
+
+<details>  
+<summary>GET : 추천 검색어</summary> <!-- 추천 검색어 시작-->
+
+## GET: 추천 검색어
+
+#### URL: `/api/item-search/recommend`
+
+검색 횟수가 높은 상위 10개의 검색어 중 3개를 랜덤으로 추천해주는 API입니다. 서버는 `searchTable`에서 검색 횟수(`SearchCount`)가 높은 검색어를 기준으로 추천 검색어를 제공합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/recommend`
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "recommendations": [
+        "상의",
+        "바지",
+        "신발"
+    ]
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "message": "추천 검색어 조회 중 오류가 발생했습니다."
+  }
+  ```
+
+### **설명**
+- 이 API는 검색 횟수가 많은 상위 10개의 검색어 중 3개를 랜덤으로 반환합니다.
+- 결과는 `recommendations` 필드에 배열 형태로 반환되며, 이 배열에는 3개의 추천 검색어가 포함됩니다.
+- 예외가 발생할 경우 `message` 필드에 오류 메시지가 포함됩니다.
+
+</details> <!-- 추천 검색어 끝-->
+
+</details> <!-- 검색 페이지 API details 끝 -->
  
 </details> <!-- APP API details end-->
 
