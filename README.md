@@ -8,66 +8,6 @@
 
 > 요청 URL 예시 `items = http://dmumars.kro.kr:8080/api/items`
 
-<details>
- <summary><h2>관리자 API</h2></summary>
-
-
- <details>
- <summary>POST/api/itemImages/upload : 상품의 이미지를 등록하는 api입니다. </summary>
-  
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemImages/upload
-
-### 헤더 
-- Content-Type: multipart/form-data
-
-##### Form Data
-```
-- `image` (File): 사용자의 이메일 주소
-- `itemKey` (Text): item테이블의 itemKey 열, 제품의 고유번호
-```
-</details> 
-
-<details>
- <summary>POST/api/itemBottomInfo/register : 하의 상품의 상세 정보 등록하는 API입니다.</summary>
- 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemBottomInfo/register
-
-```js
-{
-  "itemKey": 1,
-  "itemSize": 32.5,
-  "itemHeight": 40.0,
-  "itemWaists": 15.5,
-  "itemThighs": 20.0,
-  "itemRise": 10.0,
-  "itemHem": 8.0
-}
-
-```
-</details> 
-
-<details>
- <summary>POST/api/itemTopInfo/register : 상의 상품의 상세 정보 등록하는 API입니다.</summary>
- 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemTopInfo/register
-
-```js
-{
-  "itemKey": 1,
-  "itemSize": 32.5,
-  "itemHeight": 40.0,
-  "itemShoulder": 15.5,
-  "itemArm": 20.0,
-  "itemChest": 10.0,
-  "itemSleeve": 8.0
-}
-
-```
-</details> 
-
- 
-</details> 
-
 <details> <!-- APP API details start-->
  <summary> <h2> APP API </h2> </summary>
 
@@ -997,7 +937,63 @@ itemImgNames : (상품 이미지 URL)
 </details> <!-- APP API details end-->
 
 
+<details><!-- WEB API details start-->
+ <summary><h2>관리자 API</h2></summary>
 
+ <details>
+ <summary>POST/api/itemImages/upload : 상품의 이미지를 등록하는 api입니다. </summary>
+  
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemImages/upload
+
+### 헤더 
+- Content-Type: multipart/form-data
+
+##### Form Data
+```
+- `image` (File): 사용자의 이메일 주소
+- `itemKey` (Text): item테이블의 itemKey 열, 제품의 고유번호
+```
+</details> 
+
+<details>
+ <summary>POST/api/itemBottomInfo/register : 하의 상품의 상세 정보 등록하는 API입니다.</summary>
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemBottomInfo/register
+
+```js
+{
+  "itemKey": 1,
+  "itemSize": 32.5,
+  "itemHeight": 40.0,
+  "itemWaists": 15.5,
+  "itemThighs": 20.0,
+  "itemRise": 10.0,
+  "itemHem": 8.0
+}
+
+```
+</details> 
+
+<details>
+ <summary>POST/api/itemTopInfo/register : 상의 상품의 상세 정보 등록하는 API입니다.</summary>
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemTopInfo/register
+
+```js
+{
+  "itemKey": 1,
+  "itemSize": 32.5,
+  "itemHeight": 40.0,
+  "itemShoulder": 15.5,
+  "itemArm": 20.0,
+  "itemChest": 10.0,
+  "itemSleeve": 8.0
+}
+
+```
+</details> 
+ 
+</details> <!-- WEB API details end-->
 
 
 
