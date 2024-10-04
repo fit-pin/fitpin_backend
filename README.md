@@ -229,7 +229,7 @@
 ---
 <details> <!-- 회원가입 API 시작 -->
 
-<summary> 회원가입 </summary> 
+<summary> POST: 회원가입 </summary> 
 
 ## POST: 회원가입
 
@@ -267,7 +267,7 @@
 
 <details> <!-- 로그인 API 시작 -->
 
-<summary> 로그인 </summary> 
+<summary> POST: 로그인 </summary> 
 
 ## POST: 로그인
 
@@ -402,12 +402,26 @@
  </details> <!-- 유저 기본정보 API 끝 -->
 
 <details> <!-- 선호스타일 API 시작 -->
-<summary>POST/api/userPreferStyle : 선호 스타일을 json배열 방식으로 받아 DB에 등록 하는 API입니다 </summary>
+<summary> POST: 선호 스타일 등록 </summary>
 
-userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저가 같은 스타일을 선호스타일로 등록하려 하면 에러가 발생하니 참고 부탁드립니다.
+## POST: 선호 스타일 등록
 
+#### URL : `/api/userPreferStyle`
 
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/userPreferStyle`
+선호스타일을 DB에 저장하는 API입니다.
+
+한 유저가 같은 스타일을 선호스타일로 저장시 에러가 발생합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/userPreferStyle`
+
+### **Request Body Parameters**
+
+| 파라미터           | 타입    | 필수 여부 | 설명                       |
+|-------------------|---------|-----------|------------------------------|
+| `userEmail`       | string  | required  | 유저의 이메일 주소           |
+| `preferStyle`     | string  | required  | 선호 스타일                  |
+
+### **Request Body 예시**
 
 ```js
 [
@@ -430,11 +444,33 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 ]
 
 ```
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "선호 스타일 등록 완료: 스트릿, 빈티지, 캐주얼, 테일러"
+  }
+  ```
+
+ **Status 400 Bad Request** (선호 스타일이 중복시)
+  ```json
+  {
+    "message": "중복된 선호 스타일 : 스트릿"
+  }
+  ```
+
 </details> <!-- 선호스타일 끝 -->
 
 <details> <!-- 체형분석 시작 -->
-<summary> POST/api/userForm : AR백엔드의 체형분석 API에서 반환된 Json구문을 저장하는 POST API입니다.</summary>
-  
+<summary> POST : 체형분석 API 리턴값 저장.</summary>
+
+## POST : 체형분석 API 리턴값 저장
+
+#### URL: /api/userForm 
+
+ AR백엔드의 체형분석 API에서 반환된 Json구문을 저장하는 POST API입니다.
  이미 등록되어 있는 userEmail 값으로 요청하면 데이터를 업데이트 합니다.
 
 
