@@ -8,214 +8,6 @@
 
 > 요청 URL 예시 `items = http://dmumars.kro.kr:8080/api/items`
 
-<details>
- <summary><h2>APP API</h2></summary>
-
-
-
-<details>
- <summary>GET : 핏보관함 이미지 서빙 (fitStorageImg 디렉토리)</summary>
- 
-#### GET /api/img/imgserve/fitstorageimg/{imageName}
-
-이미지 이름을 경로 변수로 받아 `fitStorageImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
-
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/fitstorageimg/anotherImage.png`
-
-**Path Variables:**
-- `imageName`: 이미지 파일명 (예: `anotherImage.png`)
-
-**Response:**
-- **Status 200 OK:**
-  - 성공적으로 이미지를 반환합니다.
-  - 이미지의 MIME 타입에 따라 콘텐츠가 반환됩니다.
-- **Status 404 Not Found:**
-  - 파일이 존재하지 않거나 읽을 수 없는 경우
-  ```json
-  {
-      "message": "파일을 찾을 수 없습니다."
-  }
-  ```
-- **Status 403 Forbidden:**
-  - 경로가 허용된 범위 밖에 있는 경우
-  ```json
-  {
-      "message": "접근이 허용되지 않는 경로입니다."
-  }
-  ```
-- **Status 500 Internal Server Error:**
-  - 서버 내부에서 파일을 읽는 중 오류가 발생한 경우
-  ```json
-  {
-      "message": "파일을 읽는 중 오류가 발생했습니다."
-  }
-  ```
-
-</details> <!--- 핏보관함 이미지 서빙 --->
-
-<details> 
-<summary>GET : 상품 검색</summary> <!-- 상품 검색 -->
-
-## GET: 상품 검색
-
-
-#### URL: `/api/item-search/search/{searchWord}`
-
-특정 검색어를 기준으로 `item` 테이블에서 `itemName`, `itemType`, `itemBrand`, `itemContent` 필드에 해당하는 상품을 검색하는 API입니다. 검색어는 URL 경로 변수로 전달되며, 결과로는 해당 조건에 맞는 상품 리스트가 반환됩니다.
-
-- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/search/상의`
-
-### **Path Parameters**
-| 파라미터      | 타입    | 필수 여부 | 설명                        |
-|---------------|---------|-----------|-----------------------------|
-| `searchWord`  | string  | required  | 검색할 키워드 (예: 상의, 바지 등) |
-
-### **Response**
-
-- **Status 200 OK**
-  ```json
-  {
-    "searchResult": [
-        {
-            "itemKey": 1,
-            "itemName": "테스트용 상품1(상의)",
-            "itemType": "상의",
-            "itemBrand": "TEST",
-            "itemStyle": "캐주얼",
-            "itemCnt": 100,
-            "itemContent": "테스트용 상의 상품",
-            "itemPrice": 10000,
-            "itemDate": "2023-07-29"
-            "itemImgName": "optimize.png"
-        },
-        {
-            "itemKey": 2,
-            "itemName": "테스트상품",
-            "itemType": "상의",
-            "itemBrand": "TEST",
-            "itemStyle": "캐주얼",
-            "itemCnt": 100,
-            "itemContent": "테스트용 상의 상품",
-            "itemPrice": 100000,
-            "itemDate": "2024-07-28"
-        }
-    ]
-  }
-  ```
-
-- **Status 500 Internal Server Error**
-  ```json
-  {
-    "searchResult": []
-  }
-  ```
-
-### **설명**
-- 이 API는 특정 키워드를 기준으로 상품을 검색합니다. 검색 결과는 `searchResult` 필드에 배열 형태로 반환됩니다.
-- 예외가 발생하거나 검색 결과가 없는 경우 `searchResult`는 빈 배열로 반환됩니다.
-  
-</details> <!-- 상품검색 -->
-
-<details>  
-<summary>GET : 추천 검색어</summary> <!-- 추천 검색어 -->
-
-## GET: 추천 검색어
-
-#### URL: `/api/item-search/recommend`
-
-검색 횟수가 높은 상위 10개의 검색어 중 3개를 랜덤으로 추천해주는 API입니다. 서버는 `searchTable`에서 검색 횟수(`SearchCount`)가 높은 검색어를 기준으로 추천 검색어를 제공합니다.
-
-- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/recommend`
-
-### **Response**
-
-- **Status 200 OK**
-  ```json
-  {
-    "recommendations": [
-        "상의",
-        "바지",
-        "신발"
-    ]
-  }
-  ```
-
-- **Status 500 Internal Server Error**
-  ```json
-  {
-    "message": "추천 검색어 조회 중 오류가 발생했습니다."
-  }
-  ```
-
-### **설명**
-- 이 API는 검색 횟수가 많은 상위 10개의 검색어 중 3개를 랜덤으로 반환합니다.
-- 결과는 `recommendations` 필드에 배열 형태로 반환되며, 이 배열에는 3개의 추천 검색어가 포함됩니다.
-- 예외가 발생할 경우 `message` 필드에 오류 메시지가 포함됩니다.
-
-</details> <!-- 추천 검색어 -->
-
-</details>
-
-<details>
- <summary><h2>관리자 API</h2></summary>
-
-
- <details>
- <summary>POST/api/itemImages/upload : 상품의 이미지를 등록하는 api입니다. </summary>
-  
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemImages/upload
-
-### 헤더 
-- Content-Type: multipart/form-data
-
-##### Form Data
-```
-- `image` (File): 사용자의 이메일 주소
-- `itemKey` (Text): item테이블의 itemKey 열, 제품의 고유번호
-```
-</details> 
-
-<details>
- <summary>POST/api/itemBottomInfo/register : 하의 상품의 상세 정보 등록하는 API입니다.</summary>
- 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemBottomInfo/register
-
-```js
-{
-  "itemKey": 1,
-  "itemSize": 32.5,
-  "itemHeight": 40.0,
-  "itemWaists": 15.5,
-  "itemThighs": 20.0,
-  "itemRise": 10.0,
-  "itemHem": 8.0
-}
-
-```
-</details> 
-
-<details>
- <summary>POST/api/itemTopInfo/register : 상의 상품의 상세 정보 등록하는 API입니다.</summary>
- 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemTopInfo/register
-
-```js
-{
-  "itemKey": 1,
-  "itemSize": 32.5,
-  "itemHeight": 40.0,
-  "itemShoulder": 15.5,
-  "itemArm": 20.0,
-  "itemChest": 10.0,
-  "itemSleeve": 8.0
-}
-
-```
-</details> 
-
- 
-</details> 
-
 <details> <!-- APP API details start-->
  <summary> <h2> APP API </h2> </summary>
 
@@ -229,7 +21,7 @@
 ---
 <details> <!-- 회원가입 API 시작 -->
 
-<summary> 회원가입 </summary> 
+<summary> POST: 회원가입 </summary> 
 
 ## POST: 회원가입
 
@@ -267,7 +59,7 @@
 
 <details> <!-- 로그인 API 시작 -->
 
-<summary> 로그인 </summary> 
+<summary> POST: 로그인 </summary> 
 
 ## POST: 로그인
 
@@ -402,12 +194,26 @@
  </details> <!-- 유저 기본정보 API 끝 -->
 
 <details> <!-- 선호스타일 API 시작 -->
-<summary>POST/api/userPreferStyle : 선호 스타일을 json배열 방식으로 받아 DB에 등록 하는 API입니다 </summary>
+<summary> POST: 선호 스타일 등록 </summary>
 
-userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저가 같은 스타일을 선호스타일로 등록하려 하면 에러가 발생하니 참고 부탁드립니다.
+## POST: 선호 스타일 등록
 
+#### URL : `/api/userPreferStyle`
 
-> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/userPreferStyle`
+선호스타일을 DB에 저장하는 API입니다.
+
+한 유저가 같은 스타일을 선호스타일로 저장시 에러가 발생합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/userPreferStyle`
+
+### **Request Body Parameters**
+
+| 파라미터           | 타입    | 필수 여부 | 설명                       |
+|-------------------|---------|-----------|------------------------------|
+| `userEmail`       | string  | required  | 유저의 이메일 주소           |
+| `preferStyle`     | string  | required  | 선호 스타일                  |
+
+### **Request Body 예시**
 
 ```js
 [
@@ -430,15 +236,54 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 ]
 
 ```
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "선호 스타일 등록 완료: 스트릿, 빈티지, 캐주얼, 테일러"
+  }
+  ```
+
+ **Status 400 Bad Request** (선호 스타일이 중복시)
+  ```json
+  {
+    "message": "중복된 선호 스타일 : 스트릿"
+  }
+  ```
+
 </details> <!-- 선호스타일 끝 -->
 
 <details> <!-- 체형분석 시작 -->
-<summary> POST/api/userForm : AR백엔드의 체형분석 API에서 반환된 Json구문을 저장하는 POST API입니다.</summary>
-  
+<summary> POST : 체형분석 API 리턴값 저장.</summary>
+
+## POST : 체형분석 API 리턴값 저장
+
+#### URL: /api/userForm 
+
+ AR백엔드의 체형분석 API에서 반환된 Json구문을 저장하는 POST API입니다.
  이미 등록되어 있는 userEmail 값으로 요청하면 데이터를 업데이트 합니다.
 
 
-> 요청 URL 예시: http://fitpitback.kro.kr:8080/api/userForm
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/userForm`
+
+### **Request Body Parameters**
+| 파라미터           | 타입    | 필수 여부 | 설명                       |
+|-------------------|---------|-----------|------------------------------|
+| `userEmail`       | string  | required  | 유저의 이메일 주소           |
+| `fileName`        | string  | required  | AR 백엔드 이미지 이름        |
+| `result`          | array  | required  | AR 측정 결과                  |
+
+### **result Array Object**
+| 파라미터          | 타입    | 필수 여부 | 설명                        |
+|-------------------|---------|-----------|------------------------------|
+| `armSize`         | number  | required  | 측정 팔 길이                 |
+| `shoulderSize`    | number  | required  | 측정 어깨 길이               |
+| `bodySize`        | number  | required  | 측정 몸 길이                 |
+| `legSize`         | number  | required  | 측정 다리 길이               |
+
+### **Request Body 예시**
 
 ```js
 {
@@ -452,29 +297,48 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
     }
 }
 ```
-정상 응답시 "체형 정보 저장 완료" 메세지를 json 형태로 반환합니다
+
+### **Response**
+- **Status 200 OK**
+
 ```js
 {
     "message": "체형 정보 저장 완료"
 }
 ```
+
 </details> <!-- 체형분석 끝 -->
- 
 </details> <! -- 로그인 & 회원가입 관련 API details end>
 
 <details> <!-- 체형분석 API details 시작 -->
 <summary> <h4>체형분석 API</h4> </summary>
 
-<details> <!-- 체형분석 이미지 GET -->
-<summary> GET/api/userForm/{userEmail}: userForm 테이블(AR서버에서 넘겨준 체형 분석 정보를 저장하는 테이블)에서 사진파일의 이름을 userEmail을 키값으로 하여 검색하는 API입니다.</summary>
- 
+<details> <!-- 체형분석 이미지 GET 시작 -->
+<summary> GET: 체형분석 이미지 조회 </summary>
 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/userForm/test1
+## GET: 체형분석
 
-정상 응답시 이미지 URL을 반환합니다.
+#### URL : `/api/userForm/{userEmail}`
+
+ AR서버에서 넘겨준 체형 분석 정보를 저장하는 테이블인 userForm 테이블에서 사진파일의 이름을 userEmail을 키값으로 하여 검색하는 API입니다.
+
+
+` **요청 URL 예시**: http://fitpitback.kro.kr:8080/api/userForm/test1
+
+### **Response**
+
+- **Status 200 OK**
 ```js
 {
     "fileName": "2c49f715-67b8-40ec-86a2-b9d3e2875923.jpg"
+}
+
+```
+
+- **Status 500 Internal Server Error** (서버 오류류)
+```js
+{
+    "message": "예상치 못한 오류가 발생했습니다."
 }
 
 ```
@@ -482,11 +346,19 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 </details> <!-- 체형분석 이미지 GET 끝 -->
 
 <details> <!-- 체형분석 결과 GET -->
-<summary>GET/api/userbodyinfo/{userEmail} : userEmail값을 키값으로 요청시 체형분석 결과를 반환하는 GET 메서드입니다.</summary>
+<summary>GET: 체형분석 결과 조회 </summary>
 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/userbodyinfo/test1
+## GET: 체형분석 결과 조회
 
-정상 응답시 위의 요소를 반환합니다.
+#### URL : `/api/userbodyinfo/{userEmail}`
+
+userEmail값을 경로변수로 요청시 체형분석 결과를 반환하는 GET 메서드입니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/userbodyinfo/test1`
+
+### **Response**
+
+- **Status 200 OK**
 
 ```js
 {
@@ -499,6 +371,7 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
     "legSize": 63.82
 }
 ```
+예외처리 추가하기
  
 </details> <!-- 체형분석 결과 GET 끝 -->
  
@@ -509,7 +382,13 @@ userEmail과 preferStyle 행의 조합이 pk로 설정되어 있어 한 유저�
 <summary> <h4> 메인페이지 </h4> </summary>
 
 <details> <!-- 메인페이지 상품 목록 조회 API 시작 -->
- <summary>GET /api/items/list/{itemType} : 상품목록을 조회하는 api입니다.</summary>
+ <summary>GET: 메인페이지 상품 목록 조회 </summary>
+
+## GET : 메인페이지 상품 목록 조회
+
+#### URL:  `api/items/list/{itemType}`
+
+GET /api/items/list/{itemType} : 상품목록을 조회하는 api입니다.
 item 테이블의 itemType(상품 종류)행을 경로변수로 받아서 경로변수와 일치하는 상품을 JSON Array 형태로 조회합니다.
  
 반환되는 값은 
@@ -607,8 +486,48 @@ itemImgNames : (상품 이미지 URL)
 핏 보관함과 관련된 API 목록입니다. 이미지를 업로드, 조회, 삭제할 수 있습니다.
 
 ---
+<details> <!-- 핏보관함 이미지 서빙 시작-->
+ <summary>GET : 핏보관함 이미지 서빙 (fitStorageImg 디렉토리)</summary>
+ 
+#### GET /api/img/imgserve/fitstorageimg/{imageName}
+
+이미지 이름을 경로 변수로 받아 `fitStorageImg` 디렉토리 내의 이미지를 서빙하는 API입니다.
+
+> 요청 URL 예시: `http://fitpitback.kro.kr:8080/api/img/imgserve/fitstorageimg/anotherImage.png`
+
+**Path Variables:**
+- `imageName`: 이미지 파일명 (예: `anotherImage.png`)
+
+**Response:**
+- **Status 200 OK:**
+  - 성공적으로 이미지를 반환합니다.
+  - 이미지의 MIME 타입에 따라 콘텐츠가 반환됩니다.
+- **Status 404 Not Found:**
+  - 파일이 존재하지 않거나 읽을 수 없는 경우
+  ```json
+  {
+      "message": "파일을 찾을 수 없습니다."
+  }
+  ```
+- **Status 403 Forbidden:**
+  - 경로가 허용된 범위 밖에 있는 경우
+  ```json
+  {
+      "message": "접근이 허용되지 않는 경로입니다."
+  }
+  ```
+- **Status 500 Internal Server Error:**
+  - 서버 내부에서 파일을 읽는 중 오류가 발생한 경우
+  ```json
+  {
+      "message": "파일을 읽는 중 오류가 발생했습니다."
+  }
+  ```
+
+</details> <!--- 핏보관함 이미지 서빙 끝--->
+
 <details>
- <summary> 이미지 업로드</summary>
+ <summary> 이미지 업로드</summary> <!-- 핏 보관함 이미지 업로드 시작 -->
 
 ## POST: 핏 보관함 이미지 업로드
 
@@ -639,11 +558,11 @@ itemImgNames : (상품 이미지 URL)
   }
   ```
 
-</details> <!-- 핏보관함 이미지 업로드 -->
+</details> <!-- 핏보관함 이미지 업로드 끝 -->
 
 
 <details>
- <summary>사진 삭제</summary>
+ <summary>사진 삭제</summary> <!-- 핏 보관함 사진 삭제 시작-->
   
 ## DELETE: 핏 보관함 사진 삭제
 
@@ -680,10 +599,10 @@ itemImgNames : (상품 이미지 URL)
   ```
 
 ---
-</details>
+</details> <!-- 핏보관함 사진 삭제 끝-->
 
 <details>
- <summary> 사진 리스트 조회 </summary>
+ <summary> 사진 리스트 조회 </summary> <!-- 핏보관함 사진 리스트 조회 시작 -->
 ## GET: 핏 보관함 사진 리스트 조회
 
 #### URL: `/api/fitStorageImages/user/{userEmail}`
@@ -712,8 +631,119 @@ itemImgNames : (상품 이미지 URL)
     }
   ]
   ```
- </details>
+ </details><!-- 핏 보관함 사진 리스트 조회 끝 -->
+
+<details>
+ <summary> 코멘트 저장</summary> <!-- 핏 보관함 코멘트 저장 시작 -->
+
+## POST: 핏 보관함 코멘트 저장
+
+#### URL: `/api/fit_comment/save_comment`
+
+유저의 이메일과 이미지 이름을 기반으로 코멘트를 작성하는 API입니다. 유저가 특정 이미지에 대해 코멘트를 저장할 수 있습니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/save_comment`
+
+### **Form Data Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `userEmail`   | string  | required  | 유저의 이메일 주소           |
+| `imageName`   | string  | required  | 이미지 이름                  |
+| `comment`     | string  | required  | 작성할 코멘트                |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "코멘트 저장 성공"
+  }
+  ```
+- **Status 404 Not Found**
+  ```json
+  {
+    "message": "이미지를 찾을 수 없습니다"
+  }
+  ```
+
+</details> <!-- 핏 보관함 코멘트 저장 끝 -->
+
+
+
+<details>
+ <summary> 코멘트 수정</summary> <!-- 핏 보관함 코멘트 수정 시작 -->
+
+## POST: 핏 보관함 코멘트 수정
+
+#### URL: `/api/fit_comment/update_comment`
+
+유저의 이메일과 이미지 이름을 기반으로 코멘트를 수정하는 API입니다. 이미 저장된 코멘트를 수정할 수 있습니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/update_comment`
+
+### **Form Data Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `userEmail`   | string  | required  | 유저의 이메일 주소           |
+| `imageName`   | string  | required  | 이미지 이름                  |
+| `comment`     | string  | required  | 수정할 코멘트                |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "코멘트 수정 성공"
+  }
+  ```
+- **Status 404 Not Found**
+  ```json
+  {
+    "message": "이미지를 찾을 수 없습니다"
+  }
+  ```
+
+</details> <!-- 핏 보관함 코멘트 수정 끝 -->
+
+
+
+<details>
+ <summary> 코멘트 삭제</summary> <!-- 핏 보관함 코멘트 삭제 시작 -->
+
+## DELETE: 핏 보관함 코멘트 삭제
+
+#### URL: `/api/fit_comment/delete_comment`
+
+유저의 이메일과 이미지 이름을 기반으로 코멘트를 삭제하는 API입니다. 이미 저장된 코멘트를 삭제할 수 있습니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/delete_comment`
+
+### **Form Data Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `userEmail`   | string  | required  | 유저의 이메일 주소           |
+| `imageName`   | string  | required  | 이미지 이름                  |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "코멘트 삭제 성공"
+  }
+  ```
+- **Status 404 Not Found**
+  ```json
+  {
+    "message": "이미지를 찾을 수 없습니다"
+  }
+  ```
+
+</details> <!-- 핏 보관함 코멘트 삭제 끝 -->
+
+ 
 </details> <!-- 핏보관함 details API 끝 -->
+
 
 <details> <!- 제품 상세 API details 시작 -->
 
@@ -830,11 +860,171 @@ itemImgNames : (상품 이미지 URL)
 </details> <!-- 수선내역 조회 끝 -->
 
 </details> <!-- 장바구니 페이지 API details 끝 -->
+
+<details> <!-- 검색 페이지 API details 시작 -->
+<summary> <h4> 검색 페이지 </h4></summary> <!-- 상품 검색 시작 -->
+
+<details> 
+<summary>GET : 상품 검색</summary> <!-- 상품 검색 시작 -->
+
+## GET: 상품 검색
+
+
+#### URL: `/api/item-search/search/{searchWord}`
+
+특정 검색어를 기준으로 `item` 테이블에서 `itemName`, `itemType`, `itemBrand`, `itemContent` 필드에 해당하는 상품을 검색하는 API입니다. 검색어는 URL 경로 변수로 전달되며, 결과로는 해당 조건에 맞는 상품 리스트가 반환됩니다.
+
+ 예외가 발생하거나 검색 결과가 없는 경우 `searchResult`는 빈 배열로 반환됩니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/search/상의`
+
+### **Path Parameters**
+| 파라미터      | 타입    | 필수 여부 | 설명                        |
+|---------------|---------|-----------|-----------------------------|
+| `searchWord`  | string  | required  | 검색할 키워드 (예: 상의, 바지 등) |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "searchResult": [
+        {
+            "itemKey": 1,
+            "itemName": "테스트용 상품1(상의)",
+            "itemType": "상의",
+            "itemBrand": "TEST",
+            "itemStyle": "캐주얼",
+            "itemCnt": 100,
+            "itemContent": "테스트용 상의 상품",
+            "itemPrice": 10000,
+            "itemDate": "2023-07-29"
+            "itemImgName": "optimize.png"
+        },
+        {
+            "itemKey": 2,
+            "itemName": "테스트상품",
+            "itemType": "상의",
+            "itemBrand": "TEST",
+            "itemStyle": "캐주얼",
+            "itemCnt": 100,
+            "itemContent": "테스트용 상의 상품",
+            "itemPrice": 100000,
+            "itemDate": "2024-07-28"
+        }
+    ]
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "searchResult": []
+  }
+  ```
+  
+</details> <!-- 상품검색 끝-->
+
+<details>  
+<summary>GET : 추천 검색어</summary> <!-- 추천 검색어 시작-->
+
+## GET: 추천 검색어
+
+#### URL: `/api/item-search/recommend`
+
+검색 횟수가 높은 상위 10개의 검색어 중 3개를 랜덤으로 추천해주는 API입니다. 서버는 `searchTable`에서 검색 횟수(`SearchCount`)가 높은 검색어를 기준으로 추천 검색어를 제공합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/item-search/recommend`
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "recommendations": [
+        "상의",
+        "바지",
+        "신발"
+    ]
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "message": "추천 검색어 조회 중 오류가 발생했습니다."
+  }
+  ```
+
+### **설명**
+- 이 API는 검색 횟수가 많은 상위 10개의 검색어 중 3개를 랜덤으로 반환합니다.
+- 결과는 `recommendations` 필드에 배열 형태로 반환되며, 이 배열에는 3개의 추천 검색어가 포함됩니다.
+- 예외가 발생할 경우 `message` 필드에 오류 메시지가 포함됩니다.
+
+</details> <!-- 추천 검색어 끝-->
+
+</details> <!-- 검색 페이지 API details 끝 -->
  
 </details> <!-- APP API details end-->
 
 
+<details><!-- WEB API details start-->
+ <summary><h2>관리자 API</h2></summary>
 
+ <details>
+ <summary>POST/api/itemImages/upload : 상품의 이미지를 등록하는 api입니다. </summary>
+  
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemImages/upload
+
+### 헤더 
+- Content-Type: multipart/form-data
+
+##### Form Data
+```
+- `image` (File): 사용자의 이메일 주소
+- `itemKey` (Text): item테이블의 itemKey 열, 제품의 고유번호
+```
+</details> 
+
+<details>
+ <summary>POST/api/itemBottomInfo/register : 하의 상품의 상세 정보 등록하는 API입니다.</summary>
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemBottomInfo/register
+
+```js
+{
+  "itemKey": 1,
+  "itemSize": 32.5,
+  "itemHeight": 40.0,
+  "itemWaists": 15.5,
+  "itemThighs": 20.0,
+  "itemRise": 10.0,
+  "itemHem": 8.0
+}
+
+```
+</details> 
+
+<details>
+ <summary>POST/api/itemTopInfo/register : 상의 상품의 상세 정보 등록하는 API입니다.</summary>
+ 
+>요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemTopInfo/register
+
+```js
+{
+  "itemKey": 1,
+  "itemSize": 32.5,
+  "itemHeight": 40.0,
+  "itemShoulder": 15.5,
+  "itemArm": 20.0,
+  "itemChest": 10.0,
+  "itemSleeve": 8.0
+}
+
+```
+</details> 
+ 
+</details> <!-- WEB API details end-->
 
 
 
