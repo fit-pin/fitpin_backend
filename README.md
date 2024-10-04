@@ -382,7 +382,13 @@ userEmail값을 경로변수로 요청시 체형분석 결과를 반환하는 GE
 <summary> <h4> 메인페이지 </h4> </summary>
 
 <details> <!-- 메인페이지 상품 목록 조회 API 시작 -->
- <summary>GET /api/items/list/{itemType} : 상품목록을 조회하는 api입니다.</summary>
+ <summary>GET: 메인페이지 상품 목록 조회 </summary>
+
+## GET : 메인페이지 상품 목록 조회
+
+#### URL:  `api/items/list/{itemType}`
+
+GET /api/items/list/{itemType} : 상품목록을 조회하는 api입니다.
 item 테이블의 itemType(상품 종류)행을 경로변수로 받아서 경로변수와 일치하는 상품을 JSON Array 형태로 조회합니다.
  
 반환되는 값은 
