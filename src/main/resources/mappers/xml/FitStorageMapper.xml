@@ -28,7 +28,11 @@
     <!-- 이미지 정보 업데이트 (코멘트 포함) -->
     <update id="update" parameterType="com.mzm.Fitpin.entity.FitStorage">
         UPDATE fitStorage
-        SET fitComment = #{fitComment}
+        SET fitComment = #{fitComment},
+            itemType = #{itemType},
+            itemBrand = #{itemBrand},
+            itemSize = #{itemSize},
+            option = #{option}
         WHERE userEmail = #{userEmail} AND fitStorageImg = #{fitStorageImg}
     </update>
 
