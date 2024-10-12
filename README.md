@@ -644,12 +644,16 @@ itemImgNames : (상품 이미지 URL)
 
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/save_comment`
 
-### **Form Data Parameters**
-| 파라미터      | 타입    | 필수 여부 | 설명                        |
-|---------------|---------|-----------|-----------------------------|
-| `userEmail`   | string  | required  | 유저의 이메일 주소           |
-| `imageName`   | string  | required  | 이미지 이름                  |
-| `comment`     | string  | required  | 작성할 코멘트                |
+### **Request Body Parameters**
+| 파라미터        | 타입    | 필수 여부 | 설명                    |
+|-----------------|---------|-----------|-------------------------|
+| `userEmail`     | string  | required  | 유저의 이메일 주소        |
+| `fitStorageImg` | string  | required  | 이미지 이름              |
+| `fitComment`    | string  | required  | 작성할 코멘트            |
+| `itemType`      | string  | required  | 상품 종류ex)바지, 상의...|
+| `itemBrand`     | string  | required  | 상품 브랜드              |
+| `itemSize`      | string  | required  | 상품 사이즈              |
+| `option`        | string  | required  | 선택 옵션ex)크다, 작다.. |
 
 ### **Response**
 
@@ -681,12 +685,16 @@ itemImgNames : (상품 이미지 URL)
 
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/update_comment`
 
-### **Form Data Parameters**
-| 파라미터      | 타입    | 필수 여부 | 설명                        |
-|---------------|---------|-----------|-----------------------------|
-| `userEmail`   | string  | required  | 유저의 이메일 주소           |
-| `imageName`   | string  | required  | 이미지 이름                  |
-| `comment`     | string  | required  | 수정할 코멘트                |
+### **Request Body Parameters**
+| 파라미터        | 타입    | 필수 여부 | 설명                    |
+|-----------------|---------|-----------|-------------------------|
+| `userEmail`     | string  | required  | 유저의 이메일 주소        |
+| `fitStorageImg` | string  | required  | 이미지 이름              |
+| `fitComment`    | string  | required  | 작성할 코멘트            |
+| `itemType`      | string  | required  | 상품 종류ex)바지, 상의...|
+| `itemBrand`     | string  | required  | 상품 브랜드              |
+| `itemSize`      | string  | required  | 상품 사이즈              |
+| `option`        | string  | required  | 선택 옵션ex)크다, 작다.. |
 
 ### **Response**
 
@@ -702,6 +710,13 @@ itemImgNames : (상품 이미지 URL)
     "message": "이미지를 찾을 수 없습니다"
   }
   ```
+
+- **Status 500 Internal Server Error**
+ ```json
+{
+  "message": "서버 에러가 발생했습니다."
+}
+ ```
 
 </details> <!-- 핏 보관함 코멘트 수정 끝 -->
 
@@ -719,10 +734,10 @@ itemImgNames : (상품 이미지 URL)
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/delete_comment`
 
 ### **Form Data Parameters**
-| 파라미터      | 타입    | 필수 여부 | 설명                        |
-|---------------|---------|-----------|-----------------------------|
-| `userEmail`   | string  | required  | 유저의 이메일 주소           |
-| `imageName`   | string  | required  | 이미지 이름                  |
+| 파라미터        | 타입    | 필수 여부 | 설명                    |
+|-----------------|---------|-----------|-------------------------|
+| `userEmail`     | string  | required  | 유저의 이메일 주소        |
+| `fitStorageImg` | string  | required  | 이미지 이름              |
 
 ### **Response**
 
@@ -738,6 +753,14 @@ itemImgNames : (상품 이미지 URL)
     "message": "이미지를 찾을 수 없습니다"
   }
   ```
+
+- **Status 500 Internal Server Error**
+ ```json
+{
+  "message": "서버 에러가 발생했습니다."
+}
+ ```
+  
 
 </details> <!-- 핏 보관함 코멘트 삭제 끝 -->
 
