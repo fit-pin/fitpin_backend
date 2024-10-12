@@ -987,6 +987,153 @@ itemImgNames : (상품 이미지 URL)
 </details> <!-- 추천 검색어 끝-->
 
 </details> <!-- 검색 페이지 API details 끝 -->
+
+<details> <!-- 주문/결제 페이지 details start-->
+<summary><h4>주문/결제 페이지</h4></summary>
+
+
+<details> <!-- 주문내역 등록 API 시작 -->
+
+<summary> POST: 주문내역 등록 </summary> 
+
+## POST: 주문 등록
+
+#### URL: `/api/order/post_order`
+
+주문을 등록하는 API입니다. 주문 정보를 받아 처리합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/order/post_order`
+
+### **Request Body Parameters**
+| 파라미터     | 타입    | 필수 여부 | 설명                      |
+|-------------|---------|-----------|---------------------------|
+| `itemKey`   | int     | required  | 상품 고유번호             |
+| `userKey`   | int     | required  | 회원 고유번호             |
+| `userName`  | string  | required  | 회원 이름                 |
+| `userAddr`  | string  | required  | 회원 주소                 |
+| `userNumber`| string  | required  | 회원 전화번호             |
+| `itemName`  | string  | required  | 상품 이름                 |
+| `itemImg`   | string  | optional  | 상품 이미지 URL           |
+| `itemSize`  | string  | required  | 상품 사이즈               |
+| `itemPrice` | int     | required  | 상품 가격                 |
+| `itemTotal` | int     | required  | 총 가격                   |
+| `pitPrice`  | int     | optional  | 수선 가격                 |
+| `pcs`       | int     | optional  | 수량                      |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "주문 등록 완료."
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "message": "알 수 없는 오류가 발생했습니다."
+  }
+  ```
+
+</details> <!-- 주문내역 등록 API 끝 -->
+
+<details> <!-- 주문 조회 API 시작 -->
+
+<summary> GET: 주문 조회 </summary> 
+
+## GET: 주문 조회
+
+#### URL: `/api/order/get_order/{userKey}`
+
+특정 사용자의 주문 목록을 조회하는 API입니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/order/get_order/{userKey}`
+
+### **Path Variables**
+| 파라미터   | 타입    | 필수 여부 | 설명               |
+|------------|---------|-----------|--------------------|
+| `userKey`  | string  | required  | 조회할 회원 고유번호|
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  [
+    {
+      "itemKey": 1,
+      "userKey": 123,
+      "userName": "홍길동",
+      "userAddr": "서울시 강남구",
+      "userNumber": "010-1234-5678",
+      "itemName": "상품1",
+      "itemImg": "image_url.jpg",
+      "itemSize": "L",
+      "itemPrice": 30000,
+      "itemTotal": 30000,
+      "pitPrice": 5000,
+      "pcs": 2
+    }
+  ]
+  ```
+
+- **Status 404 Not Found**
+  ```json
+  {
+    "message": "주문 리스트가 없습니다."
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "message": "주문 조회중 오류가 발생했습니다."
+  }
+  ```
+
+</details> <!-- 주문 조회 API 끝 -->
+
+<details> <!-- 결제 내역 저장 API 시작 -->
+
+<summary> POST: 결제 내역 저장 </summary> 
+
+## POST: 결제 완료
+
+#### URL: `/api/payment/complete`
+
+결제 완료 및 주문 내역을 저장하는 API입니다. 결제 정보를 받아 처리합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/payment/complete`
+
+### **Request Body Parameters**
+| 파라미터     | 타입    | 필수 여부 | 설명                      |
+|-------------|---------|-----------|---------------------------|
+| `paymentKey`| int     | required  | 결제 고유번호             |
+| `orderKey`  | int     | required  | 주문 고유번호             |
+| `userKey`   | int     | required  | 회원 고유번호             |
+| `totalPrice`| int     | required  | 결제 총액                 |
+| `paymentDate`| string | required  | 결제 날짜                 |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "결제 및 주문 내역 저장 완료."
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "message": "결제 내역 저장 중 오류가 발생했습니다."
+  }
+  ```
+
+</details> <!-- 결제 내역 저장 API 끝 -->
+
+ 
+</details> <!-- 주문/결제 페이지 details end-->
  
 </details> <!-- APP API details end-->
 
