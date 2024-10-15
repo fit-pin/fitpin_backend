@@ -15,5 +15,5 @@ public class OrderDTO {
     private int itemPrice;
     private int itemTotal;
     private int pitPrice;
-    private int pcs;
+    private int qty;
 }
