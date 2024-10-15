@@ -12,4 +12,5 @@ public class CartDTO {
     private String itemType;
     private int itemPrice;
     private int pit;
+    private int qty; // New field for item quantity
 }
