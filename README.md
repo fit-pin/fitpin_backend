@@ -805,28 +805,48 @@ itemImgNames : (상품 이미지 URL)
 
 </details> <!-- 상품 상세 정보 API 끝--> 
 
+
 <details> <!-- 장바구니 저장 API 시작 -->
- 
- <summary> POST : 장바구니 저장 </summary>
- 
- 장바구니 목록을 저장하는 API입니다.
- 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/cart/store
 
-```js
-{
-    "itemKey": 1,
-    "userEmail": "test1",
-    "itemName": "테스트용 상품1(상의)",
-    "itemSize": "M",
-    "itemType": "상의",
-    "itemPrice": 10000,
-    "pit": 1
+<summary> POST: 장바구니 저장 </summary> 
 
-}
-```
+## POST: 장바구니 저장
+
+#### URL: `/api/cart/store`
+
+상품을 장바구니에 저장하는 API입니다. 상품 정보와 수량을 받아 장바구니에 저장합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/cart/store`
+
+### **Request Body Parameters**
+| 파라미터     | 타입    | 필수 여부 | 설명                      |
+|-------------|---------|-----------|---------------------------|
+| `itemKey`   | int     | required  | 상품 고유번호             |
+| `userEmail` | string  | required  | 유저 이메일 주소           |
+| `itemName`  | string  | required  | 상품 이름                 |
+| `itemSize`  | string  | required  | 상품 사이즈               |
+| `itemType`  | string  | required  | 상품 유형                 |
+| `itemPrice` | int     | required  | 상품 가격                 |
+| `pit`       | int     | optional  | 수선 가격                 |
+| `qty`       | int     | required  | 상품 수량                 |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "장바구니에 상품이 성공적으로 추가되었습니다."
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "message": "장바구니에 상품 추가 중 오류가 발생했습니다."
+  }
+  ```
+
 </details> <!-- 장바구니 저장 API 끝 -->
- 
  
 </details> <!-- 제품 상세 API detils 끝 -->
 
