@@ -9,7 +9,7 @@
             itemSize, itemPrice, itemTotal, pitPrice, pcs, paymentMethod, paymentAmount, paymentDate
         ) VALUES (
                      #{orderKey}, #{userKey}, #{userName}, #{userAddr}, #{userNumber}, #{itemKey}, #{itemName}, #{itemImg},
-                     #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitPrice}, #{pcs}, #{paymentMethod}, #{paymentAmount}, CURRENT_TIMESTAMP
+                     #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitPrice}, #{qty}, #{paymentMethod}, #{paymentAmount}, CURRENT_TIMESTAMP
                  )
     </insert>
 

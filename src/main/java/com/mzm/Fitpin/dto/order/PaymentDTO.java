@@ -17,7 +17,7 @@ public class PaymentDTO {
     private int itemPrice;
     private int itemTotal;
     private int pitPrice;
-    private int pcs;
+    private int qty;
     private String paymentMethod;
     private int paymentAmount;
 

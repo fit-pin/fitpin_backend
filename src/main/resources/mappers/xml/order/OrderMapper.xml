@@ -9,7 +9,7 @@
             itemSize, itemPrice, itemTotal, pitPrice, pcs)
         VALUES (
                    #{itemKey}, #{userKey}, #{userName}, #{userAddr}, #{userNumber}, #{itemName}, #{itemImg},
-                   #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitPrice}, #{pcs}
+                   #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitPrice}, #{qty}
                )
     </insert>
 
