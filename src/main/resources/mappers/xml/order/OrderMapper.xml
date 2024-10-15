@@ -6,7 +6,7 @@
     <insert id="insertOrder">
         INSERT INTO orderList (
             itemKey, userKey, userName, userAddr, userNumber, itemName, itemImg,
-            itemSize, itemPrice, itemTotal, pitPrice, pcs)
+            itemSize, itemPrice, itemTotal, pitPrice, qty)
         VALUES (
                    #{itemKey}, #{userKey}, #{userName}, #{userAddr}, #{userNumber}, #{itemName}, #{itemImg},
                    #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitPrice}, #{qty}
