@@ -13,9 +13,13 @@ public class RegisterService {
     private RegisterMapper registerMapper;
 
     public void registerMember(Member member, String userPwdConfirm) {
-        if (!member.getUserPwd().equals(userPwdConfirm)) {
-            throw new CustomException("비밀번호가 일치하지 않습니다.");
-        }
+        // 예외 처리를 하지 않고 그대로 비즈니스 로직 수행
         registerMapper.insertMember(member);
     }
+
+    public void deleteMember(String userEmail) {
+        // 회원탈퇴 로직
+        registerMapper.deleteMember(userEmail);
+    }
 }
+

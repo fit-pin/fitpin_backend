@@ -5,4 +5,8 @@
         INSERT INTO member (userEmail, userPwd, userName)
         VALUES (#{userEmail}, #{userPwd}, #{userName})
     </insert>
+
+    <delete id="deleteMember" parameterType="String">
+        DELETE FROM member WHERE userEmail = #{userEmail}
+    </delete>
 </mapper>

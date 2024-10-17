@@ -24,7 +24,7 @@ public class RegisterController {
     public ResponseEntity<?> registerMember(@RequestBody MemberDto memberDto) {
         try {
             if (!memberDto.getUserPwd().equals(memberDto.getUserPwdConfirm())) {
-                throw new CustomException("비밀번호가 일치하지 않습니다.");
+                return ResponseEntity.badRequest().body(Collections.singletonMap("message", "비밀번호가 일치하지 않습니다."));
             }
 
             Member member = new Member();
@@ -32,12 +32,23 @@ public class RegisterController {
             member.setUserPwd(memberDto.getUserPwd());
             member.setUserName(memberDto.getUserName());
 
+            // 서비스 호출
             registerService.registerMember(member, memberDto.getUserPwdConfirm());
             return ResponseEntity.ok(Collections.singletonMap("message", "회원가입이 완료되었습니다."));
-        } catch (CustomException e) {
-            return ResponseEntity.badRequest().body(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "회원가입 중 오류가 발생했습니다."));
         }
     }
+
+    @PostMapping("/delete_id")
+    public ResponseEntity<?> deleteMember(@RequestBody MemberDto memberDto) {
+        try {
+            // 서비스 호출
+            registerService.deleteMember(memberDto.getUserEmail());
+            return ResponseEntity.ok(Collections.singletonMap("message", "회원탈퇴가 완료되었습니다."));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Collections.singletonMap("message", "회원탈퇴 중 오류가 발생했습니다."));
+        }
+    }
 }
+
