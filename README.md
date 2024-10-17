@@ -1038,7 +1038,7 @@ itemImgNames : (상품 이미지 URL)
 | `itemPrice` | int     | required  | 상품 가격                 |
 | `itemTotal` | int     | required  | 총 가격                   |
 | `pitPrice`  | int     | optional  | 수선 가격                 |
-| `pcs`       | int     | optional  | 수량                      |
+| `qty`       | int     | optional  | 수량                      |
 
 ### **Response**
 
@@ -1092,7 +1092,7 @@ itemImgNames : (상품 이미지 URL)
       "itemPrice": 30000,
       "itemTotal": 30000,
       "pitPrice": 5000,
-      "pcs": 2
+      "qty": 2
     }
   ]
   ```
