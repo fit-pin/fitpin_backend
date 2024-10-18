@@ -116,6 +116,49 @@
   ```
 
 </details> <!-- 로그인 API 끝 -->
+
+<details> <!-- 회원탈퇴 API 시작 -->
+
+<summary> POST: 회원탈퇴 </summary> 
+
+## POST: 회원탈퇴
+
+#### URL: `/api/members/delete_id`
+
+회원탈퇴 요청입니다. 이메일을 이용해 회원탈퇴를 시도합니다. 탈퇴 성공 시 성공 메시지를 반환합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/members/delete_id`
+
+### **Request Body Parameters**
+| 파라미터           | 타입    | 필수 여부 | 설명                         |
+|-------------------|---------|-----------|------------------------------|
+| `userEmail`       | string  | required  | 탈퇴를 요청하는 유저의 이메일 주소  |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "회원탈퇴가 완료되었습니다."
+  }
+  ```
+
+- **Status 400 Bad Request** (유효하지 않은 이메일)
+  ```json
+  {
+    "message": "이메일을 찾을 수 없습니다."
+  }
+  ```
+
+- **Status 500 Internal Server Error** (서버 에러 발생 시)
+  ```json
+  {
+    "message": "회원탈퇴 중 오류가 발생했습니다."
+  }
+  ```
+
+</details> <!-- 회원탈퇴 API 끝 -->
+
  <details> <!-- 유저 기본정보 업데이트 API 시작 -->
   
   <summary> POST : 유저 기본 정보 업데이트 </summary>
