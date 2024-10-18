@@ -1,6 +1,6 @@
-package com.mzm.Fitpin.mapper;
+package com.mzm.Fitpin.mapper.login_register;
 
-import com.mzm.Fitpin.entity.UserPreferStyle;
+import com.mzm.Fitpin.entity.login_register.UserPreferStyle;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

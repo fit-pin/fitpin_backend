@@ -1,4 +1,4 @@
-package com.mzm.Fitpin.dto;
+package com.mzm.Fitpin.dto.login_register;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

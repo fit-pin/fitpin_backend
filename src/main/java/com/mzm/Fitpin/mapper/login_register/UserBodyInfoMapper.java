@@ -1,6 +1,6 @@
-package com.mzm.Fitpin.mapper;
+package com.mzm.Fitpin.mapper.login_register;
 
-import com.mzm.Fitpin.dto.UserBodyInfoDTO;
+import com.mzm.Fitpin.dto.login_register.UserBodyInfoDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

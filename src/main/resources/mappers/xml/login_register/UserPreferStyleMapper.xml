@@ -3,14 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mzm.Fitpin.mapper.UserPreferStyleMapper">
+<mapper namespace="com.mzm.Fitpin.mapper.login_register.UserPreferStyleMapper">
 
-    <insert id="insertUserPreferStyle" parameterType="com.mzm.Fitpin.entity.UserPreferStyle">
+    <insert id="insertUserPreferStyle" parameterType="com.mzm.Fitpin.entity.login_register.UserPreferStyle">
         INSERT INTO preferStyle (userEmail, preferStyle)
         VALUES (#{userEmail}, #{preferStyle})
     </insert>
 
-    <select id="findUserPreferStylesByEmail" parameterType="String" resultType="com.mzm.Fitpin.entity.UserPreferStyle">
+    <select id="findUserPreferStylesByEmail" parameterType="String" resultType="com.mzm.Fitpin.entity.login_register.UserPreferStyle">
         SELECT * FROM preferStyle WHERE userEmail = #{userEmail}
     </select>
 

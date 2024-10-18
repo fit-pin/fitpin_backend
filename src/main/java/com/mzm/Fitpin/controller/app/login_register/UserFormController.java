@@ -1,6 +1,6 @@
-package com.mzm.Fitpin.controller.app;
+package com.mzm.Fitpin.controller.app.login_register;
 
-import com.mzm.Fitpin.dto.UserFormDto;
+import com.mzm.Fitpin.dto.login_register.UserFormDto;
 import com.mzm.Fitpin.service.UserFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

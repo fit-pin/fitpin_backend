@@ -1,6 +1,6 @@
-package com.mzm.Fitpin.mapper;
+package com.mzm.Fitpin.mapper.login_register;
 
-import com.mzm.Fitpin.entity.Member;
+import com.mzm.Fitpin.entity.login_register.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

@@ -1,8 +1,8 @@
 package com.mzm.Fitpin.service;
 
-import com.mzm.Fitpin.entity.Member;
+import com.mzm.Fitpin.entity.login_register.Member;
 import com.mzm.Fitpin.exception.CustomException;
-import com.mzm.Fitpin.mapper.LoginMapper;
+import com.mzm.Fitpin.mapper.login_register.LoginMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

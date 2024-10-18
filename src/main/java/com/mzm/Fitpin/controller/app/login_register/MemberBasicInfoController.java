@@ -1,6 +1,6 @@
-package com.mzm.Fitpin.controller.app;
+package com.mzm.Fitpin.controller.app.login_register;
 
-import com.mzm.Fitpin.dto.MemberBasicInfoRequest;
+import com.mzm.Fitpin.dto.login_register.MemberBasicInfoRequest;
 import com.mzm.Fitpin.exception.CustomException;
 import com.mzm.Fitpin.service.MemberBasicInfoService;
 import org.springframework.beans.factory.annotation.Autowired;

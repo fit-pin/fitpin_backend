@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mzm.Fitpin.mapper.RegisterMapper">
-    <insert id="insertMember" parameterType="com.mzm.Fitpin.entity.Member">
+<mapper namespace="com.mzm.Fitpin.mapper.login_register.RegisterMapper">
+    <insert id="insertMember" parameterType="com.mzm.Fitpin.entity.login_register.Member">
         INSERT INTO member (userEmail, userPwd, userName)
         VALUES (#{userEmail}, #{userPwd}, #{userName})
     </insert>

@@ -1,8 +1,8 @@
 package com.mzm.Fitpin.service;
 
-import com.mzm.Fitpin.dto.UserPreferStyleDTO;
-import com.mzm.Fitpin.entity.UserPreferStyle;
-import com.mzm.Fitpin.mapper.UserPreferStyleMapper;
+import com.mzm.Fitpin.dto.login_register.UserPreferStyleDTO;
+import com.mzm.Fitpin.entity.login_register.UserPreferStyle;
+import com.mzm.Fitpin.mapper.login_register.UserPreferStyleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

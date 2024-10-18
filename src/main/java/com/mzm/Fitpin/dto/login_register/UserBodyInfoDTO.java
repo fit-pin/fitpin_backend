@@ -1,11 +1,12 @@
-package com.mzm.Fitpin.entity;
+package com.mzm.Fitpin.dto.login_register;
 
 import lombok.Data;
 
 @Data
-public class UserForm {
+public class UserBodyInfoDTO {
     private String userEmail;
-    private String fileName;
+    private Integer userHeight;
+    private Integer userWeight;
     private Float armSize;
     private Float shoulderSize;
     private Float bodySize;

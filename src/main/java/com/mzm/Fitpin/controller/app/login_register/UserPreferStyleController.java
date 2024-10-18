@@ -1,6 +1,6 @@
-package com.mzm.Fitpin.controller.app;
+package com.mzm.Fitpin.controller.app.login_register;
 
-import com.mzm.Fitpin.dto.UserPreferStyleDTO;
+import com.mzm.Fitpin.dto.login_register.UserPreferStyleDTO;
 import com.mzm.Fitpin.service.UserPreferStyleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

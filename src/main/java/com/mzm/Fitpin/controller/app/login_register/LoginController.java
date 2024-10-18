@@ -1,8 +1,8 @@
-package com.mzm.Fitpin.controller.app;
+package com.mzm.Fitpin.controller.app.login_register;
 
-import com.mzm.Fitpin.dto.LoginDto;
-import com.mzm.Fitpin.dto.LoginResponseDto;
-import com.mzm.Fitpin.entity.Member;
+import com.mzm.Fitpin.dto.login_register.LoginDto;
+import com.mzm.Fitpin.dto.login_register.LoginResponseDto;
+import com.mzm.Fitpin.entity.login_register.Member;
 import com.mzm.Fitpin.exception.CustomException;
 import com.mzm.Fitpin.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;

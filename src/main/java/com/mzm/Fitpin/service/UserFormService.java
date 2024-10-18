@@ -1,8 +1,8 @@
 package com.mzm.Fitpin.service;
 
-import com.mzm.Fitpin.dto.UserFormDto;
-import com.mzm.Fitpin.entity.UserForm;
-import com.mzm.Fitpin.mapper.UserFormMapper;
+import com.mzm.Fitpin.dto.login_register.UserFormDto;
+import com.mzm.Fitpin.entity.login_register.UserForm;
+import com.mzm.Fitpin.mapper.login_register.UserFormMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

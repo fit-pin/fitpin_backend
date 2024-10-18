@@ -1,10 +1,9 @@
-package com.mzm.Fitpin.entity;
+package com.mzm.Fitpin.dto.login_register;
 
 import lombok.Data;
-//member 테이블 엔티티 클래스!
+//로그인 시 클라이언트에게 Email에 맞는 member 테이블을 반환하기 위한 dto 입니다(고유키 번호 제외)
 @Data
-public class Member {
-    private Integer userKey;
+public class LoginResponseDto {
     private String userEmail;
     private String userPwd;
     private String userName;
