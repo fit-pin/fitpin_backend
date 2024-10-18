@@ -16,7 +16,7 @@
     <select id="getOrderByUserKey" resultType="com.mzm.Fitpin.dto.order.OrderDTO">
         SELECT *
         FROM orderList
-        WHERE userKey = #{userKey}
+        WHERE userEmail = #{userEmail}
     </select>
 
 </mapper>

@@ -26,10 +26,10 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/get_order/{userKey}")
-    public ResponseEntity<?> getOrder(@PathVariable String userKey) {
+    @GetMapping("/get_order/{userEmail}")
+    public ResponseEntity<?> getOrder(@PathVariable String userEmail) {
         try {
-            List<OrderDTO> OrderLists = orderMapper.getOrderByUserKey(userKey);
+            List<OrderDTO> OrderLists = orderMapper.getOrderByUserKey(userEmail);
             if (OrderLists.isEmpty()) {
                 return ResponseEntity.status(404).body(Collections.singletonMap("message", "주문 리스트가 없습니다."));
             }

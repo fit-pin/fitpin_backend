@@ -11,5 +11,5 @@ public interface OrderMapper {
 
     void insertOrder(OrderDTO orderDTO);
 
-    List<OrderDTO> getOrderByUserKey(String userKey);
+    List<OrderDTO> getOrderByUserKey(String userEmail);
 }
