@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.cart.CartMapper">
+
+    <insert id="insertCart">
+        INSERT INTO cart (itemKey, userEmail,itemImgName ,itemName, itemSize, itemType, itemPrice, pit, quantity)
+        VALUES (#{itemKey}, #{userEmail}, #{itemName}, ,#{itemImgName} #{itemSize}, #{itemType}, #{itemPrice}, #{pit}, #{qty})
+    </insert>
+
+</mapper>

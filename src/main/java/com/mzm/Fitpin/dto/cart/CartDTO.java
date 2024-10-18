@@ -1,4 +1,4 @@
-package com.mzm.Fitpin.dto;
+package com.mzm.Fitpin.dto.cart;
 
 import lombok.Data;
 
@@ -7,6 +7,7 @@ public class CartDTO {
     private int cartKey;
     private int itemKey;
     private String userEmail;
+    private String itemImgName;
     private String itemName;
     private String itemSize;
     private String itemType;

@@ -1,7 +1,7 @@
-package com.mzm.Fitpin.controller.app;
+package com.mzm.Fitpin.controller.app.cart;
 
-import com.mzm.Fitpin.dto.CartDTO;
-import com.mzm.Fitpin.mapper.CartMapper;
+import com.mzm.Fitpin.dto.cart.CartDTO;
+import com.mzm.Fitpin.mapper.cart.CartMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
