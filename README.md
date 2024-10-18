@@ -645,12 +645,13 @@ itemImgNames : (상품 이미지 URL)
 </details> <!-- 핏보관함 사진 삭제 끝-->
 
 <details>
- <summary> 사진 리스트 조회 </summary> <!-- 핏보관함 사진 리스트 조회 시작 -->
-## GET: 핏 보관함 사진 리스트 조회
+ <summary> 핏 보관함 조회 </summary> <!-- 핏보관함 조회 시작 -->
+ 
+## GET: 핏 보관함 조회
 
 #### URL: `/api/fitStorageImages/user/{userEmail}`
 
-유저 이메일을 경로 변수로 받아 핏 보관함에 저장된 이미지 리스트를 조회하는 API입니다.
+유저 이메일을 경로 변수로 받아 핏 보관함의 내용을 리스트를 조회하는 API입니다.
 
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fitStorageImages/user/test1`
 
@@ -666,15 +667,25 @@ itemImgNames : (상품 이미지 URL)
   [
     {
       "userEmail": "test1",
-      "fitStorageImg": "testImg.png"
+      "fitStorageImg": "testImg.png",
+      "fitComment": null,
+      "itemType": null,
+      "itemBrand": null,
+      "itemSize": null,
+      "option": null
     },
     {
       "userEmail": "test1",
       "fitStorageImg": "testImg2.png"
+      "fitComment": null,
+      "itemType": null,
+      "itemBrand": null,
+      "itemSize": null,
+      "option": null
     }
   ]
   ```
- </details><!-- 핏 보관함 사진 리스트 조회 끝 -->
+ </details><!-- 핏 보관함 조회 끝 -->
 
 <details>
  <summary> 코멘트 저장</summary> <!-- 핏 보관함 코멘트 저장 시작 -->
