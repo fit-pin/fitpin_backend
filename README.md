@@ -909,16 +909,32 @@ itemImgNames : (상품 이미지 URL)
 
 결과:
 ```js
-{
-    "itemKey": 1,
-    "userEmail": "test1",
-    "itemName": "테스트용 상품1(상의)",
-    "itemSize": "M",
-    "itemType": "상의",
-    "itemPrice": 10000,
-    "pit": 1
-
-}
+[
+    {
+        "cartKey": 2,
+        "itemKey": 1,
+        "userEmail": "test1",
+        "itemImgName": "testImg",
+        "itemName": "테스트용 상품1(상의)",
+        "itemSize": "M",
+        "itemType": "상의",
+        "itemPrice": 10000,
+        "pit": 1,
+        "qty": 0
+    },
+    {
+        "cartKey": 18,
+        "itemKey": 3,
+        "userEmail": "test1",
+        "itemImgName": "testImg",
+        "itemName": "테스트용 상품2",
+        "itemSize": "M",
+        "itemType": "하의",
+        "itemPrice": 10000,
+        "pit": 1,
+        "qty": 0
+    }
+]
 ```
 </details> <!-- 장바구니 목록 조회 끝-->
 
