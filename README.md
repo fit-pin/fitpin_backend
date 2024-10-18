@@ -862,10 +862,11 @@ itemImgNames : (상품 이미지 URL)
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/cart/store`
 
 ### **Request Body Parameters**
-| 파라미터     | 타입    | 필수 여부 | 설명                      |
+| 파라미터     | 타입    | 필수 여부 | 설명                    |
 |-------------|---------|-----------|---------------------------|
 | `itemKey`   | int     | required  | 상품 고유번호             |
-| `userEmail` | string  | required  | 유저 이메일 주소           |
+| `userEmail` | string  | required  | 유저 이메일 주소          |
+| `itemImgName`| string  | required  | 상품 이미지 파일명       |
 | `itemName`  | string  | required  | 상품 이름                 |
 | `itemSize`  | string  | required  | 상품 사이즈               |
 | `itemType`  | string  | required  | 상품 유형                 |
@@ -933,6 +934,7 @@ itemImgNames : (상품 이미지 URL)
 결과:
 ```js
 {
+    "cartKey": 2,
     "itemKey": 1,
     "cartKey": 2,
     "itemSize": "M",
