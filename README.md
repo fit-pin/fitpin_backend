@@ -1075,7 +1075,7 @@ itemImgNames : (상품 이미지 URL)
 | `userName`  | string  | required  | 회원 이름                 |
 | `userAddr`  | string  | required  | 회원 주소                 |
 | `userNumber`| string  | required  | 회원 전화번호             |
-| `itemName`  | string  | required  | 상품 이름                 |
+| `optional`  | string  | required  | 상품 이름                 |
 | `itemImg`   | string  | optional  | 상품 이미지 URL           |
 | `itemSize`  | string  | required  | 상품 사이즈               |
 | `itemPrice` | int     | required  | 상품 가격                 |
@@ -1129,7 +1129,7 @@ itemImgNames : (상품 이미지 URL)
       "userName": "홍길동",
       "userAddr": "서울시 강남구",
       "userNumber": "010-1234-5678",
-      "itemName": "상품1",
+      "optional": "상품1",
       "itemImg": "image_url.jpg",
       "itemSize": "L",
       "itemPrice": 30000,
