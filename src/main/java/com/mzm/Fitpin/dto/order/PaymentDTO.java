@@ -6,12 +6,12 @@ import lombok.Data;
 public class PaymentDTO {
     private int paymentId;
     private int orderKey;
-    private int userKey;
+    private String userEmail;
     private String userName;
     private String userAddr;
     private String userNumber;
     private int itemKey;
-    private String itemName;
+    private String optional;
     private String itemImg;
     private String itemSize;
     private int itemPrice;

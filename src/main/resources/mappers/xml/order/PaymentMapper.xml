@@ -5,10 +5,10 @@
 
     <insert id="insertPaymentDetails">
         INSERT INTO paymentDetails (
-            orderKey, userKey, userName, userAddr, userNumber, itemKey, itemName, itemImg,
+            orderKey, userKey, userName, userAddr, userNumber, itemKey, optional, itemImg,
             itemSize, itemPrice, itemTotal, pitPrice, qty, paymentMethod, paymentAmount, paymentDate
         ) VALUES (
-                     #{orderKey}, #{userKey}, #{userName}, #{userAddr}, #{userNumber}, #{itemKey}, #{itemName}, #{itemImg},
+                     #{orderKey}, #{userKey}, #{userName}, #{userAddr}, #{userNumber}, #{itemKey}, #{optional}, #{itemImg},
                      #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitPrice}, #{qty}, #{paymentMethod}, #{paymentAmount}, CURRENT_TIMESTAMP
                  )
     </insert>
