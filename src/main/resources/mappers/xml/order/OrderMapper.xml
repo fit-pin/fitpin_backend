@@ -8,7 +8,7 @@
             itemKey, userEmail, userName, userAddr, userNumber, optional, itemImg,
             itemSize, itemPrice, itemTotal, pitPrice, qty)
         VALUES (
-                   #{itemKey}, #{userKey}, #{userName}, #{userAddr}, #{userNumber}, #{optional}, #{itemImg},
+                   #{itemKey}, #{userEmail}, #{userName}, #{userAddr}, #{userNumber}, #{optional}, #{itemImg},
                    #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitPrice}, #{qty}
                )
     </insert>
