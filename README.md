@@ -1107,7 +1107,7 @@ itemImgNames : (상품 이미지 URL)
 
 ## GET: 주문 조회
 
-#### URL: `/api/order/get_order/{userKey}`
+#### URL: `/api/order/get_order/{userEmail}`
 
 특정 사용자의 주문 목록을 조회하는 API입니다.
 
@@ -1116,7 +1116,7 @@ itemImgNames : (상품 이미지 URL)
 ### **Path Variables**
 | 파라미터   | 타입    | 필수 여부 | 설명               |
 |------------|---------|-----------|--------------------|
-| `userKey`  | string  | required  | 조회할 회원 고유번호|
+| `userEmail`  | string  | required  | 조회할 회원 이메일일|
 
 ### **Response**
 
@@ -1125,8 +1125,8 @@ itemImgNames : (상품 이미지 URL)
   [
     {
       "itemKey": 1,
-      "userKey": 123,
-      "userName": "홍길동",
+      "userEmail": 123,
+      "userName": "테스트",
       "userAddr": "서울시 강남구",
       "userNumber": "010-1234-5678",
       "optional": "상품1",
