@@ -39,4 +39,19 @@ public class OrderController {
         }
 
     }
+
+    @PutMapping("/update_status/{orderKey}") // 주문 상태 갱신 API
+    public ResponseEntity<?> updateOrderStatus(@PathVariable int orderKey, @RequestParam int orderStatus) {
+        try {
+            int rowsAffected = orderMapper.updateOrderStatus(orderKey, orderStatus);
+            if (rowsAffected > 0) {
+                return ResponseEntity.ok(Collections.singletonMap("message", "주문 상태가 성공적으로 업데이트되었습니다."));
+            } else {
+                return ResponseEntity.status(404).body(Collections.singletonMap("message", "해당 주문을 찾을 수 없습니다."));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Collections.singletonMap("message", "주문 상태 업데이트 중 오류가 발생했습니다."));
+        }
+    }
+
 }
