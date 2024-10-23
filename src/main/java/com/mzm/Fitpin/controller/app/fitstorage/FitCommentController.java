@@ -25,6 +25,7 @@ public class FitCommentController {
         String userEmail = fitStorageDTO.getUserEmail();
         String imageName = fitStorageDTO.getFitStorageImg();
         String comment = fitStorageDTO.getFitComment();
+        String itemName = fitStorageDTO.getItemName();  // 추가된 필드
         String itemType = fitStorageDTO.getItemType();
         String itemBrand = fitStorageDTO.getItemBrand();
         String itemSize = fitStorageDTO.getItemSize();
@@ -36,6 +37,7 @@ public class FitCommentController {
         if (fitStorage != null) {
             // 기존 이미지에 코멘트와 추가 정보를 저장
             fitStorage.setFitComment(comment);
+            fitStorage.setItemName(itemName);  // 추가된 필드 설정
             fitStorage.setItemType(itemType);
             fitStorage.setItemBrand(itemBrand);
             fitStorage.setItemSize(itemSize);
@@ -57,6 +59,7 @@ public class FitCommentController {
         String userEmail = fitStorageDTO.getUserEmail();
         String imageName = fitStorageDTO.getFitStorageImg();
         String comment = fitStorageDTO.getFitComment();
+        String itemName = fitStorageDTO.getItemName();  // 추가된 필드
         String itemType = fitStorageDTO.getItemType();
         String itemBrand = fitStorageDTO.getItemBrand();
         String itemSize = fitStorageDTO.getItemSize();
@@ -68,6 +71,7 @@ public class FitCommentController {
         if (fitStorage != null) {
             // 기존 코멘트 및 정보를 수정
             fitStorage.setFitComment(comment);
+            fitStorage.setItemName(itemName);  // 추가된 필드 설정
             fitStorage.setItemType(itemType);
             fitStorage.setItemBrand(itemBrand);
             fitStorage.setItemSize(itemSize);
@@ -95,6 +99,7 @@ public class FitCommentController {
         if (fitStorage != null) {
             // 코멘트 및 정보 삭제
             fitStorage.setFitComment(null);
+            fitStorage.setItemName(null);  // 추가된 필드 초기화
             fitStorage.setItemType(null);
             fitStorage.setItemBrand(null);
             fitStorage.setItemSize(null);
