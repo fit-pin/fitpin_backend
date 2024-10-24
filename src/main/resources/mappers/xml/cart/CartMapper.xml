@@ -4,7 +4,7 @@
 <mapper namespace="com.mzm.Fitpin.mapper.cart.CartMapper">
 
     <insert id="insertCart">
-         INSERT INTO cart (itemKey, userEmail, itemImgName, itemName, itemSize, itemType, itemPrice, pit, qty)
+        INSERT INTO cart (itemKey, userEmail, itemImgName, itemName, itemSize, itemType, itemPrice, pit, qty)
         VALUES (#{itemKey}, #{userEmail}, #{itemImgName}, #{itemName}, #{itemSize}, #{itemType}, #{itemPrice}, #{pit}, #{qty})
     </insert>
 
