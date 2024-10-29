@@ -441,6 +441,7 @@ itemName (상품 이름)
 itemBrand (상품 브랜드)
 itemPrice (상품 가격)
 itemImgNames : (상품 이미지 URL)
+averageBmi : (구매자 평균 BMI)
 ```
 을 반환합니다.
 
@@ -451,29 +452,25 @@ itemImgNames : (상품 이미지 URL)
 [
     {
         "itemKey": 1,
-        "itemName": "테스트용 상품1",
+        "itemName": "testItem1",
         "itemBrand": "TEST",
         "itemStyle": "캐주얼",
         "itemPrice": 10000,
         "itemImgNames": [
-            "C:/ItemImg/testImg.png"
-        ]
+            "optimize.png"
+        ],
+        "averageBmi": null
     },
     {
         "itemKey": 2,
-        "itemName": "테스트상품",
+        "itemName": "testItem2",
         "itemBrand": "TEST",
         "itemStyle": "캐주얼",
         "itemPrice": 100000,
-        "itemImgNames": []
-    },
-    {
-        "itemKey": 4,
-        "itemName": "테스트상품",
-        "itemBrand": "TEST",
-        "itemStyle": "테일러",
-        "itemPrice": 100000,
-        "itemImgNames": []
+        "itemImgNames": [
+            "hood.jpg"
+        ],
+        "averageBmi": null
     }
 ]
 ```
