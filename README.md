@@ -1246,26 +1246,7 @@ averageBmi : (구매자 평균 BMI)
 </details> 
 
 <details>
- <summary>POST/api/itemBottomInfo/register : 하의 상품의 상세 정보 등록하는 API입니다.</summary>
- 
->요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemBottomInfo/register
-
-```js
-{
-  "itemKey": 1,
-  "itemSize": 32.5,
-  "itemHeight": 40.0,
-  "itemWaists": 15.5,
-  "itemThighs": 20.0,
-  "itemRise": 10.0,
-  "itemHem": 8.0
-}
-
-```
-</details> 
-
-<details>
- <summary>POST/api/itemTopInfo/register : 상의 상품의 상세 정보 등록하는 API입니다.</summary>
+ <summary>POST/api/itemBottomInfo/register : 하의 상품의 상세 정보를 등록를 등록하는 API입니다.</summary>
  
 >요청 URL 예시: http://fitpitback.kro.kr:8080/api/itemTopInfo/register
 
