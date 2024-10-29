@@ -8,7 +8,7 @@
                AVG(c.userWeight / ((c.userHeight / 100) * (c.userHeight / 100))) AS averageBmi
         FROM item i
                  LEFT JOIN ItemImg ii ON i.itemKey = ii.itemKey
-                 LEFT JOIN purchase_history ph ON i.itemKey = ph.itemKey
+                 LEFT JOIN orderList ol ON i.itemKey = ol.itemKey
                  LEFT JOIN member c ON ph.userEmail = c.userEmail
         WHERE i.itemType = #{itemType}
         GROUP BY i.itemKey
