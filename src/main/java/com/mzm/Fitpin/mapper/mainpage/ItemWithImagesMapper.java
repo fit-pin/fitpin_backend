@@ -1,6 +1,6 @@
-package com.mzm.Fitpin.mapper;
+package com.mzm.Fitpin.mapper.mainpage;
 
-import com.mzm.Fitpin.dto.ItemWithImagesDTO;
+import com.mzm.Fitpin.dto.mainpage.ItemWithImagesDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

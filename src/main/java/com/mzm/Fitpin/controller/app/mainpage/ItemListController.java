@@ -1,8 +1,8 @@
-package com.mzm.Fitpin.controller.app;
+package com.mzm.Fitpin.controller.app.mainpage;
 
-import com.mzm.Fitpin.dto.ItemWithImagesDTO;
+import com.mzm.Fitpin.dto.mainpage.ItemWithImagesDTO;
 import com.mzm.Fitpin.exception.CustomException;
-import com.mzm.Fitpin.mapper.ItemWithImagesMapper;
+import com.mzm.Fitpin.mapper.mainpage.ItemWithImagesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

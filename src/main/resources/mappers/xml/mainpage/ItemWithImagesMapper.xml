@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mzm.Fitpin.mapper.ItemWithImagesMapper">
+<mapper namespace="com.mzm.Fitpin.mapper.mainpage.ItemWithImagesMapper">
 
     <select id="findItemsWithImagesByType" resultMap="ItemWithImagesMap">
-        SELECT i.itemKey, i.itemName, i.itemBrand, i.itemStyle, i.itemPrice, ii.itemImgName
+        SELECT i.itemKey, i.itemName, i.itemBrand, i.itemStyle, i.itemPrice, ii.itemImgName,
+               AVG(c.userWeight / ((c.userHeight / 100) * (c.userHeight / 100))) AS averageBmi
         FROM item i
                  LEFT JOIN ItemImg ii ON i.itemKey = ii.itemKey
+                 LEFT JOIN purchase_history ph ON i.itemKey = ph.itemKey
+                 LEFT JOIN member c ON ph.userEmail = c.userEmail
         WHERE i.itemType = #{itemType}
+        GROUP BY i.itemKey
     </select>
 
-    <resultMap id="ItemWithImagesMap" type="com.mzm.Fitpin.dto.ItemWithImagesDTO">
+    <resultMap id="ItemWithImagesMap" type="com.mzm.Fitpin.dto.mainpage.ItemWithImagesDTO">
         <id property="itemKey" column="itemKey"/>
         <result property="itemName" column="itemName"/>
         <result property="itemBrand" column="itemBrand"/>
         <result property="itemStyle" column="itemStyle"/>
         <result property="itemPrice" column="itemPrice"/>
+        <result property="averageBmi" column="averageBmi"/> <!-- 평균 BMI 필드 추가 -->
+
+        <!-- Collection for item images, placed last as per DTD rules -->
         <collection property="itemImgNames" ofType="string">
             <result column="itemImgName"/>
         </collection>
     </resultMap>
+
 
 </mapper>
