@@ -9,7 +9,7 @@
         FROM item i
                  LEFT JOIN ItemImg ii ON i.itemKey = ii.itemKey
                  LEFT JOIN orderList ol ON i.itemKey = ol.itemKey
-                 LEFT JOIN member c ON ph.userEmail = c.userEmail
+                 LEFT JOIN member c ON ol.userEmail = c.userEmail
         WHERE i.itemType = #{itemType}
         GROUP BY i.itemKey
     </select>
