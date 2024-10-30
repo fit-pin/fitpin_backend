@@ -39,9 +39,25 @@
         SELECT * FROM fitStorage;
     </select>
 
-    <select id="findByFitCommentKey" parameterType="int" resultType="com.mzm.Fitpin.entity.FitStorage">
-        SELECT * FROM fitStorage WHERE fitStorageKey = #{fitcommentKey};
+    <select id="findByFitCommentKey" parameterType="int" resultMap="FitStorageWithUserNameResult">
+        SELECT fs.*, m.userName
+        FROM fitStorage fs
+                 JOIN member m ON fs.userEmail = m.userEmail
+        WHERE fs.fitStorageKey = #{fitStorageKey};
     </select>
+
+    <resultMap id="FitStorageWithUserNameResult" type="com.mzm.Fitpin.dto.FitStorageDTO">
+        <result property="fitStorageKey" column="fitStorageKey"/>
+        <result property="userEmail" column="userEmail"/>
+        <result property="fitStorageImg" column="fitStorageImg"/>
+        <result property="fitComment" column="fitComment"/>
+        <result property="itemName" column="itemName"/>
+        <result property="itemType" column="itemType"/>
+        <result property="itemBrand" column="itemBrand"/>
+        <result property="itemSize" column="itemSize"/>
+        <result property="option" column="option"/>
+        <result property="userName" column="userName"/> <!-- userName 매핑 추가 -->
+    </resultMap>
 
 
 </mapper>
