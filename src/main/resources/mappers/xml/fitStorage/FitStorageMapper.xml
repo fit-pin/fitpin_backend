@@ -40,7 +40,7 @@
     </select>
 
     <select id="findByFitCommentKey" parameterType="int" resultType="com.mzm.Fitpin.entity.FitStorage">
-        SELECT * FROM fitStorage WHERE fitcmtNum = #{fitcommentKey};
+        SELECT * FROM fitStorage WHERE fitcommentKey = #{fitcommentKey};
     </select>
 
 
