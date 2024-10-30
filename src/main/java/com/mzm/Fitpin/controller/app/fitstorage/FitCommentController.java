@@ -49,22 +49,10 @@ public class FitCommentController {
     @GetMapping("/get_fitcomment/{fitStorageKey}")
     public ResponseEntity<?> getFitCommentByKey(@PathVariable("fitStorageKey") int fitStorageKey) {
         // fitcommentKey를 사용하여 데이터베이스에서 해당 요소 조회
-        FitStorage fitStorage = fitStorageMapper.findByFitCommentKey(fitStorageKey);
+        FitStorageDTO fitStorageDTO = fitStorageMapper.findByFitCommentKey(fitStorageKey);
 
-        if (fitStorage != null) {
-            // 조회한 데이터를 DTO로 변환
-            FitStorageDTO dto = new FitStorageDTO();
-            dto.setFitStorageKey(fitStorage.getFitStorageKey());
-            dto.setUserEmail(fitStorage.getUserEmail());
-            dto.setFitStorageImg(fitStorage.getFitStorageImg());
-            dto.setFitComment(fitStorage.getFitComment());
-            dto.setItemName(fitStorage.getItemName());
-            dto.setItemType(fitStorage.getItemType());
-            dto.setItemBrand(fitStorage.getItemBrand());
-            dto.setItemSize(fitStorage.getItemSize());
-            dto.setOption(fitStorage.getOption());
-
-            return ResponseEntity.ok(dto);
+        if (fitStorageDTO != null) {
+            return ResponseEntity.ok(fitStorageDTO);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Collections.singletonMap("message", "해당 키에 대한 데이터를 찾을 수 없습니다."));

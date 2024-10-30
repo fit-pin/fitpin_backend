@@ -39,12 +39,15 @@
         SELECT * FROM fitStorage;
     </select>
 
-    <select id="findByFitCommentKey" parameterType="int" resultMap="FitStorageWithUserNameResult">
-        SELECT fs.*, m.userName
+    <select id="findByFitCommentKey" parameterType="int" resultType="com.mzm.Fitpin.dto.FitStorageDTO">
+        SELECT fs.fitStorageKey, fs.userEmail, fs.fitStorageImg, fs.fitComment,
+               fs.itemName, fs.itemType, fs.itemBrand, fs.itemSize, fs.option,
+               m.userName
         FROM fitStorage fs
                  JOIN member m ON fs.userEmail = m.userEmail
         WHERE fs.fitStorageKey = #{fitStorageKey};
     </select>
+
 
     <resultMap id="FitStorageWithUserNameResult" type="com.mzm.Fitpin.entity.FitStorage">
         <result property="fitStorageKey" column="fitStorageKey"/>

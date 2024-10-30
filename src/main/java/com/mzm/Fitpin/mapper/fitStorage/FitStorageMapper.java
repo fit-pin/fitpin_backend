@@ -1,6 +1,7 @@
 package com.mzm.Fitpin.mapper.fitStorage;
 
 import com.mzm.Fitpin.entity.FitStorage;
+import com.mzm.Fitpin.dto.FitStorageDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface FitStorageMapper {
 
     List<FitStorage> findAllFitComments();
 
-    FitStorage findByFitCommentKey(int fitStorageKey);
+    FitStorageDTO findByFitCommentKey( int fitStorageKey);
 
 
 }
