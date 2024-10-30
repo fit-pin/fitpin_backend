@@ -1178,20 +1178,22 @@ averageBmi : (구매자 평균 BMI)
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/order/post_order`
 
 ### **Request Body Parameters**
-| 파라미터     | 타입    | 필수 여부 | 설명                      |
-|-------------|---------|-----------|---------------------------|
-| `itemKey`   | int     | required  | 상품 고유번호             |
-| `userKey`   | int     | required  | 회원 고유번호             |
-| `userName`  | string  | required  | 회원 이름                 |
-| `userAddr`  | string  | required  | 회원 주소                 |
-| `userNumber`| string  | required  | 회원 전화번호             |
-| `optional`  | string  | required  | 상품 이름                 |
-| `itemImg`   | string  | optional  | 상품 이미지 URL           |
-| `itemSize`  | string  | required  | 상품 사이즈               |
-| `itemPrice` | int     | required  | 상품 가격                 |
-| `itemTotal` | int     | required  | 총 가격                   |
-| `pitPrice`  | int     | optional  | 수선 가격                 |
-| `qty`       | int     | optional  | 수량                      |
+| 파라미터      | 타입    | 필수 여부 | 설명                                                    |
+|---------------|---------|-----------|---------------------------------------------------------|
+| `itemKey`     | int     | required  | 상품 고유번호                                           |
+| `userEmail`   | string  | required  | 회원 이메일                                             |
+| `userName`    | string  | required  | 회원 이름                                               |
+| `userAddr`    | string  | required  | 회원 주소                                               |
+| `userNumber`  | string  | required  | 회원 전화번호                                           |
+| `optional`    | string  | optional  | 상품 이름                                               |
+| `itemImg`     | string  | optional  | 상품 이미지 URL                                         |
+| `itemSize`    | string  | required  | 상품 사이즈                                                       |
+| `itemPrice`   | int     | required  | 상품 가격                                                         |
+| `itemTotal`   | int     | required  | 총 가격                                                           |
+| `pit`         | int     | required  | 수선 여부 (0: 수선 없음, 1: 수선 있음)                             |
+| `pitPrice`    | int     | optional  | 수선 가격 (수선이 없는 경우 null 가능)                             |
+| `qty`         | int     | optional  | 수량                                                               |
+| `orderStatus` | int     | optional  | 주문 상태 (0: 결제 완료, 1: 배송 중, 2: 배송 완료, 기본값은 0입니다.)|
 
 ### **Response**
 
@@ -1211,6 +1213,7 @@ averageBmi : (구매자 평균 BMI)
 
 </details> <!-- 주문내역 등록 API 끝 -->
 
+
 <details> <!-- 주문 조회 API 시작 -->
 
 <summary> GET: 주문 조회 </summary> 
@@ -1221,12 +1224,12 @@ averageBmi : (구매자 평균 BMI)
 
 특정 사용자의 주문 목록을 조회하는 API입니다.
 
-- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/order/get_order/{userKey}`
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/order/get_order/{userEmail}`
 
 ### **Path Variables**
 | 파라미터   | 타입    | 필수 여부 | 설명               |
 |------------|---------|-----------|--------------------|
-| `userEmail`  | string  | required  | 조회할 회원 이메일일|
+| `userEmail`  | string  | required  | 조회할 회원 이메일 |
 
 ### **Response**
 
@@ -1235,7 +1238,7 @@ averageBmi : (구매자 평균 BMI)
   [
     {
       "itemKey": 1,
-      "userEmail": 123,
+      "userEmail": "test@example.com",
       "userName": "테스트",
       "userAddr": "서울시 강남구",
       "userNumber": "010-1234-5678",
@@ -1243,12 +1246,17 @@ averageBmi : (구매자 평균 BMI)
       "itemImg": "image_url.jpg",
       "itemSize": "L",
       "itemPrice": 30000,
-      "itemTotal": 30000,
-      "pitPrice": 5000,
-      "qty": 2
+      "itemTotal": 60000,
+      "qty": 2,
+      "pitStatus": "수선 있음",          // 수선 여부, 0: 수선 없음, 1: 수선 있음
+      "displayPitPrice": "5000",        // 수선 비용, null일 경우 "경매중"
+      "displayOrderStatus": "결제 완료"  // 주문 상태, 0: 결제 완료, 1: 배송중, 2: 배송완료
     }
   ]
   ```
+  
+DB에 저장된 값에 따라 ``pitStatus`` , ``displayPitPrice`` , ``displayOrderStatus`` 값이 다르게 나옵니다.
+
 
 - **Status 404 Not Found**
   ```json
@@ -1260,11 +1268,12 @@ averageBmi : (구매자 평균 BMI)
 - **Status 500 Internal Server Error**
   ```json
   {
-    "message": "주문 조회중 오류가 발생했습니다."
+    "message": "주문 조회 중 오류가 발생했습니다."
   }
   ```
 
 </details> <!-- 주문 조회 API 끝 -->
+
 
 <details> <!-- 결제 내역 저장 API 시작 -->
 
