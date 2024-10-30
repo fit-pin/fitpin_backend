@@ -39,5 +39,9 @@
         SELECT * FROM fitStorage;
     </select>
 
+    <select id="findByFitCommentKey" parameterType="int" resultType="com.mzm.Fitpin.entity.FitStorage">
+        SELECT * FROM fitStorage WHERE fitcmtNum = #{fitcommentKey};
+    </select>
+
 
 </mapper>

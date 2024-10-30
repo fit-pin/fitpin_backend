@@ -45,6 +45,33 @@ public class FitCommentController {
         return ResponseEntity.ok(fitStorageDTOList);
     }
 
+    // 특정 코멘트 조회
+    @GetMapping("/get_fitcomment/{fitcommentkey}")
+    public ResponseEntity<?> getFitCommentByKey(@PathVariable("fitcommentkey") int fitcommentKey) {
+        // fitcommentKey를 사용하여 데이터베이스에서 해당 요소 조회
+        FitStorage fitStorage = fitStorageMapper.findByFitCommentKey(fitcommentKey);
+
+        if (fitStorage != null) {
+            // 조회한 데이터를 DTO로 변환
+            FitStorageDTO dto = new FitStorageDTO();
+            dto.setFitStorageKey(fitStorage.getFitStorageKey());
+            dto.setUserEmail(fitStorage.getUserEmail());
+            dto.setFitStorageImg(fitStorage.getFitStorageImg());
+            dto.setFitComment(fitStorage.getFitComment());
+            dto.setItemName(fitStorage.getItemName());
+            dto.setItemType(fitStorage.getItemType());
+            dto.setItemBrand(fitStorage.getItemBrand());
+            dto.setItemSize(fitStorage.getItemSize());
+            dto.setOption(fitStorage.getOption());
+
+            return ResponseEntity.ok(dto);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("message", "해당 키에 대한 데이터를 찾을 수 없습니다."));
+        }
+    }
+
+
 
     // 코멘트 작성
     @PostMapping("/save_comment")

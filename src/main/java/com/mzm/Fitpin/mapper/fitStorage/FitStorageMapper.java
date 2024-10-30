@@ -23,4 +23,7 @@ public interface FitStorageMapper {
 
     List<FitStorage> findAllFitComments();
 
+    FitStorage findByFitCommentKey(int fitcommentKey);
+
+
 }
