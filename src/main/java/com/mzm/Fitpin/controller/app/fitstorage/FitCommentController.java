@@ -2,13 +2,15 @@ package com.mzm.Fitpin.controller.app.fitstorage;
 
 import com.mzm.Fitpin.dto.FitStorageDTO;
 import com.mzm.Fitpin.entity.FitStorage;
-import com.mzm.Fitpin.mapper.FitStorageMapper;
+import com.mzm.Fitpin.mapper.fitStorage.FitStorageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/fit_comment")
@@ -16,6 +18,33 @@ public class FitCommentController {
 
     @Autowired
     private FitStorageMapper fitStorageMapper;
+
+    // 코멘트 전체 리턴
+    @GetMapping("/get_fitcomment")
+    public ResponseEntity<?> getFitComment() {
+        // 모든 코멘트를 조회
+        List<FitStorage> fitComments = fitStorageMapper.findAllFitComments();
+
+        // 조회한 결과를 DTO로 변환
+        List<FitStorageDTO> fitStorageDTOList = fitComments.stream()
+                .map(fitStorage -> {
+                    FitStorageDTO dto = new FitStorageDTO();
+                    dto.setFitStorageKey(fitStorage.getFitStorageKey());
+                    dto.setUserEmail(fitStorage.getUserEmail());
+                    dto.setFitStorageImg(fitStorage.getFitStorageImg());
+                    dto.setFitComment(fitStorage.getFitComment());
+                    dto.setItemName(fitStorage.getItemName());
+                    dto.setItemType(fitStorage.getItemType());
+                    dto.setItemBrand(fitStorage.getItemBrand());
+                    dto.setItemSize(fitStorage.getItemSize());
+                    dto.setOption(fitStorage.getOption());
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(fitStorageDTOList);
+    }
+
 
     // 코멘트 작성
     @PostMapping("/save_comment")

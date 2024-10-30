@@ -4,6 +4,7 @@
 
     @Data
     public class FitStorageDTO {
+        private int fitStorageKey;
         private String userEmail;
         private String fitStorageImg;
         private String fitComment;

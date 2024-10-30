@@ -2,7 +2,7 @@ package com.mzm.Fitpin.controller.app.fitstorage;
 
 import com.mzm.Fitpin.dto.FitStorageDTO;
 import com.mzm.Fitpin.entity.FitStorage;
-import com.mzm.Fitpin.mapper.FitStorageMapper;
+import com.mzm.Fitpin.mapper.fitStorage.FitStorageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

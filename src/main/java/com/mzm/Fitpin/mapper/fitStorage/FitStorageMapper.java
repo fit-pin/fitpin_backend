@@ -1,4 +1,4 @@
-package com.mzm.Fitpin.mapper;
+package com.mzm.Fitpin.mapper.fitStorage;
 
 import com.mzm.Fitpin.entity.FitStorage;
 import org.apache.ibatis.annotations.Mapper;
@@ -20,5 +20,7 @@ public interface FitStorageMapper {
     FitStorage findByUserEmailAndFitStorageImg(String userEmail, String fitStorageImg);
 
     void update(FitStorage fitStorage); // 추가된 부분
+
+    List<FitStorage> findAllFitComments();
 
 }
