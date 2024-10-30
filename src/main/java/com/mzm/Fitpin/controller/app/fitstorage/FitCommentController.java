@@ -46,10 +46,10 @@ public class FitCommentController {
     }
 
     // 특정 코멘트 조회
-    @GetMapping("/get_fitcomment/{fitcommentkey}")
-    public ResponseEntity<?> getFitCommentByKey(@PathVariable("fitcommentkey") int fitcommentKey) {
+    @GetMapping("/get_fitcomment/{fitStorageKey}")
+    public ResponseEntity<?> getFitCommentByKey(@PathVariable("fitStorageKey") int fitStorageKey) {
         // fitcommentKey를 사용하여 데이터베이스에서 해당 요소 조회
-        FitStorage fitStorage = fitStorageMapper.findByFitCommentKey(fitcommentKey);
+        FitStorage fitStorage = fitStorageMapper.findByFitCommentKey(fitStorageKey);
 
         if (fitStorage != null) {
             // 조회한 데이터를 DTO로 변환
