@@ -46,7 +46,7 @@
         WHERE fs.fitStorageKey = #{fitStorageKey};
     </select>
 
-    <resultMap id="FitStorageWithUserNameResult" type="com.mzm.Fitpin.dto.FitStorageDTO">
+    <resultMap id="FitStorageWithUserNameResult" type="com.mzm.Fitpin.entity.FitStorage">
         <result property="fitStorageKey" column="fitStorageKey"/>
         <result property="userEmail" column="userEmail"/>
         <result property="fitStorageImg" column="fitStorageImg"/>
@@ -56,8 +56,9 @@
         <result property="itemBrand" column="itemBrand"/>
         <result property="itemSize" column="itemSize"/>
         <result property="option" column="option"/>
-        <result property="userName" column="userName"/> <!-- userName 매핑 추가 -->
+        <result property="userName" column="userName"/> <!-- userName 매핑 -->
     </resultMap>
+
 
 
 </mapper>
