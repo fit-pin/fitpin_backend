@@ -642,7 +642,7 @@ averageBmi : (구매자 평균 BMI)
 </details> <!-- 핏보관함 사진 삭제 끝-->
 
 <details>
- <summary> 핏 보관함 조회 </summary> <!-- 핏보관함 조회 시작 -->
+ <summary> 핏 보관함 조회 </summary> <!-- 핏 보관함 조회 시작 -->
  
 ## GET: 핏 보관함 조회
 
@@ -683,6 +683,90 @@ averageBmi : (구매자 평균 BMI)
   ]
   ```
  </details><!-- 핏 보관함 조회 끝 -->
+
+<details>
+<summary> GET: 모든 코멘트 조회 </summary>
+
+## GET: 모든 코멘트 조회
+
+모든 코멘트를 조회하는 API입니다. `fitStorage` 테이블에 저장된 모든 코멘트를 조회하여 리스트로 반환합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/get_fitcomment`
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  [
+    {
+      "fitStorageKey": 1,
+      "userEmail": "user1@example.com",
+      "fitStorageImg": "image1.jpg",
+      "fitComment": "This is a comment",
+      "itemName": "Sample Item",
+      "itemType": "Clothing",
+      "itemBrand": "BrandX",
+      "itemSize": "M",
+      "option": "Fits well"
+    },
+    {
+      "fitStorageKey": 2,
+      "userEmail": "user2@example.com",
+      "fitStorageImg": "image2.jpg",
+      "fitComment": "Another comment",
+      "itemName": "Another Item",
+      "itemType": "Accessory",
+      "itemBrand": "BrandY",
+      "itemSize": "L",
+      "option": "Fits tight"
+    }
+  ]
+  ```
+
+</details> <!-- 모든 코멘트 조회 API 끝 -->
+
+
+<details>
+<summary> GET: 특정 코멘트 조회 </summary>
+
+## GET: 특정 코멘트 조회
+
+특정 코멘트를 조회하는 API입니다. `fitStorageKey`로 지정된 코멘트를 조회하여 반환합니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/get_fitcomment/{fitStorageKey}`
+  - `{fitStorageKey}`는 조회할 코멘트의 고유 키 값입니다.
+
+### **Path Parameters**
+| 파라미터         | 타입    | 필수 여부 | 설명                  |
+|------------------|---------|-----------|-----------------------|
+| `fitStorageKey`  | int     | required  | 조회할 코멘트의 키 값  |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "fitStorageKey": 1,
+    "userEmail": "user1@example.com",
+    "fitStorageImg": "image1.jpg",
+    "fitComment": "This is a comment",
+    "itemName": "Sample Item",
+    "itemType": "Clothing",
+    "itemBrand": "BrandX",
+    "itemSize": "M",
+    "option": "Fits well"
+  }
+  ```
+
+- **Status 404 Not Found** (코멘트를 찾을 수 없는 경우)
+  ```json
+  {
+    "message": "해당 키에 대한 데이터를 찾을 수 없습니다."
+  }
+  ```
+
+</details> <!-- 특정 코멘트 조회 API 끝 -->
+
 
 <details>
  <summary> 코멘트 저장</summary> <!-- 핏 보관함 코멘트 저장 시작 -->
