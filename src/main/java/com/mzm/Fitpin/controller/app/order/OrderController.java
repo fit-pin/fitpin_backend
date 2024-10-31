@@ -1,6 +1,7 @@
 package com.mzm.Fitpin.controller.app.order;
 
 import com.mzm.Fitpin.dto.order.OrderDTO;
+import com.mzm.Fitpin.mapper.ItemImgMapper;
 import com.mzm.Fitpin.mapper.order.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,19 @@ public class OrderController {
 
     @Autowired
     private OrderMapper orderMapper;
+    private ItemImgMapper itemImgMapper;
 
     @PostMapping("/post_order")
-    public ResponseEntity<?> postOrder(@RequestBody OrderDTO OrderDTO) {
+    public ResponseEntity<?> postOrder(@RequestBody OrderDTO orderDTO) {
         try {
-            orderMapper.insertOrder(OrderDTO);
+            // itemKey로 이미지명 조회 및 설정
+            String itemImgName = itemImgMapper.getItemImgNameByItemKey(orderDTO.getItemKey());
+            orderDTO.setItemImg(itemImgName);
+
+            // 주문 등록
+            orderMapper.insertOrder(orderDTO);
             return ResponseEntity.ok(Collections.singletonMap("message", "주문 등록 완료."));
-        } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "알수없는 오류가 발생했습니다."));
         }
     }

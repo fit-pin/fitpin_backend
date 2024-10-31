@@ -8,5 +8,12 @@
         VALUES (#{itemKey}, #{itemImgName})
     </insert>
 
+
+        <!-- itemKey로 itemImgName을 조회 -->
+        <select id="getItemImgNameByItemKey" resultType="String">
+            SELECT itemImgName FROM ItemImg WHERE itemKey = #{itemKey}
+        </select>
+
+
     <!-- 다른 CRUD 쿼리들 -->
 </mapper>
