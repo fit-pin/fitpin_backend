@@ -993,6 +993,49 @@ averageBmi : (구매자 평균 BMI)
   ```
 
 </details> <!-- 장바구니 저장 API 끝 -->
+
+<details> <!-- 장바구니 삭제 API 시작 -->
+
+<summary> DELETE: 장바구니 삭제 </summary> 
+
+## DELETE: 장바구니 삭제
+
+#### URL: `/api/cart/delete`
+
+유저 이메일과 상품 고유번호를 받아 장바구니에서 해당 상품을 삭제하는 API입니다.
+
+- **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/cart/delete`
+
+### **Request Body Parameters**
+| 파라미터     | 타입    | 필수 여부 | 설명                    |
+|-------------|---------|-----------|---------------------------|
+| `userEmail` | string  | required  | 유저 이메일 주소          |
+| `itemKey`   | int     | required  | 상품 고유번호             |
+
+### **Response**
+
+- **Status 200 OK**
+  ```json
+  {
+    "message": "장바구니에서 상품이 성공적으로 삭제되었습니다."
+  }
+  ```
+
+- **Status 404 Not Found**
+  ```json
+  {
+    "message": "해당 상품을 찾을 수 없습니다."
+  }
+  ```
+
+- **Status 500 Internal Server Error**
+  ```json
+  {
+    "message": "장바구니에서 상품 삭제 중 오류가 발생했습니다."
+  }
+  ```
+
+</details> <!-- 장바구니 삭제 API 끝 -->
  
 </details> <!-- 제품 상세 API detils 끝 -->
 
