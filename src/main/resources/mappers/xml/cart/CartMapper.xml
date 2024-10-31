@@ -8,4 +8,8 @@
         VALUES (#{itemKey}, #{userEmail}, #{itemImgName}, #{itemName}, #{itemSize}, #{itemType}, #{itemPrice}, #{pit}, #{qty})
     </insert>
 
+
+    <delete id="deleteCartItem">
+        DELETE FROM cart WHERE userEmail = #{userEmail} AND itemKey = #{itemKey}
+    </delete>
 </mapper>
