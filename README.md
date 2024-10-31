@@ -924,16 +924,26 @@ averageBmi : (구매자 평균 BMI)
     "itemPrice": 10000,
     "itemContent": "테스트용 상의 상품",
     "itemImgNames": [
-        "/home/ubuntu/home/fitpin_backend/home/itemImg/optimize.png"
+      "7sweatshirt.png"
     ],
-    "itemTopInfo": {
+    "itemTopInfo": [
+      {
+        "itemSize": "L",
+        "itemHeight": 73,
+        "itemShoulder": 64,
+        "itemArm": null,
+        "itemChest": 64,
+        "itemSleeve": 59
+      },
+      {
         "itemSize": "M",
-        "itemHeight": 40.0,
-        "itemShoulder": 15.5,
-        "itemArm": 10.0,
-        "itemChest": 12.0,
-        "itemSleeve": 14.5
-    },
+        "itemHeight": 70,
+        "itemShoulder": 60,
+        "itemArm": null,
+        "itemChest": 60,
+        "itemSleeve": 57
+      }
+    ],
     "itemBottomInfo": null
 }
 ```
