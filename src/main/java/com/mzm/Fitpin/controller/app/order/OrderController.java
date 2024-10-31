@@ -17,6 +17,8 @@ public class OrderController {
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
     private ItemImgMapper itemImgMapper;
 
     @PostMapping("/post_order")
