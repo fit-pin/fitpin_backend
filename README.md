@@ -1239,7 +1239,6 @@ averageBmi : (구매자 평균 BMI)
 | `userAddr`    | string  | required  | 회원 주소                                               |
 | `userNumber`  | string  | required  | 회원 전화번호                                           |
 | `optional`    | string  | optional  | 상품 이름                                               |
-| `itemImg`     | string  | optional  | 상품 이미지 URL                                         |
 | `itemSize`    | string  | required  | 상품 사이즈                                                       |
 | `itemPrice`   | int     | required  | 상품 가격                                                         |
 | `itemTotal`   | int     | required  | 총 가격                                                           |
