@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/item-info")
@@ -32,7 +33,7 @@ public class ItemInfoController {
             itemInfo.setItemImgName(itemInfoMapper.findItemImages(itemKey));
 
             if (itemInfo.getItemType().equalsIgnoreCase("상의")) {
-                ItemTopInfoDTO topInfo = itemInfoMapper.findTopInfoByKey(itemKey);
+                List<ItemTopInfoDTO> topInfo = itemInfoMapper.findTopInfoByKey(itemKey);
                 itemInfo.setItemTopInfo(topInfo);
             } else if (itemInfo.getItemType().equalsIgnoreCase("하의")) {
                 ItemBottomInfoDTO bottomInfo = itemInfoMapper.findBottomInfoByKey(itemKey);
