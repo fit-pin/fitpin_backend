@@ -21,7 +21,7 @@ public class OrderDTO {
     private String purchaseDate; // 구매 날짜
 
     // 조건문용 필드
-    private String pitStatus; // "수선 있음" 또는 "수선 없음"
+    private boolean pitStatus; // "수선 있음" 또는 "수선 없음"
     private String displayPitPrice; // "경매중" 또는 수선 비용
     private String displayOrderStatus; // 주문 상태 문자열
 

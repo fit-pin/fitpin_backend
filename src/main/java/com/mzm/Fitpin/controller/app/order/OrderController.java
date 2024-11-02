@@ -21,7 +21,7 @@ public class OrderController {
     @Autowired
     private ItemImgMapper itemImgMapper;
 
-    @PostMapping("/post_order")
+    @PostMapping("/post_order") //주문등록
     public ResponseEntity<?> postOrder(@RequestBody OrderDTO orderDTO) {
         try {
             // itemKey로 이미지명 조회 및 설정
@@ -36,7 +36,7 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/get_order/{userEmail}")
+    @GetMapping("/get_order/{userEmail}") // 주문 조회
     public ResponseEntity<?> getOrder(@PathVariable String userEmail) {
         try {
             List<OrderDTO> orderLists = orderMapper.getOrderByUserKey(userEmail);
@@ -46,8 +46,8 @@ public class OrderController {
 
             // 조건에 따른 필드 수정 로직
             List<OrderDTO> processedOrders = orderLists.stream().map(order -> {
-                // 수선 여부 처리 (0: 수선 없음, 1: 수선 있음)
-                order.setPitStatus(order.getPit() == 1 ? "수선 있음" : "수선 없음");
+                // 수선 여부 처리 (0: false, 1: true)
+                order.setPitStatus(order.getPit() == 1);
 
                 // 수선 비용 처리 (null인 경우 "경매중")
                 order.setDisplayPitPrice(Objects.isNull(order.getPitPrice()) ? "경매중" : String.valueOf(order.getPitPrice()));
