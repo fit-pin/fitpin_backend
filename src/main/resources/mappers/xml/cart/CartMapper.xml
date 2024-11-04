@@ -3,10 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mzm.Fitpin.mapper.cart.CartMapper">
 
-    <insert id="insertCart">
+    <insert id="insertCart" parameterType="com.mzm.Fitpin.dto.cart.CartDTO" useGeneratedKeys="true" keyProperty="cartKey">
         INSERT INTO cart (itemKey, userEmail, itemImgName, itemName, itemSize, itemType, itemPrice, pitStatus, qty)
         VALUES (#{itemKey}, #{userEmail}, #{itemImgName}, #{itemName}, #{itemSize}, #{itemType}, #{itemPrice}, #{pitStatus}, #{qty})
     </insert>
+
 
 
     <delete id="deleteCartItem">
