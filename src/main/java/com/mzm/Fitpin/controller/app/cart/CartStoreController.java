@@ -3,6 +3,7 @@ package com.mzm.Fitpin.controller.app.cart;
 import com.mzm.Fitpin.dto.cart.CartDTO;
 import com.mzm.Fitpin.mapper.cart.CartMapper;
 import com.mzm.Fitpin.mapper.PitMapper;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,8 @@ public class CartStoreController {
     @Autowired
     private PitMapper pitMapper;
 
+
+    @Transactional
     @PostMapping("/store")
     public ResponseEntity<?> addItemToCart(@RequestBody CartDTO cartDTO) {
         try {
@@ -42,6 +45,7 @@ public class CartStoreController {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "장바구니에 상품 추가 중 오류가 발생했습니다."));
         }
     }
+
 
 
 
