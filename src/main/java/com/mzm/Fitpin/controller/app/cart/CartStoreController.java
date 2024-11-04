@@ -36,7 +36,12 @@ public class CartStoreController {
                     cartDTO.getPitTopInfo().setItemKey(cartDTO.getItemKey());  // itemKey 설정
                     pitMapper.insertPitTop(cartDTO.getPitTopInfo());
                 }
+            }else if ("하의".equals(cartDTO.getItemType()) && cartDTO.getPitBottomInfo() != null) {
+                cartDTO.getPitBottomInfo().setCartKey(cartDTO.getCartKey());  // cartKey 설정
+                cartDTO.getPitBottomInfo().setItemKey(cartDTO.getItemKey());  // itemKey 설정
+                pitMapper.insertPitBottom(cartDTO.getPitBottomInfo());
             }
+
 
             return ResponseEntity.ok(Collections.singletonMap("message", "장바구니에 상품이 성공적으로 추가되었습니다."));
 
