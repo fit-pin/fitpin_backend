@@ -45,9 +45,11 @@ public class CartStoreController {
             return ResponseEntity.ok(Collections.singletonMap("message", "장바구니에 상품이 성공적으로 추가되었습니다."));
 
         } catch (Exception e) {
-            e.printStackTrace();  // 오류 상세 출력
+            System.out.println("Exception occurred with cartKey: " + cartDTO.getCartKey() + ", itemKey: " + cartDTO.getItemKey());
+            e.getStackTrace();
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "장바구니에 상품 추가 중 오류가 발생했습니다."));
         }
+
     }
 
 
