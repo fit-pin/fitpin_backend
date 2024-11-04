@@ -2,6 +2,7 @@ package com.mzm.Fitpin.controller.app.cart;
 
 import com.mzm.Fitpin.dto.cart.CartDTO;
 import com.mzm.Fitpin.mapper.cart.CartMapper;
+import com.mzm.Fitpin.mapper.PitMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +16,33 @@ public class CartStoreController {
 
     @Autowired
     private CartMapper cartMapper;
+    @Autowired
+    private PitMapper pitMapper;
 
     @PostMapping("/store")
     public ResponseEntity<?> addItemToCart(@RequestBody CartDTO cartDTO) {
         try {
+            // 장바구니에 기본 아이템 정보 삽입
             cartMapper.insertCart(cartDTO);
+
+            // 수선 여부 및 아이템 타입에 따른 수선 정보 처리
+            if (cartDTO.isPitStatus()) {
+                if ("상의".equals(cartDTO.getItemType()) && cartDTO.getPitTopInfo() != null) {
+                    // 상의 수선 정보 삽입
+                    pitMapper.insertPitTop(cartDTO.getPitTopInfo());
+                } else if ("하의".equals(cartDTO.getItemType()) && cartDTO.getPitBottomInfo() != null) {
+                    // 하의 수선 정보 삽입
+                    pitMapper.insertPitBottom(cartDTO.getPitBottomInfo());
+                }
+            }
+
             return ResponseEntity.ok(Collections.singletonMap("message", "장바구니에 상품이 성공적으로 추가되었습니다."));
+
         } catch (Exception e) {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "장바구니에 상품 추가 중 오류가 발생했습니다."));
         }
     }
+
 
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteItemFromCart(@RequestBody Map<String, Object> deleteRequest) {

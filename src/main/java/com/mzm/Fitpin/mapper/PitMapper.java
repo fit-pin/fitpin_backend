@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PitMapper {
-    void insertPitTop(PitTop pitTop);
-    void insertPitBottom(PitBottom pitBottom);
+    void insertPitTop(PitTopDTO pitTop);
+    void insertPitBottom(PitBottomDTO pitBottom);
     PitTopDTO findPitTopByCartKey(int cartKey);
     PitBottomDTO findPitBottomByCartKey(int cartKey);
 }
