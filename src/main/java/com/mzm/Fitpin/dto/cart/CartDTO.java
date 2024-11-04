@@ -12,6 +12,6 @@ public class CartDTO {
     private String itemSize;
     private String itemType;
     private int itemPrice;
-    private int pit;
+    private boolean pitStatus;
     private int qty; // New field for item quantity
 }
