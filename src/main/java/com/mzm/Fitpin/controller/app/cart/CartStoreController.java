@@ -2,7 +2,7 @@ package com.mzm.Fitpin.controller.app.cart;
 
 import com.mzm.Fitpin.dto.cart.CartDTO;
 import com.mzm.Fitpin.mapper.cart.CartMapper;
-import com.mzm.Fitpin.mapper.PitMapper;
+import com.mzm.Fitpin.mapper.pit.PitItemCartMapper;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,39 +17,30 @@ public class CartStoreController {
 
     @Autowired
     private CartMapper cartMapper;
-    @Autowired
-    private PitMapper pitMapper;
 
+    @Autowired
+    private PitItemCartMapper pitItemCartMapper;
 
     @Transactional
     @PostMapping("/store")
     public ResponseEntity<?> addItemToCart(@RequestBody CartDTO cartDTO) {
         try {
-            // 장바구니에 기본 아이템 정보 삽입 및 cartKey 생성
+            // 장바구니에 기본 상품 정보 삽입
             cartMapper.insertCart(cartDTO);
             System.out.println("Generated cartKey: " + cartDTO.getCartKey());
 
-            // 수선 여부 및 아이템 타입에 따른 수선 정보 처리
-            if (cartDTO.isPitStatus()) {
-                if ("상의".equals(cartDTO.getItemType()) && cartDTO.getPitTopInfo() != null) {
-                    cartDTO.getPitTopInfo().setCartKey(cartDTO.getCartKey());  // cartKey 설정
-                    cartDTO.getPitTopInfo().setItemKey(cartDTO.getItemKey());  // itemKey 설정
-
-                    // cartKey와 itemKey 설정 확인 로그 추가
-                    System.out.println("Inserting into pitTop with cartKey: " + cartDTO.getCartKey() + ", itemKey: " + cartDTO.getItemKey());
-
-                    pitMapper.insertPitTop(cartDTO.getPitTopInfo());
-                }
+            // 수선 상태가 true인 경우, pitItemCart 테이블에 수선 정보 삽입
+            if (cartDTO.isPitStatus() && cartDTO.getPitItemCart() != null) {
+                cartDTO.getPitItemCart().setCartKey(cartDTO.getCartKey());
+                cartDTO.getPitItemCart().setItemKey(cartDTO.getItemKey());
+                pitItemCartMapper.insertPitItemCart(cartDTO.getPitItemCart());
             }
 
             return ResponseEntity.ok(Collections.singletonMap("message", "장바구니에 상품이 성공적으로 추가되었습니다."));
-
         } catch (Exception e) {
-            System.out.println("Exception occurred with cartKey: " + cartDTO.getCartKey() + ", itemKey: " + cartDTO.getItemKey());
             e.getStackTrace();
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "장바구니에 상품 추가 중 오류가 발생했습니다."));
         }
-
     }
 
 

@@ -1,7 +1,6 @@
 package com.mzm.Fitpin.dto.cart;
 
-import com.mzm.Fitpin.dto.PitBottomDTO;
-import com.mzm.Fitpin.dto.PitTopDTO;
+import com.mzm.Fitpin.dto.pit.PitItemCartDTO;
 import lombok.Data;
 
 @Data
@@ -17,6 +16,5 @@ public class CartDTO {
     private boolean pitStatus;
     private int qty;
 
-    private PitBottomDTO pitBottomInfo;
-    private PitTopDTO pitTopInfo;
+    private PitItemCartDTO pitItemCart;
 }

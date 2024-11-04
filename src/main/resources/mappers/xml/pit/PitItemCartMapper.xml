@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.pit.PitItemCartMapper">
+
+    <insert id="insertPitItemCart" parameterType="com.mzm.Fitpin.dto.pit.PitItemCartDTO">
+        INSERT INTO pitItemCart (itemKey, cartKey, itemType, itemSize, itemHeight, itemShoulder, itemChest, itemSleeve, frontrise, itemWaists, itemThighs, itemHemWidth)
+        VALUES (#{itemKey}, #{cartKey}, #{itemType}, #{itemSize}, #{itemHeight}, #{itemShoulder}, #{itemChest}, #{itemSleeve}, #{frontrise}, #{itemWaists}, #{itemThighs}, #{itemHemWidth})
+    </insert>
+
+
+    <!-- 수선 정보를 cartKey를 통해 조회 -->
+    <select id="findPitItemByCartKey" parameterType="int" resultType="com.mzm.Fitpin.dto.pit.PitItemCartDTO">
+        SELECT * FROM pitItemCart WHERE cartKey = #{cartKey}
+    </select>
+
+</mapper>
