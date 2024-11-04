@@ -15,7 +15,7 @@ import java.util.Collections;
 @RestController
 @RequestMapping("/api/pit")
 public class PitController {
-
+//TODO 합ㅂ치기
     @Autowired
     private PitMapper pitMapper;
 

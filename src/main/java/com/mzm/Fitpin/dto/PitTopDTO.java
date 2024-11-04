@@ -9,7 +9,6 @@ public class PitTopDTO {
     private String itemSize;
     private Float itemHeight;
     private Float itemShoulder;
-    private Float itemArm;
     private Float itemChest;
     private Float itemSleeve;
 }

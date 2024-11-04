@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
+//TODO: 수선된 사이즈, 구매 날짜, 수선 상태 여부 추가
+//TODO: 구매날짜 추가 완료, 수선 상태 여부 추가 완료, 수선된 사이즈 반환 작업 해야함.
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
