@@ -22,26 +22,27 @@ public class CartStoreController {
     @PostMapping("/store")
     public ResponseEntity<?> addItemToCart(@RequestBody CartDTO cartDTO) {
         try {
-            // 장바구니에 기본 아이템 정보 삽입
+            // 장바구니에 기본 아이템 정보 삽입 및 cartKey 생성
             cartMapper.insertCart(cartDTO);
+            System.out.println("Generated cartKey: " + cartDTO.getCartKey());
 
             // 수선 여부 및 아이템 타입에 따른 수선 정보 처리
             if (cartDTO.isPitStatus()) {
                 if ("상의".equals(cartDTO.getItemType()) && cartDTO.getPitTopInfo() != null) {
-                    // 상의 수선 정보 삽입
+                    cartDTO.getPitTopInfo().setCartKey(cartDTO.getCartKey());  // cartKey 설정
+                    cartDTO.getPitTopInfo().setItemKey(cartDTO.getItemKey());  // itemKey 설정
                     pitMapper.insertPitTop(cartDTO.getPitTopInfo());
-                } else if ("하의".equals(cartDTO.getItemType()) && cartDTO.getPitBottomInfo() != null) {
-                    // 하의 수선 정보 삽입
-                    pitMapper.insertPitBottom(cartDTO.getPitBottomInfo());
                 }
             }
 
             return ResponseEntity.ok(Collections.singletonMap("message", "장바구니에 상품이 성공적으로 추가되었습니다."));
 
         } catch (Exception e) {
+            e.printStackTrace();  // 오류 상세 출력
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "장바구니에 상품 추가 중 오류가 발생했습니다."));
         }
     }
+
 
 
     @DeleteMapping("/delete")
