@@ -34,14 +34,13 @@ public class CartStoreController {
                 if ("상의".equals(cartDTO.getItemType()) && cartDTO.getPitTopInfo() != null) {
                     cartDTO.getPitTopInfo().setCartKey(cartDTO.getCartKey());  // cartKey 설정
                     cartDTO.getPitTopInfo().setItemKey(cartDTO.getItemKey());  // itemKey 설정
+
+                    // cartKey와 itemKey 설정 확인 로그 추가
+                    System.out.println("Inserting into pitTop with cartKey: " + cartDTO.getCartKey() + ", itemKey: " + cartDTO.getItemKey());
+
                     pitMapper.insertPitTop(cartDTO.getPitTopInfo());
                 }
-            }else if ("하의".equals(cartDTO.getItemType()) && cartDTO.getPitBottomInfo() != null) {
-                cartDTO.getPitBottomInfo().setCartKey(cartDTO.getCartKey());  // cartKey 설정
-                cartDTO.getPitBottomInfo().setItemKey(cartDTO.getItemKey());  // itemKey 설정
-                pitMapper.insertPitBottom(cartDTO.getPitBottomInfo());
             }
-
 
             return ResponseEntity.ok(Collections.singletonMap("message", "장바구니에 상품이 성공적으로 추가되었습니다."));
 
