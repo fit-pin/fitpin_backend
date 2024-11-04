@@ -47,7 +47,7 @@ public class OrderController {
             // 조건에 따른 필드 수정 로직
             List<OrderDTO> processedOrders = orderLists.stream().map(order -> {
                 // 수선 여부 처리 (0: false, 1: true)
-                order.setPitStatus(order.getPit() == 1);
+                order.setPitStatus(order.isPitStatus() == true); //boolean타입은 get(메서드명)이 아닌 is(메서드명)로 가져와야함
 
                 // 수선 비용 처리 (null인 경우 "경매중")
                 order.setDisplayPitPrice(Objects.isNull(order.getPitPrice()) ? "경매중" : String.valueOf(order.getPitPrice()));
