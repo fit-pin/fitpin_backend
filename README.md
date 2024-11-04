@@ -950,31 +950,47 @@ averageBmi : (구매자 평균 BMI)
 
 </details> <!-- 상품 상세 정보 API 끝--> 
 
-
 <details> <!-- 장바구니 저장 API 시작 -->
 
 <summary> POST: 장바구니 저장 </summary> 
 
 ## POST: 장바구니 저장
 
-#### URL: `/api/cart/store`
-
-상품을 장바구니에 저장하는 API입니다. 상품 정보와 수량을 받아 장바구니에 저장합니다.
+상품을 장바구니에 저장하는 API입니다. 상품 정보와 수량을 받아 장바구니에 저장하며, 수선 여부와 수선 정보도 함께 저장할 수 있습니다.
 
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/cart/store`
 
 ### **Request Body Parameters**
-| 파라미터     | 타입    | 필수 여부 | 설명                    |
-|-------------|---------|-----------|---------------------------|
-| `itemKey`   | int     | required  | 상품 고유번호             |
-| `userEmail` | string  | required  | 유저 이메일 주소          |
-| `itemImgName`| string  | required  | 상품 이미지 파일명       |
-| `itemName`  | string  | required  | 상품 이름                 |
-| `itemSize`  | string  | required  | 상품 사이즈               |
-| `itemType`  | string  | required  | 상품 유형                 |
-| `itemPrice` | int     | required  | 상품 가격                 |
-| `pit`       | int     | optional  | 수선 가격                 |
-| `qty`       | int     | required  | 상품 수량                 |
+| 파라미터         | 타입          | 필수 여부 | 설명                    |
+|-----------------|---------------|-----------|-------------------------|
+| `itemKey`       | int           | required  | 상품 고유번호           |
+| `userEmail`     | string        | required  | 유저 이메일 주소        |
+| `itemImgName`   | string        | required  | 상품 이미지 파일명      |
+| `itemName`      | string        | required  | 상품 이름               |
+| `itemSize`      | string        | required  | 상품 사이즈             |
+| `itemType`      | string        | required  | 상품 유형 (상의/하의)   |
+| `itemPrice`     | int           | required  | 상품 가격               |
+| `qty`           | int           | required  | 상품 수량               |
+| `pitStatus`     | boolean       | optional  | 수선 여부               |
+| `pitTopInfo`    | object (null 가능) | optional  | 상의 수선 정보 (상의일 때) |
+| `pitBottomInfo` | object (null 가능) | optional  | 하의 수선 정보 (하의일 때) |
+
+#### `pitTopInfo` 필드 (상의일 때)
+| 파라미터       | 타입  | 설명          |
+|---------------|-------|---------------|
+| `itemHeight`  | float | 총장          |
+| `itemShoulder`| float | 어깨너비      |
+| `itemChest`   | float | 가슴단면      |
+| `itemSleeve`  | float | 소매길이      |
+
+#### `pitBottomInfo` 필드 (하의일 때)
+| 파라미터       | 타입  | 설명          |
+|---------------|-------|---------------|
+| `itemHeight`  | float | 기장          |
+| `itemWaists`  | float | 허리단면      |
+| `itemThighs`  | float | 허벅지단면    |
+| `frontrise`   | float | 앞 밑위       |
+| `itemHemWidth`| float | 밑단너비      |
 
 ### **Response**
 
