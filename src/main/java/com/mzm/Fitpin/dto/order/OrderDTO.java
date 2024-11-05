@@ -15,7 +15,7 @@ public class OrderDTO {
     private String itemSize;
     private int itemPrice;
     private int itemTotal;
-    private Integer  pitPrice; // 수선 비용, null일 수 있음
+    private Integer pitPrice; // 수선 비용, null일 수 있음
     private int qty;
     private int orderStatus; // 주문 상태 값 (0, 1, 2)
     private boolean pitStatus; // 수선 여부 (0: 없음, 1: 있음)

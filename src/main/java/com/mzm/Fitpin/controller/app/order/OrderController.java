@@ -103,11 +103,11 @@ public class OrderController {
     }
 
     @PutMapping("/update_pitpirce/{orderKey}")// 수선 값 수정 api
-    public ResponseEntity<?> updatePitPrice(@PathVariable int orderKey, @RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<?> updatePitPrice(@PathVariable int orderKey, @RequestBody OrderDTO orderDTO) {
         try {
-            Integer pitPirce = (Integer) requestBody.get("pitPirce");
-            Integer orderStatus = (Integer) requestBody.get("orderStatus");
-            int rowsAffected = orderMapper.updatePitPrice(orderKey, pitPirce, orderStatus);
+            Integer pitPrice = orderDTO.getPitPrice();
+            Integer orderStatus = orderDTO.getOrderStatus();
+            int rowsAffected = orderMapper.updatePitPrice(orderKey, pitPrice, orderStatus);
 
             if (rowsAffected > 0) {
                 return ResponseEntity.ok(Collections.singletonMap("message", "수선값이 업데이트되었습니다."));
