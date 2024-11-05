@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mzm.Fitpin.mapper.order.OrderMapper">
 
-    <insert id="insertOrder"> <!-- 등록 -->
+    <insert id="insertOrder" parameterType="com.mzm.Fitpin.dto.order.OrderDTO" useGeneratedKeys="true" keyProperty="orderKey">
         INSERT INTO orderList (
             itemKey, userEmail, userName, userAddr, userNumber, optional, itemImg,
             itemSize, itemPrice, itemTotal, pitStatus, pitPrice, qty
@@ -12,6 +12,7 @@
                      #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitStatus}, #{pitPrice}, #{qty}
                  )
     </insert>
+
 
     <select id="getOrderByUserKey" resultType="com.mzm.Fitpin.dto.order.OrderDTO"><!-- 조회 -->
         SELECT *
