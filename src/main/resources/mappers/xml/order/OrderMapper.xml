@@ -5,13 +5,14 @@
 
     <insert id="insertOrder" parameterType="com.mzm.Fitpin.dto.order.OrderDTO" useGeneratedKeys="true" keyProperty="orderKey">
         INSERT INTO orderList (
-            itemKey, userEmail, userName, userAddr, userNumber, optional, itemImg,
-            itemSize, itemPrice, itemTotal, pitStatus, pitPrice, qty
+        itemKey, userEmail, userName, userAddr, userNumber, optional, itemImg,
+        itemSize, itemPrice, itemTotal, pitStatus, pitPrice, qty, orderStatus <!-- orderStatus 추가 -->
         ) VALUES (
-                     #{itemKey}, #{userEmail}, #{userName}, #{userAddr}, #{userNumber}, #{optional}, #{itemImg},
-                     #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitStatus}, #{pitPrice}, #{qty}
-                 )
+        #{itemKey}, #{userEmail}, #{userName}, #{userAddr}, #{userNumber}, #{optional}, #{itemImg},
+        #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitStatus}, #{pitPrice}, #{qty}, #{orderStatus} <!-- orderStatus 추가 -->
+        )
     </insert>
+
 
 
     <select id="getOrderByUserKey" resultType="com.mzm.Fitpin.dto.order.OrderDTO"><!-- 조회 -->
