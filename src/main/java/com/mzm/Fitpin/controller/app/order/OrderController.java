@@ -102,7 +102,7 @@ public class OrderController {
         }
     }
 
-    @PutMapping("/Update_pitPirce/{orderKey}")// 수선 값 수정 api
+    @PutMapping("/update_pitpirce/{orderKey}")// 수선 값 수정 api
     public ResponseEntity<?> updatePitPrice(@PathVariable int orderKey, @RequestBody Map<String, Object> requestBody) {
         try {
             Integer pitPirce = (Integer) requestBody.get("pitPirce");
