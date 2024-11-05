@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzm.Fitpin.mapper.order.PitItemOrderMapper">
+
+    <insert id="insertPitItemOrder" parameterType="com.mzm.Fitpin.dto.order.PitItemOrderDTO">
+        INSERT INTO pitItemOrder (itemKey, orderKey, itemType, itemSize, itemHeight, itemShoulder, itemChest, itemSleeve, frontrise, itemWaists, itemThighs, itemHemWidth)
+        VALUES (#{itemKey}, #{orderKey}, #{itemType}, #{itemSize}, #{itemHeight}, #{itemShoulder}, #{itemChest}, #{itemSleeve}, #{frontrise}, #{itemWaists}, #{itemThighs}, #{itemHemWidth})
+    </insert>
+
+</mapper>

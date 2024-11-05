@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class OrderDTO {
     private int itemKey;
+    private int orderKey;
     private String userEmail;
     private String userName;
     private String userAddr;
@@ -24,6 +25,6 @@ public class OrderDTO {
     private String displayPitPrice; // "경매중" 또는 수선 비용
     private String displayOrderStatus; // 주문 상태 문자열
 
-
+    private PitItemOrderDTO pitItemOrder; // 수선 정보
 
 }

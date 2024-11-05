@@ -15,7 +15,7 @@ public class PitController {
     @Autowired
     private PitItemCartMapper pitItemCartMapper;
 
-    @GetMapping("/get/{cartKey}")
+    @GetMapping("/get/{cartKey}") //TODO: 이거안됨ㅋ 일단나중에
     public ResponseEntity<?> getPitDetails(@PathVariable int cartKey) {
         try {
             PitItemCartDTO pitItemCart = pitItemCartMapper.findPitItemByCartKey(cartKey);
@@ -25,7 +25,7 @@ public class PitController {
                 return ResponseEntity.status(404).body(Collections.singletonMap("message", "수선 정보를 찾을 수 없습니다."));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getStackTrace();
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "수선 정보 조회 중 오류가 발생했습니다."));
         }
     }

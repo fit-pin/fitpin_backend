@@ -3,6 +3,7 @@ package com.mzm.Fitpin.controller.app.order;
 import com.mzm.Fitpin.dto.order.OrderDTO;
 import com.mzm.Fitpin.mapper.ItemImgMapper;
 import com.mzm.Fitpin.mapper.order.OrderMapper;
+import com.mzm.Fitpin.mapper.order.PitItemOrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-//TODO: 수선된 사이즈, 구매 날짜, 수선 상태 여부 추가
-//TODO: 구매날짜 추가 완료, 수선 상태 여부 추가 완료, 수선된 사이즈 반환 작업 해야함.
+
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
@@ -22,7 +22,10 @@ public class OrderController {
     @Autowired
     private ItemImgMapper itemImgMapper;
 
-    @PostMapping("/post_order") //주문등록
+    @Autowired
+    private PitItemOrderMapper pitItemOrderMapper; // 새로 추가된 매퍼
+
+    @PostMapping("/post_order") // 주문 등록
     public ResponseEntity<?> postOrder(@RequestBody OrderDTO orderDTO) {
         try {
             // itemKey로 이미지명 조회 및 설정
@@ -31,6 +34,14 @@ public class OrderController {
 
             // 주문 등록
             orderMapper.insertOrder(orderDTO);
+
+            // 수선 정보가 있는 경우 pitItemOrder 테이블에 추가
+            if (orderDTO.isPitStatus() && orderDTO.getPitItemOrder() != null) {
+                orderDTO.getPitItemOrder().setOrderKey(orderDTO.getOrderKey());
+                orderDTO.getPitItemOrder().setItemKey(orderDTO.getItemKey());
+                pitItemOrderMapper.insertPitItemOrder(orderDTO.getPitItemOrder());
+            }
+
             return ResponseEntity.ok(Collections.singletonMap("message", "주문 등록 완료."));
         } catch (Exception e) {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "알수없는 오류가 발생했습니다."));
