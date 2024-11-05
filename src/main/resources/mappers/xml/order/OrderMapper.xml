@@ -30,7 +30,7 @@
 
     <update id="updatePitPrice">
         UPDATE orderList
-        SET pitPirce = #{pitPrice}, orderStatus = #{orderStatus}
+        SET pitPrice = #{pitPrice}, orderStatus = #{orderStatus}
         WHERE orderKey = #{orderKey}
     </update>
 
