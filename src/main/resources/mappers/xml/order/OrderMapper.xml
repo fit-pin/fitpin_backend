@@ -28,4 +28,10 @@
         WHERE orderKey = #{orderKey}
     </update>
 
+    <update id="updatePitPrice">
+        UPDATE orderList
+        SET pitPirce = #{pitPrice}, orderStatus = #{orderStatus}
+        WHERE orderKey = #{orderKey}
+    </update>
+
 </mapper>

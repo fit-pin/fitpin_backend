@@ -15,4 +15,7 @@ public interface OrderMapper {
     List<OrderDTO> getOrderByUserKey(String userEmail);
 
     int updateOrderStatus(@Param("orderKey") int orderKey, @Param("orderStatus") int orderStatus);
+
+    int updatePitPrice(@Param("orderKey") int orderKey, @Param("pitPrice") Integer pitPrice, @Param("orderStatus") Integer orderStatus);
+
 }

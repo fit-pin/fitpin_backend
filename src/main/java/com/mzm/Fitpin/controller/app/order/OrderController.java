@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -99,6 +100,23 @@ public class OrderController {
         } catch (Exception e) {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "주문 상태 업데이트 중 오류가 발생했습니다."));
         }
+    }
+
+    @PutMapping("/Update_pitPirce/{orderKey}")// 수선 값 수정 api
+    public ResponseEntity<?> updatePitPrice(@PathVariable int orderKey, @RequestBody Map<String, Object> requestBody) {
+        try {
+            Integer pitPirce = (Integer) requestBody.get("pitPirce");
+            Integer orderStatus = (Integer) requestBody.get("orderStatus");
+            int rowsAffected = orderMapper.updatePitPrice(orderKey, pitPirce, orderStatus);
+
+            if (rowsAffected > 0) {
+                return ResponseEntity.ok(Collections.singletonMap("message", "수선값이 업데이트되었습니다."));
+            } else {
+                return ResponseEntity.status(404).body(Collections.singletonMap("message", "해당 주문을 찾을 수 없습니다."));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Collections.singletonMap("message", "수선값 업데이트 중 오류가 발생했습니다."));}
+
     }
 
 }
