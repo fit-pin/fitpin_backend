@@ -8,6 +8,7 @@ public class PitItemOrderDTO {
     private int orderKey;
     private String itemType;
     private String itemSize;
+    private String itemName; // 추가된 필드
     private Float itemHeight;
     private Float itemShoulder;
     private Float itemChest;

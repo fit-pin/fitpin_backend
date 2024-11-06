@@ -31,7 +31,6 @@ public class OrderController {
     @PostMapping("/post_order") // 여러 상품을 포함한 주문 등록
     public ResponseEntity<?> postOrder(@RequestBody OrderRequestDTO orderRequest) {
         try {
-            // 각 상품(ItemOrderDTO)을 개별적으로 처리
             for (ItemOrderDTO item : orderRequest.getItems()) {
                 OrderDTO orderDTO = new OrderDTO();
                 orderDTO.setUserEmail(orderRequest.getUserEmail());
@@ -43,21 +42,18 @@ public class OrderController {
                 orderDTO.setItemSize(item.getItemSize());
                 orderDTO.setItemPrice(item.getItemPrice());
                 orderDTO.setQty(item.getQty());
-                orderDTO.setOptional(orderRequest.getOptional());
                 orderDTO.setItemTotal(orderRequest.getItemTotal());
                 orderDTO.setPitStatus(item.isPitStatus());
 
-                // 상품 이미지 설정
                 String itemImgName = itemImgMapper.getItemImgNameByItemKey(item.getItemKey());
                 orderDTO.setItemImg(itemImgName);
 
-                // 주문 등록
                 orderMapper.insertOrder(orderDTO);
 
-                // 수선 정보가 있는 경우 pitItemOrder 테이블에 추가
                 if (item.isPitStatus() && item.getPitItemOrder() != null) {
                     item.getPitItemOrder().setOrderKey(orderDTO.getOrderKey());
                     item.getPitItemOrder().setItemKey(item.getItemKey());
+                    item.getPitItemOrder().setItemName(item.getItemName()); // itemName 필드 추가
                     pitItemOrderMapper.insertPitItemOrder(item.getPitItemOrder());
                 }
             }

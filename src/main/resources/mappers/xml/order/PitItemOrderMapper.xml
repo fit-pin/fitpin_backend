@@ -4,9 +4,14 @@
 <mapper namespace="com.mzm.Fitpin.mapper.order.PitItemOrderMapper">
 
     <insert id="insertPitItemOrder" parameterType="com.mzm.Fitpin.dto.order.PitItemOrderDTO">
-        INSERT INTO pitItemOrder (itemKey, orderKey, itemType, itemSize, itemHeight, itemShoulder, itemChest, itemSleeve, frontrise, itemWaists, itemThighs, itemHemWidth)
-        VALUES (#{itemKey}, #{orderKey}, #{itemType}, #{itemSize}, #{itemHeight}, #{itemShoulder}, #{itemChest}, #{itemSleeve}, #{frontrise}, #{itemWaists}, #{itemThighs}, #{itemHemWidth})
-    </insert>
+    INSERT INTO pitItemOrder (
+        itemKey, orderKey, itemType, itemSize, itemName, itemHeight, itemShoulder, itemChest, itemSleeve,
+        frontrise, itemWaists, itemThighs, itemHemWidth
+    ) VALUES (
+                 #{itemKey}, #{orderKey}, #{itemType}, #{itemSize}, #{itemName}, #{itemHeight}, #{itemShoulder},
+                 #{itemChest}, #{itemSleeve}, #{frontrise}, #{itemWaists}, #{itemThighs}, #{itemHemWidth}
+             )
+</insert>
 
 
     <!-- 수선 내역 가져오기 -->
