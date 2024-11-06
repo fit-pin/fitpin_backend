@@ -1238,32 +1238,101 @@ averageBmi : (구매자 평균 BMI)
 
 <details> <!-- 주문내역 등록 API 시작 -->
 
-<summary> POST: 주문내역 등록 </summary> 
 
-## POST: 주문 등록
+<details> 
+<summary> **POST: 주문내역 등록** </summary> 
 
-#### URL: `/api/order/post_order`
+## **POST: 주문 등록**
 
-주문을 등록하는 API입니다. 주문 정보를 받아 처리합니다.
+주문 정보를 받아 주문을 등록하는 API입니다.
 
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/order/post_order`
 
 ### **Request Body Parameters**
-| 파라미터      | 타입    | 필수 여부 | 설명                                                    |
-|---------------|---------|-----------|---------------------------------------------------------|
-| `itemKey`     | int     | required  | 상품 고유번호                                           |
-| `userEmail`   | string  | required  | 회원 이메일                                             |
-| `userName`    | string  | required  | 회원 이름                                               |
-| `userAddr`    | string  | required  | 회원 주소                                               |
-| `userNumber`  | string  | required  | 회원 전화번호                                           |
-| `optional`    | string  | optional  | 상품 이름                                               |
-| `itemSize`    | string  | required  | 상품 사이즈                                                       |
-| `itemPrice`   | int     | required  | 상품 가격                                                         |
-| `itemTotal`   | int     | required  | 총 가격                                                           |
-| `pit`         | int     | required  | 수선 여부 (0: 수선 없음, 1: 수선 있음)                             |
-| `pitPrice`    | int     | optional  | 수선 가격 (수선이 없는 경우 null 가능)                             |
-| `qty`         | int     | optional  | 수량                                                               |
-| `orderStatus` | int     | optional  | 주문 상태 (0: 결제 완료, 1: 배송 중, 2: 배송 완료, 기본값은 0입니다.)|
+
+| 파라미터            | 타입         | 필수 여부 | 설명                                                              |
+|---------------------|--------------|-----------|-------------------------------------------------------------------|
+| `userEmail`         | string       | required  | 회원 이메일                                                       |
+| `userName`          | string       | required  | 회원 이름                                                         |
+| `userAddr`          | string       | required  | 회원 주소                                                         |
+| `userAddrDetail`    | string       | optional  | 회원 상세 주소                                                    |
+| `userNumber`        | string       | required  | 회원 전화번호                                                     |
+| `itemTotal`         | int          | required  | 주문의 총 가격                                                    |
+| `items`             | array(object)| required  | 주문한 상품 리스트                                                |
+
+- **`items` 객체 내부 필드**  
+
+  | 필드               | 타입       | 필수 여부 | 설명                                                      |
+  |--------------------|------------|-----------|-----------------------------------------------------------|
+  | `itemKey`          | int        | required  | 상품 고유 번호                                            |
+  | `itemName`         | string     | required  | 상품 이름                                                 |
+  | `itemSize`         | string     | required  | 상품 사이즈                                               |
+  | `itemPrice`        | int        | required  | 상품 가격                                                 |
+  | `qty`              | int        | required  | 상품 수량                                                 |
+  | `pitStatus`        | boolean    | required  | 수선 여부 (`true`: 수선 있음, `false`: 수선 없음)         |
+  | `pitItemOrder`     | object     | optional  | 수선 정보 (수선 여부가 `true`일 경우 필요, 없으면 `null`) |
+
+- **`pitItemOrder` 객체 내부 필드** (수선 정보)
+
+  | 필드               | 타입       | 필수 여부 | 설명                                                      |
+  |--------------------|------------|-----------|-----------------------------------------------------------|
+  | `itemType`         | string     | required  | 상품 종류 (예: 상의, 하의)                                 |
+  | `itemSize`         | string     | optional  | 수선 후 상품 사이즈                                       |
+  | `itemName`         | string     | required  | 상품 이름                                                 |
+  | `itemHeight`       | float      | optional  | 총장 (상의/하의 공통)                                     |
+  | `itemShoulder`     | float      | optional  | 어깨 너비 (상의 전용)                                     |
+  | `itemChest`        | float      | optional  | 가슴 단면 (상의 전용)                                     |
+  | `itemSleeve`       | float      | optional  | 소매 길이 (상의 전용)                                     |
+  | `frontrise`        | float      | optional  | 바지 밑위 (하의 전용)                                     |
+  | `itemWaists`       | float      | optional  | 허리 단면 (하의 전용)                                     |
+  | `itemThighs`       | float      | optional  | 허벅지 단면 (하의 전용)                                   |
+  | `itemHemWidth`     | float      | optional  | 밑단 단면 (하의 전용)                                     |
+  | `itemhipWidth`     | float      | optional  | 엉덩이 단면 (하의 전용)                                   |
+
+### **Request Example**
+
+```json
+{
+    "userEmail": "test1",
+    "userName": "신우진",
+    "userAddr": "서울시 강남구",
+    "userAddrDetail": "상세주소 테스트",
+    "userNumber": "010-1234-5678",
+    "itemTotal": 12000,
+    "items": [
+        {
+            "itemKey": 7,
+            "itemName": "포스 맨투맨",
+            "itemSize": "M",
+            "itemPrice": 70000,
+            "qty": 1,
+            "pitStatus": true,
+            "pitItemOrder": {
+                "itemType": "상의",
+                "itemSize": "L",
+                "itemName": "포스 맨투맨",
+                "itemHeight": 70.0,
+                "itemShoulder": 45.0,
+                "itemChest": 55.0,
+                "itemSleeve": 60.0,
+                "frontrise": null,
+                "itemWaists": null,
+                "itemThighs": null,
+                "itemHemWidth": null
+            }
+        },
+        {
+            "itemKey": 8,
+            "itemName": "로고 후디",
+            "itemSize": "L",
+            "itemPrice": 20000,
+            "qty": 1,
+            "pitStatus": false,
+            "pitItemOrder": null
+        }
+    ]
+}
+```
 
 ### **Response**
 
@@ -1281,10 +1350,7 @@ averageBmi : (구매자 평균 BMI)
   }
   ```
 
-</details> <!-- 주문내역 등록 API 끝 -->
-
-
-<details> <!-- 주문 조회 API 시작 -->
+</details>
 
 <summary> GET: 주문 조회 </summary> 
 
