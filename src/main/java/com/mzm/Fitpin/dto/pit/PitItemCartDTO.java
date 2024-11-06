@@ -16,4 +16,6 @@ public class PitItemCartDTO {
     private Float itemWaists;
     private Float itemThighs;
     private Float itemHemWidth;
+    private Float itemhipWidth; // 엉덩이단면 추가
+
 }
