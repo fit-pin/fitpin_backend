@@ -961,36 +961,30 @@ averageBmi : (구매자 평균 BMI)
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/cart/store`
 
 ### **Request Body Parameters**
-| 파라미터         | 타입          | 필수 여부 | 설명                    |
-|-----------------|---------------|-----------|-------------------------|
-| `itemKey`       | int           | required  | 상품 고유번호           |
-| `userEmail`     | string        | required  | 유저 이메일 주소        |
-| `itemImgName`   | string        | required  | 상품 이미지 파일명      |
-| `itemName`      | string        | required  | 상품 이름               |
-| `itemSize`      | string        | required  | 상품 사이즈             |
-| `itemType`      | string        | required  | 상품 유형 (상의/하의)   |
-| `itemPrice`     | int           | required  | 상품 가격               |
-| `qty`           | int           | required  | 상품 수량               |
-| `pitStatus`     | boolean       | optional  | 수선 여부               |
-| `pitTopInfo`    | object (null 가능) | optional  | 상의 수선 정보 (상의일 때) |
-| `pitBottomInfo` | object (null 가능) | optional  | 하의 수선 정보 (하의일 때) |
+| 파라미터         | 타입               | 필수 여부 | 설명                          |
+|-----------------|--------------------|-----------|-------------------------------|
+| `itemKey`       | int                | required  | 상품 고유번호                 |
+| `userEmail`     | string             | required  | 유저 이메일 주소              |
+| `itemImgName`   | string             | required  | 상품 이미지 파일명            |
+| `itemName`      | string             | required  | 상품 이름                     |
+| `itemSize`      | string             | required  | 상품 사이즈                   |
+| `itemType`      | string             | required  | 상품 유형 (상의/하의)         |
+| `itemPrice`     | int                | required  | 상품 가격                     |
+| `qty`           | int                | required  | 상품 수량                     |
+| `pitStatus`     | boolean            | optional  | 수선 여부                     |
+| `pitItemCart`   | object (null 가능) | optional  | 수선 정보 객체 (수선 시 사용) |
 
-#### `pitTopInfo` 필드 (상의일 때)
-| 파라미터       | 타입  | 설명          |
-|---------------|-------|---------------|
-| `itemHeight`  | float | 총장          |
-| `itemShoulder`| float | 어깨너비      |
-| `itemChest`   | float | 가슴단면      |
-| `itemSleeve`  | float | 소매길이      |
-
-#### `pitBottomInfo` 필드 (하의일 때)
-| 파라미터       | 타입  | 설명          |
-|---------------|-------|---------------|
-| `itemHeight`  | float | 기장          |
-| `itemWaists`  | float | 허리단면      |
-| `itemThighs`  | float | 허벅지단면    |
-| `frontrise`   | float | 앞 밑위       |
-| `itemHemWidth`| float | 밑단너비      |
+#### `pitItemCart` 필드
+| 파라미터        | 타입   | 설명                          |
+|----------------|--------|-------------------------------|
+| `itemHeight`   | float  | 상품 높이 (총장)              |
+| `itemShoulder` | float  | 어깨너비                      |
+| `itemChest`    | float  | 가슴단면                      |
+| `itemSleeve`   | float  | 소매길이                      |
+| `frontrise`    | float  | 앞 밑위                       |
+| `itemWaists`   | float  | 허리단면                      |
+| `itemThighs`   | float  | 허벅지단면                    |
+| `itemHemWidth` | float  | 밑단너비                      |
 
 ### **Response**
 
@@ -998,6 +992,13 @@ averageBmi : (구매자 평균 BMI)
   ```json
   {
     "message": "장바구니에 상품이 성공적으로 추가되었습니다."
+  }
+  ```
+
+- **Status 404 Not Found**
+  ```json
+  {
+    "message": "해당 상품을 찾을 수 없습니다."
   }
   ```
 
@@ -1009,6 +1010,7 @@ averageBmi : (구매자 평균 BMI)
   ```
 
 </details> <!-- 장바구니 저장 API 끝 -->
+
 
 <details> <!-- 장바구니 삭제 API 시작 -->
 
