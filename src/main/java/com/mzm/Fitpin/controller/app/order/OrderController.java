@@ -1,6 +1,8 @@
 package com.mzm.Fitpin.controller.app.order;
 
+import com.mzm.Fitpin.dto.order.ItemOrderDTO;
 import com.mzm.Fitpin.dto.order.OrderDTO;
+import com.mzm.Fitpin.dto.order.OrderRequestDTO;
 import com.mzm.Fitpin.dto.order.PitItemOrderDTO;
 import com.mzm.Fitpin.mapper.ItemImgMapper;
 import com.mzm.Fitpin.mapper.order.OrderMapper;
@@ -26,28 +28,46 @@ public class OrderController {
     @Autowired
     private PitItemOrderMapper pitItemOrderMapper; // 새로 추가된 매퍼
 
-    @PostMapping("/post_order") // 주문 등록
-    public ResponseEntity<?> postOrder(@RequestBody OrderDTO orderDTO) {
+    @PostMapping("/post_order") // 여러 상품을 포함한 주문 등록
+    public ResponseEntity<?> postOrder(@RequestBody OrderRequestDTO orderRequest) {
         try {
-            // itemKey로 이미지명 조회 및 설정
-            String itemImgName = itemImgMapper.getItemImgNameByItemKey(orderDTO.getItemKey());
-            orderDTO.setItemImg(itemImgName);
+            // 각 상품(ItemOrderDTO)을 개별적으로 처리
+            for (ItemOrderDTO item : orderRequest.getItems()) {
+                OrderDTO orderDTO = new OrderDTO();
+                orderDTO.setUserEmail(orderRequest.getUserEmail());
+                orderDTO.setUserName(orderRequest.getUserName());
+                orderDTO.setUserAddr(orderRequest.getUserAddr());
+                orderDTO.setUserAddrDetail(orderRequest.getUserAddrDetail());
+                orderDTO.setUserNumber(orderRequest.getUserNumber());
+                orderDTO.setItemKey(item.getItemKey());
+                orderDTO.setItemSize(item.getItemSize());
+                orderDTO.setItemPrice(item.getItemPrice());
+                orderDTO.setQty(item.getQty());
+                orderDTO.setOptional(orderRequest.getOptional());
+                orderDTO.setItemTotal(orderRequest.getItemTotal());
+                orderDTO.setPitStatus(item.isPitStatus());
 
-            // 주문 등록
-            orderMapper.insertOrder(orderDTO);
+                // 상품 이미지 설정
+                String itemImgName = itemImgMapper.getItemImgNameByItemKey(item.getItemKey());
+                orderDTO.setItemImg(itemImgName);
 
-            // 수선 정보가 있는 경우 pitItemOrder 테이블에 추가
-            if (orderDTO.isPitStatus() && orderDTO.getPitItemOrder() != null) {
-                orderDTO.getPitItemOrder().setOrderKey(orderDTO.getOrderKey());
-                orderDTO.getPitItemOrder().setItemKey(orderDTO.getItemKey());
-                pitItemOrderMapper.insertPitItemOrder(orderDTO.getPitItemOrder());
+                // 주문 등록
+                orderMapper.insertOrder(orderDTO);
+
+                // 수선 정보가 있는 경우 pitItemOrder 테이블에 추가
+                if (item.isPitStatus() && item.getPitItemOrder() != null) {
+                    item.getPitItemOrder().setOrderKey(orderDTO.getOrderKey());
+                    item.getPitItemOrder().setItemKey(item.getItemKey());
+                    pitItemOrderMapper.insertPitItemOrder(item.getPitItemOrder());
+                }
             }
 
             return ResponseEntity.ok(Collections.singletonMap("message", "주문 등록 완료."));
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(Collections.singletonMap("message", "알수없는 오류가 발생했습니다."));
+            return ResponseEntity.status(500).body(Collections.singletonMap("message", "알 수 없는 오류가 발생했습니다."));
         }
     }
+
 
     @GetMapping("/get_order/{userEmail}") // 주문 조회
     public ResponseEntity<?> getOrder(@PathVariable String userEmail) {
