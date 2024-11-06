@@ -5,30 +5,27 @@
 
     <insert id="insertOrder" parameterType="com.mzm.Fitpin.dto.order.OrderDTO" useGeneratedKeys="true" keyProperty="orderKey">
         INSERT INTO orderList (
-        itemKey, userEmail, userName, userAddr, userNumber, optional, itemImg,
-        itemSize, itemPrice, itemTotal, pitStatus, pitPrice, qty, orderStatus <!-- orderStatus 추가 -->
+            itemKey, userEmail, userName, userAddr, userAddrDetail, userNumber, optional, itemImg,
+            itemSize, itemPrice, itemTotal, pitStatus, pitPrice, qty, orderStatus
         ) VALUES (
-        #{itemKey}, #{userEmail}, #{userName}, #{userAddr}, #{userNumber}, #{optional}, #{itemImg},
-        #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitStatus}, #{pitPrice}, #{qty}, #{orderStatus} <!-- orderStatus 추가 -->
-        )
-    </insert>
+                     #{itemKey}, #{userEmail}, #{userName}, #{userAddr}, #{userAddrDetail}, #{userNumber}, #{optional}, #{itemImg},
+                     #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitStatus}, #{pitPrice}, #{qty}, #{orderStatus}
+                 )
+    </insert> <!-- 삽입 -->
 
-
-
-    <select id="getOrderByUserKey" resultType="com.mzm.Fitpin.dto.order.OrderDTO"><!-- 조회 -->
+    <select id="getOrderByUserKey" resultType="com.mzm.Fitpin.dto.order.OrderDTO">
         SELECT *
         FROM orderList
-        WHERE userEmail = #{userEmail}
+        WHERE userEmail = #{userEmail} <!-- 조회 -->
     </select>
 
-
-    <update id="updateOrderStatus"><!-- 갱신 -->
+    <update id="updateOrderStatus">
         UPDATE orderList
         SET orderStatus = #{orderStatus}
         WHERE orderKey = #{orderKey}
     </update>
 
-    <update id="updatePitPrice">
+    <update id="updatePitPrice"> <!-- 갱신 -->
         UPDATE orderList
         SET pitPrice = #{pitPrice}, orderStatus = #{orderStatus}
         WHERE orderKey = #{orderKey}

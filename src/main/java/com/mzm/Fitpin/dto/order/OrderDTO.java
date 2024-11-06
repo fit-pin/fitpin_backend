@@ -9,6 +9,7 @@ public class OrderDTO {
     private String userEmail;
     private String userName;
     private String userAddr;
+    private String userAddrDetail; // 새로 추가된 필드
     private String userNumber;
     private String optional;
     private String itemImg;
@@ -26,5 +27,4 @@ public class OrderDTO {
     private String displayOrderStatus; // 주문 상태 문자열
 
     private PitItemOrderDTO pitItemOrder; // 수선 정보
-
 }
