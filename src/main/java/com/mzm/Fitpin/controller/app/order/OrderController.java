@@ -1,6 +1,7 @@
 package com.mzm.Fitpin.controller.app.order;
 
 import com.mzm.Fitpin.dto.order.OrderDTO;
+import com.mzm.Fitpin.dto.order.PitItemOrderDTO;
 import com.mzm.Fitpin.mapper.ItemImgMapper;
 import com.mzm.Fitpin.mapper.order.OrderMapper;
 import com.mzm.Fitpin.mapper.order.PitItemOrderMapper;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -52,15 +52,16 @@ public class OrderController {
     @GetMapping("/get_order/{userEmail}") // 주문 조회
     public ResponseEntity<?> getOrder(@PathVariable String userEmail) {
         try {
+            // 사용자 이메일을 기반으로 주문 목록 조회
             List<OrderDTO> orderLists = orderMapper.getOrderByUserKey(userEmail);
             if (orderLists.isEmpty()) {
                 return ResponseEntity.status(404).body(Collections.singletonMap("message", "주문 리스트가 없습니다."));
             }
 
-            // 조건에 따른 필드 수정 로직
+            // 조건에 따른 필드 수정 및 수선 정보 추가 로직
             List<OrderDTO> processedOrders = orderLists.stream().map(order -> {
                 // 수선 여부 처리 (0: false, 1: true)
-                order.setPitStatus(order.isPitStatus() == true); //boolean타입은 get(메서드명)이 아닌 is(메서드명)로 가져와야함
+                order.setPitStatus(order.isPitStatus());
 
                 // 수선 비용 처리 (null인 경우 "경매중")
                 order.setDisplayPitPrice(Objects.isNull(order.getPitPrice()) ? "경매중" : String.valueOf(order.getPitPrice()));
@@ -79,6 +80,13 @@ public class OrderController {
                     default:
                         order.setDisplayOrderStatus("알 수 없음");
                 }
+
+                // 수선 정보 추가: pitStatus가 true일 경우 pitItemOrder 테이블에서 정보 조회 및 설정
+                if (order.isPitStatus()) {
+                    PitItemOrderDTO pitItemOrder = pitItemOrderMapper.getPitItemOrderByOrderKey(order.getOrderKey());
+                    order.setPitItemOrder(pitItemOrder);
+                }
+
                 return order;
             }).toList();
 
@@ -87,6 +95,7 @@ public class OrderController {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "주문 조회 중 오류가 발생했습니다."));
         }
     }
+
 
     @PutMapping("/update_status/{orderKey}") // 주문 상태 갱신 API
     public ResponseEntity<?> updateOrderStatus(@PathVariable int orderKey, @RequestParam int orderStatus) {

@@ -8,4 +8,10 @@
         VALUES (#{itemKey}, #{orderKey}, #{itemType}, #{itemSize}, #{itemHeight}, #{itemShoulder}, #{itemChest}, #{itemSleeve}, #{frontrise}, #{itemWaists}, #{itemThighs}, #{itemHemWidth})
     </insert>
 
+
+    <!-- 수선 내역 가져오기 -->
+    <select id="getPitItemOrderByOrderKey" parameterType="int" resultType="com.mzm.Fitpin.dto.order.PitItemOrderDTO">
+        SELECT * FROM pitItemOrder WHERE orderKey = #{orderKey}
+    </select>
+
 </mapper>
