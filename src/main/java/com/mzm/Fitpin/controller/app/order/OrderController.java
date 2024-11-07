@@ -39,6 +39,7 @@ public class OrderController {
                 orderDTO.setUserAddrDetail(orderRequest.getUserAddrDetail());
                 orderDTO.setUserNumber(orderRequest.getUserNumber());
                 orderDTO.setItemKey(item.getItemKey());
+                orderDTO.setItemName(item.getItemName()); // 추가된 필드 설정
                 orderDTO.setItemSize(item.getItemSize());
                 orderDTO.setItemPrice(item.getItemPrice());
                 orderDTO.setQty(item.getQty());

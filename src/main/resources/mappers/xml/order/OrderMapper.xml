@@ -5,10 +5,10 @@
 
     <insert id="insertOrder" parameterType="com.mzm.Fitpin.dto.order.OrderDTO" useGeneratedKeys="true" keyProperty="orderKey">
         INSERT INTO orderList (
-            itemKey, userEmail, userName, userAddr, userAddrDetail, userNumber, itemImg,
+            itemKey, itemName, userEmail, userName, userAddr, userAddrDetail, userNumber, itemImg,
             itemSize, itemPrice, itemTotal, pitStatus, pitPrice, qty, orderStatus
         ) VALUES (
-                     #{itemKey}, #{userEmail}, #{userName}, #{userAddr}, #{userAddrDetail}, #{userNumber}, #{itemImg},
+                     #{itemKey}, #{itemName}, #{userEmail}, #{userName}, #{userAddr}, #{userAddrDetail}, #{userNumber}, #{itemImg},
                      #{itemSize}, #{itemPrice}, #{itemTotal}, #{pitStatus}, #{pitPrice}, #{qty}, #{orderStatus}
                  )
     </insert> <!-- 삽입 -->

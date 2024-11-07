@@ -11,6 +11,7 @@ public class OrderDTO {
     private String userAddr;
     private String userAddrDetail;
     private String userNumber;
+    private String itemName; // 추가된 필드
     private String itemImg;
     private String itemSize;
     private int itemPrice;
