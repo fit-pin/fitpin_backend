@@ -28,7 +28,7 @@ public class OrderController {
     @Autowired
     private PitItemOrderMapper pitItemOrderMapper; // 새로 추가된 매퍼
 
-    @PostMapping("/post_order") // 여러 상품을 포함한 주문 등록
+    @PostMapping("/post_order")
     public ResponseEntity<?> postOrder(@RequestBody OrderRequestDTO orderRequest) {
         try {
             for (ItemOrderDTO item : orderRequest.getItems()) {
@@ -45,6 +45,10 @@ public class OrderController {
                 orderDTO.setItemTotal(orderRequest.getItemTotal());
                 orderDTO.setPitStatus(item.isPitStatus());
 
+                // 수선 여부에 따른 pitPrice 설정
+                orderDTO.setPitPrice(item.isPitStatus() ? item.getPitPrice() : null);
+
+                // 상품 이미지 설정
                 String itemImgName = itemImgMapper.getItemImgNameByItemKey(item.getItemKey());
                 orderDTO.setItemImg(itemImgName);
 
@@ -53,7 +57,7 @@ public class OrderController {
                 if (item.isPitStatus() && item.getPitItemOrder() != null) {
                     item.getPitItemOrder().setOrderKey(orderDTO.getOrderKey());
                     item.getPitItemOrder().setItemKey(item.getItemKey());
-                    item.getPitItemOrder().setItemName(item.getItemName()); // itemName 필드 추가
+                    item.getPitItemOrder().setItemName(item.getItemName());
                     pitItemOrderMapper.insertPitItemOrder(item.getPitItemOrder());
                 }
             }
