@@ -4,13 +4,12 @@
 <mapper namespace="com.mzm.Fitpin.mapper.cart.CartMapper">
 
     <insert id="insertCart" parameterType="com.mzm.Fitpin.dto.cart.CartDTO" useGeneratedKeys="true" keyProperty="cartKey">
-        INSERT INTO cart (itemKey, userEmail, itemImgName, itemName, itemSize, itemType, itemPrice, pitStatus, qty)
-        VALUES (#{itemKey}, #{userEmail}, #{itemImgName}, #{itemName}, #{itemSize}, #{itemType}, #{itemPrice}, #{pitStatus}, #{qty})
+        INSERT INTO cart (itemKey, userEmail, itemImgName, itemName, itemSize, itemType, itemPrice, pitPrice, pitStatus, qty)
+        VALUES (#{itemKey}, #{userEmail}, #{itemImgName}, #{itemName}, #{itemSize}, #{itemType}, #{itemPrice}, #{pitPrice}, #{pitStatus}, #{qty})
     </insert>
 
     <delete id="deleteCartItem">
         DELETE FROM cart WHERE userEmail = #{userEmail} AND itemKey = #{itemKey}
     </delete>
 
-    
 </mapper>

@@ -13,6 +13,7 @@ public class CartDTO {
     private String itemSize;
     private String itemType;
     private int itemPrice;
+    private Integer pitPrice;  // 새로 추가된 필드
     private boolean pitStatus;
     private int qty;
 

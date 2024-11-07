@@ -25,6 +25,11 @@ public class CartStoreController {
     @PostMapping("/store")
     public ResponseEntity<?> addItemToCart(@RequestBody CartDTO cartDTO) {
         try {
+            // 수선 상태에 따라 pitPrice를 설정
+            if (!cartDTO.isPitStatus()) {
+                cartDTO.setPitPrice(null);
+            }
+
             // 장바구니에 기본 상품 정보 삽입
             cartMapper.insertCart(cartDTO);
             System.out.println("Generated cartKey: " + cartDTO.getCartKey());
@@ -33,6 +38,7 @@ public class CartStoreController {
             if (cartDTO.isPitStatus() && cartDTO.getPitItemCart() != null) {
                 cartDTO.getPitItemCart().setCartKey(cartDTO.getCartKey());
                 cartDTO.getPitItemCart().setItemKey(cartDTO.getItemKey());
+
                 pitItemCartMapper.insertPitItemCart(cartDTO.getPitItemCart());
             }
 
@@ -42,7 +48,6 @@ public class CartStoreController {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "장바구니에 상품 추가 중 오류가 발생했습니다."));
         }
     }
-
 
 
 
