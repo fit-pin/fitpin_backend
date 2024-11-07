@@ -8,6 +8,6 @@ public interface CartMapper {
 
     void insertCart(CartDTO cartDTO);
 
-    int deleteCartItem(String userEmail, int itemKey);
+    int deleteCartItem(int cartKey);
 
 }

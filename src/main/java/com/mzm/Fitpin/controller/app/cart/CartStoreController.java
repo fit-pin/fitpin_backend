@@ -51,19 +51,17 @@ public class CartStoreController {
 
 
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteItemFromCart(@RequestBody Map<String, Object> deleteRequest) {
+    @DeleteMapping("/delete/{cartKey}")
+    public ResponseEntity<?> deleteItemFromCart(@PathVariable int cartKey) {
         try {
-            String userEmail = (String) deleteRequest.get("userEmail");
-            int itemKey = (int) deleteRequest.get("itemKey");
-
-            int deletedRows = cartMapper.deleteCartItem(userEmail, itemKey);
+            int deletedRows = cartMapper.deleteCartItem(cartKey);
             if (deletedRows > 0) {
                 return ResponseEntity.ok(Collections.singletonMap("message", "장바구니에서 상품이 성공적으로 삭제되었습니다."));
             } else {
                 return ResponseEntity.status(404).body(Collections.singletonMap("message", "해당 상품을 찾을 수 없습니다."));
             }
         } catch (Exception e) {
+            e.getStackTrace();
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "장바구니에서 상품 삭제 중 오류가 발생했습니다."));
         }
     }

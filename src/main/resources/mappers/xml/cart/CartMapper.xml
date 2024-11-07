@@ -9,7 +9,7 @@
     </insert>
 
     <delete id="deleteCartItem">
-        DELETE FROM cart WHERE userEmail = #{userEmail} AND itemKey = #{itemKey}
+        DELETE FROM cart WHERE cartKey = #{cartKey}
     </delete>
 
 </mapper>
