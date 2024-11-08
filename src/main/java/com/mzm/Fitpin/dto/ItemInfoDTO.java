@@ -16,5 +16,5 @@ public class ItemInfoDTO {
     private int pitPrice;
     private List<String> itemImgName;
     private List<ItemTopInfoDTO> itemTopInfo;
-    private ItemBottomInfoDTO itemBottomInfo;
+    private List<ItemBottomInfoDTO> itemBottomInfo;
 }

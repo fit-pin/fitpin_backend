@@ -31,7 +31,7 @@ public class CartStoreGetController {
             for (CartDTO cartItem : cartItems) {
                 if (cartItem.isPitStatus()) {
                     PitItemCartDTO pitItemCart = pitItemCartMapper.findPitItemByCartKey(cartItem.getCartKey());
-                    cartItem.setPitItemCart(pitItemCart);  // 수선 정보 설정
+                    cartItem.setPitItemCart(pitItemCart);  // 수선 정보
                 }
             }
             return ResponseEntity.ok(cartItems);

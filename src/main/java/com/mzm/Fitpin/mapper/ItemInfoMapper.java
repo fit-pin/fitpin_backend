@@ -20,5 +20,5 @@ public interface ItemInfoMapper {
     List<ItemTopInfoDTO> findTopInfoByKey(@Param("itemKey") int itemKey);
 
     //@Select("SELECT * FROM itemBottomInfo WHERE itemKey = #{itemKey}")
-    ItemBottomInfoDTO findBottomInfoByKey(@Param("itemKey") int itemKey);
+    List<ItemBottomInfoDTO> findBottomInfoByKey(@Param("itemKey") int itemKey);
 }

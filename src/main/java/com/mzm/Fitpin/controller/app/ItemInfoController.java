@@ -37,7 +37,7 @@ public class ItemInfoController {
                 List<ItemTopInfoDTO> topInfo = itemInfoMapper.findTopInfoByKey(itemKey);
                 itemInfo.setItemTopInfo(topInfo);
             } else if ("하의".equalsIgnoreCase(itemInfo.getItemType())) {
-                ItemBottomInfoDTO bottomInfo = itemInfoMapper.findBottomInfoByKey(itemKey);
+                List<ItemBottomInfoDTO> bottomInfo = itemInfoMapper.findBottomInfoByKey(itemKey);
                 itemInfo.setItemBottomInfo(bottomInfo);
             } else {
                 return ResponseEntity.badRequest().body(Collections.singletonMap("message", "상품 종류를 확인할 수 없습니다."));
