@@ -37,7 +37,7 @@ public class CartStoreGetController {
             return ResponseEntity.ok(cartItems);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getStackTrace();
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "장바구니 조회 중 오류가 발생했습니다."));
         }
     }

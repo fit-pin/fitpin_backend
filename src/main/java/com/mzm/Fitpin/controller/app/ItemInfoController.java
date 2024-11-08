@@ -44,8 +44,10 @@ public class ItemInfoController {
 
             return ResponseEntity.ok(itemInfo);
         } catch (CustomException e) {
+            e.getStackTrace();
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
+            e.getStackTrace();
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "상품 정보 조회 중 오류가 발생했습니다."));
         }
     }
