@@ -21,7 +21,7 @@ public class ItemInfoController {
 
     @Autowired
     private ItemInfoMapper itemInfoMapper;
-    //TODO: fitPrice 칼럼 추가한거 반환하기 (완료)
+    //TODO: API 문서 갱신하기
     @GetMapping("/{itemKey}")
     public ResponseEntity<?> getItemInfo(@PathVariable int itemKey) {
         try {
