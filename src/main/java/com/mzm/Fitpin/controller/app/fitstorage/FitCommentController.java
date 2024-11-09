@@ -38,6 +38,8 @@ public class FitCommentController {
                     dto.setItemBrand(fitStorage.getItemBrand());
                     dto.setItemSize(fitStorage.getItemSize());
                     dto.setOption(fitStorage.getOption());
+                    dto.setDeleteStatus(fitStorage.isDeleteStatus());
+                    dto.setCommentDate(fitStorage.getCommentDate());
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -51,11 +53,14 @@ public class FitCommentController {
         // fitcommentKey를 사용하여 데이터베이스에서 해당 요소 조회
         FitStorageDTO fitStorageDTO = fitStorageMapper.findByFitCommentKey(fitStorageKey);
 
-        if (fitStorageDTO != null) {
-            return ResponseEntity.ok(fitStorageDTO);
-        } else {
+        if (fitStorageDTO == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Collections.singletonMap("message", "해당 키에 대한 데이터를 찾을 수 없습니다."));
+        } else if (fitStorageDTO.isDeleteStatus()) {
+            return ResponseEntity.status(404)
+                    .body(Collections.singletonMap("message", "삭제된 코멘트 입니다"));
+        } else {
+            return ResponseEntity.ok(fitStorageDTO);
         }
     }
 
@@ -91,7 +96,7 @@ public class FitCommentController {
             return ResponseEntity.ok(Collections.singletonMap("message", "코멘트 저장 및 정보 업데이트 성공"));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("message", "이미지를 찾을 수 없습니다"));
+                    .body(Collections.singletonMap("message", "핏코멘트를 찾을 수 없습니다"));
         }
     }
 
@@ -109,7 +114,7 @@ public class FitCommentController {
         String itemSize = fitStorageDTO.getItemSize();
         String option = fitStorageDTO.getOption();
 
-        // 데이터베이스에서 해당 이미지 찾기
+        // 데이터베이스에서 해당 핏 코멘트 찾기
         FitStorage fitStorage = fitStorageMapper.findByUserEmailAndFitStorageImg(userEmail, imageName);
 
         if (fitStorage != null) {
@@ -125,7 +130,7 @@ public class FitCommentController {
             return ResponseEntity.ok(Collections.singletonMap("message", "코멘트 및 정보 수정 성공"));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("message", "이미지를 찾을 수 없습니다"));
+                    .body(Collections.singletonMap("message", "핏코멘트를 찾을 수 없습니다"));
         }
     }
 
@@ -141,19 +146,22 @@ public class FitCommentController {
         FitStorage fitStorage = fitStorageMapper.findByUserEmailAndFitStorageImg(userEmail, imageName);
 
         if (fitStorage != null) {
-            // 코멘트 및 정보 삭제
-            fitStorage.setFitComment(null);
-            fitStorage.setItemName(null);  // 추가된 필드 초기화
-            fitStorage.setItemType(null);
-            fitStorage.setItemBrand(null);
-            fitStorage.setItemSize(null);
-            fitStorage.setOption(null);
+            //삭제(리워드 시스템을 위해 DeleteStatus만 true로 세팅)
+            fitStorage.setDeleteStatus(true);
             fitStorageMapper.update(fitStorage);
 
             return ResponseEntity.ok(Collections.singletonMap("message", "코멘트 및 정보 삭제 성공"));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("message", "이미지를 찾을 수 없습니다"));
+                    .body(Collections.singletonMap("message", "핏코멘트를 찾을 수 없습니다"));
         }
+    }
+
+    @DeleteMapping("/delete_comment_real/{fitStorageKey}")
+    public ResponseEntity<?> deleteByFitStorageKey(@PathVariable("fitStorageKey") int fitStorageKey) {
+
+        // fitcommentKey를 사용하여 데이터베이스에서 삭제
+        fitStorageMapper.deleteByFitStorageKey(fitStorageKey);
+        return ResponseEntity.ok(Collections.singletonMap("message", "DB상에서 진짜로 삭제 성공"));
     }
 }

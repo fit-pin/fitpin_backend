@@ -62,6 +62,8 @@
         <result property="userName" column="userName"/> <!-- userName 매핑 -->
     </resultMap>
 
-
+    <delete id="deleteByFitStorageKey" parameterType="int">
+        DELETE FROM fitStorage WHERE fitStorageKey = #{fitStorageKey}
+    </delete>
 
 </mapper>

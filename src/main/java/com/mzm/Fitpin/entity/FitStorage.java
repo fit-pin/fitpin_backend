@@ -13,6 +13,8 @@ public class FitStorage {
     private String itemBrand;
     private String itemSize;
     private String option;
+    private boolean deleteStatus;
+    private String commentDate;
 
     private String userName; // 유저 이름 필드 추가 원래
 }

@@ -26,5 +26,5 @@ public interface FitStorageMapper {
 
     FitStorageDTO findByFitCommentKey( int fitStorageKey);
 
-
+    void deleteByFitStorageKey(int fitStorageKey); //진짜 삭제
 }
