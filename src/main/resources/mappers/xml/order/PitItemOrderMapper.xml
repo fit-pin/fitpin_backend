@@ -6,10 +6,10 @@
     <insert id="insertPitItemOrder" parameterType="com.mzm.Fitpin.dto.order.PitItemOrderDTO">
     INSERT INTO pitItemOrder (
         itemKey, orderKey, itemType, itemSize, itemName, itemHeight, itemShoulder, itemChest, itemSleeve,
-        frontrise, itemWaists, itemThighs, itemHemWidth
+        frontrise, itemWaists, itemThighs, itemHemWidth, itemhipWidth
     ) VALUES (
                  #{itemKey}, #{orderKey}, #{itemType}, #{itemSize}, #{itemName}, #{itemHeight}, #{itemShoulder},
-                 #{itemChest}, #{itemSleeve}, #{frontrise}, #{itemWaists}, #{itemThighs}, #{itemHemWidth}
+                 #{itemChest}, #{itemSleeve}, #{frontrise}, #{itemWaists}, #{itemThighs}, #{itemHemWidth}, #{itemhipWidth}
              )
 </insert>
 

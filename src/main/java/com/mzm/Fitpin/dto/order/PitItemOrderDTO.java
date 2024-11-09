@@ -17,4 +17,5 @@ public class PitItemOrderDTO {
     private Float itemWaists;
     private Float itemThighs;
     private Float itemHemWidth;
+    private Float itemhipWidth;
 }
