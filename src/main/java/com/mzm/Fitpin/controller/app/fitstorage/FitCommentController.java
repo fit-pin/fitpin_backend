@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
+//todo: API 문서 수정
 @RestController
 @RequestMapping("/api/fit_comment")
 public class FitCommentController {
@@ -146,9 +146,8 @@ public class FitCommentController {
         FitStorage fitStorage = fitStorageMapper.findByUserEmailAndFitStorageImg(userEmail, imageName);
 
         if (fitStorage != null) {
-            //삭제(리워드 시스템을 위해 DeleteStatus만 true로 세팅)
-            fitStorage.setDeleteStatus(true);
-            fitStorageMapper.update(fitStorage);
+            // deleteStatus만 true로 설정
+            fitStorageMapper.update_DeleteStatus(userEmail, imageName);
 
             return ResponseEntity.ok(Collections.singletonMap("message", "코멘트 및 정보 삭제 성공"));
         } else {
@@ -156,6 +155,7 @@ public class FitCommentController {
                     .body(Collections.singletonMap("message", "핏코멘트를 찾을 수 없습니다"));
         }
     }
+
 
     @DeleteMapping("/delete_comment_real/{fitStorageKey}")
     public ResponseEntity<?> deleteByFitStorageKey(@PathVariable("fitStorageKey") int fitStorageKey) {

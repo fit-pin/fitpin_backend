@@ -20,11 +20,15 @@ public interface FitStorageMapper {
     // 사용자 이메일과 이미지 이름으로 데이터 검색
     FitStorage findByUserEmailAndFitStorageImg(String userEmail, String fitStorageImg);
 
-    void update(FitStorage fitStorage); // 추가된 부분
+    void update_DeleteStatus(String userEmail, String fitStorageImg);
 
     List<FitStorage> findAllFitComments();
 
     FitStorageDTO findByFitCommentKey( int fitStorageKey);
 
     void deleteByFitStorageKey(int fitStorageKey); //진짜 삭제
+
+    void update(FitStorage fitStorage);
+
+
 }

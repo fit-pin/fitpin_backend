@@ -24,14 +24,21 @@
     </select>
 
     <!-- 이미지 정보 업데이트 (코멘트 포함) -->
+    <update id="update_DeleteStatus" parameterType="map">
+        UPDATE fitStorage
+        SET deleteStatus = 1
+        WHERE userEmail = #{userEmail} AND fitStorageImg = #{fitStorageImg}
+    </update>
+
     <update id="update" parameterType="com.mzm.Fitpin.entity.FitStorage">
         UPDATE fitStorage
         SET fitComment = #{fitComment},
-        itemName = #{itemName},  <!-- 추가된 필드 -->
+        itemName = #{itemName},
         itemType = #{itemType},
         itemBrand = #{itemBrand},
         itemSize = #{itemSize},
-        option = #{option}
+        option = #{option},
+        deleteStatus = #{deleteStatus} <!-- deleteStatus 필드 포함 -->
         WHERE userEmail = #{userEmail} AND fitStorageImg = #{fitStorageImg}
     </update>
 
