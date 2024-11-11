@@ -43,8 +43,10 @@
     </update>
 
     <select id="findAllFitComments" resultType="com.mzm.Fitpin.entity.FitStorage">
-        SELECT * FROM fitStorage;
+        SELECT * FROM fitStorage
+        WHERE deleteStatus = 0;
     </select>
+
 
     <select id="findByFitCommentKey" parameterType="int" resultType="com.mzm.Fitpin.dto.FitStorageDTO">
         SELECT fs.fitStorageKey, fs.userEmail, fs.fitStorageImg, fs.fitComment,
