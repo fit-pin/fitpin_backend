@@ -857,6 +857,7 @@ averageBmi : (구매자 평균 BMI)
 
 
 
+
 <details>
  <summary> 코멘트 삭제</summary> <!-- 핏 보관함 코멘트 삭제 시작 -->
 
@@ -864,7 +865,7 @@ averageBmi : (구매자 평균 BMI)
 
 #### URL: `/api/fit_comment/delete_comment`
 
-유저의 이메일과 이미지 이름을 기반으로 코멘트를 삭제하는 API입니다. 이미 저장된 코멘트를 삭제할 수 있습니다.
+유저의 이메일과 이미지 이름을 기반으로 코멘트를 논리적으로 삭제하는 API입니다. 이 API는 코멘트가 삭제된 것으로 표시되도록 `deleteStatus`를 `true`로 설정합니다.
 
 - **요청 URL 예시**: `http://fitpitback.kro.kr:8080/api/fit_comment/delete_comment`
 
@@ -879,25 +880,24 @@ averageBmi : (구매자 평균 BMI)
 - **Status 200 OK**
   ```json
   {
-    "message": "코멘트 삭제 성공"
+    "message": "코멘트 및 정보 삭제 성공"
   }
   ```
 - **Status 404 Not Found**
   ```json
   {
-    "message": "이미지를 찾을 수 없습니다"
+    "message": "핏코멘트를 찾을 수 없습니다"
   }
   ```
-
 - **Status 500 Internal Server Error**
  ```json
 {
   "message": "서버 에러가 발생했습니다."
 }
  ```
-  
 
 </details> <!-- 핏 보관함 코멘트 삭제 끝 -->
+
 
  
 </details> <!-- 핏보관함 details API 끝 -->
@@ -1452,6 +1452,15 @@ DB에 저장된 값에 따라 ``pitStatus`` , ``displayPitPrice`` , ``displayOrd
 
  
 </details> <!-- 주문/결제 페이지 details end-->
+
+<details> <!-- 수선 관련 API 시작 -->
+<summary> 수선 관련 </summary>
+
+
+ 
+</summary>
+ 
+</details>
  
 </details> <!-- APP API details end-->
 
