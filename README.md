@@ -1452,6 +1452,15 @@ DB에 저장된 값에 따라 ``pitStatus`` , ``displayPitPrice`` , ``displayOrd
 
  
 </details> <!-- 주문/결제 페이지 details end-->
+
+<details> <!-- 수선 관련 API 시작 -->
+<summary> 수선 관련 </summary>
+
+
+ 
+</summary>
+ 
+</details>
  
 </details> <!-- APP API details end-->
 
