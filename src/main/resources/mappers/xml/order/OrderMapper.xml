@@ -25,9 +25,11 @@
         WHERE orderKey = #{orderKey}
     </update>
 
-    <update id="updatePitPrice"> <!-- 갱신 -->
+    <update id="updatePitPrice"> <!-- 수선값 변경 및 수선 상태 변경-->
         UPDATE orderList
-        SET pitPrice = #{pitPrice}, orderStatus = #{orderStatus}
+        SET
+            pitPrice = COALESCE(#{pitPrice}, pitPrice),
+            orderStatus = COALESCE(#{orderStatus}, orderStatus)
         WHERE orderKey = #{orderKey}
     </update>
 
