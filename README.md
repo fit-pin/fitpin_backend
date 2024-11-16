@@ -1,5 +1,6 @@
- # fitpin_backend
-핏핀 백엔드
+ # fitpin_backend_app
+ 
+핏핀 앱 백엔드
 ## API 목록
 
 ### API 사용법
