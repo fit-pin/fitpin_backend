@@ -2,44 +2,42 @@ package com.mzm.Fitpin.service.img;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collections;
 
 @Service
 public class ImageServeService {
 
+    @Autowired
+    ResourceLoader resourceLoader;
+
     private static final Logger logger = LoggerFactory.getLogger(ImageServeService.class);
 
     public ResponseEntity<?> serveImage(String imgUrl, String basePath) {
         try {
-            Path filePath = Paths.get(imgUrl).normalize();
-
-            if (!filePath.startsWith(basePath)) {
-                logger.warn("Unauthorized access attempt: " + imgUrl);
-                return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                        .body(Collections.singletonMap("message", "접근이 허용되지 않는 경로입니다."));
-            }
-
-            Resource resource = new UrlResource(filePath.toUri());
+            String filePath = new File(imgUrl).getAbsolutePath();
+            
+            Resource resource = resourceLoader.getResource("file:"+filePath);
 
             if (!resource.exists() || !resource.isReadable()) {
-                logger.error("File not found or not readable: " + filePath.toString());
+                logger.error("File not found or not readable: " + imgUrl);
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body(Collections.singletonMap("message", "파일을 찾을 수 없습니다."));
             }
 
-            String contentType = Files.probeContentType(filePath);
+            String contentType = Files.probeContentType(Path.of(resource.getURI()));
             if (contentType == null) {
                 contentType = "application/octet-stream";
             }

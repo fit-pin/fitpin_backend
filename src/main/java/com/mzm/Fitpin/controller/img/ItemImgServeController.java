@@ -2,6 +2,7 @@ package com.mzm.Fitpin.controller.img;
 
 import com.mzm.Fitpin.service.img.ImageServeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +16,12 @@ public class ItemImgServeController {
     @Autowired
     private ImageServeService imageServeService;
 
+    @Value("${item-image-file.ItemImage-Upload-dir}")
+    private String basePath;
+
     @GetMapping("/{imageName}")
     public ResponseEntity<?> getImage(@PathVariable String imageName) {
-        // 기본 경로 설정 (이미지 파일이 있는 디렉토리)
-        String basePath = "/home/ubuntu/home/fitpin_backend/home/itemImg";
-        // 파일 전체 경로를 전달
+        // 파일 경로 전달
         String imgUrl = basePath + "/" + imageName;
         return imageServeService.serveImage(imgUrl, basePath);
     }

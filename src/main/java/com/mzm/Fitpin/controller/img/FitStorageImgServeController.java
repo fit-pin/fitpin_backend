@@ -16,7 +16,7 @@ public class FitStorageImgServeController {
     @Autowired
     private ImageServeService imageServeService;
 
-    @Value("${item-image-file.ItemImage-Upload-dir}")
+    @Value("${fit-storage-file.FitStorage-Upload-dir}")
     private String basePath;
 
     @GetMapping("/{imageName}")
