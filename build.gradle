@@ -35,6 +35,9 @@ dependencies {
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
+	// mysql 추가
+	implementation 'com.mysql:mysql-connector-j'
+
 	// https://mvnrepository.com/artifact/com.jcraft/jsch
 	//implementation 'com.jcraft:jsch:0.1.55' //JSch사용을 위한 그래들 >> 문제의 6년전 라이브러리입니다. 사용XX
 	implementation 'com.github.mwiede:jsch:0.2.17'
